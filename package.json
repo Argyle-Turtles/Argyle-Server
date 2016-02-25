@@ -1,0 +1,35 @@
+{
+  "name": "argyle-server",
+  "version": "0.1.0",
+  "description": "A server for Rock and roll hall of fame",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.5.0",
+    "bluebird": "^3.3.1",
+    "compression": "^1.6.1",
+    "eslint": "^2.1.0",
+    "eslint-config-airbnb": "^5.0.1",
+    "express": "^4.13.4",
+    "express-enrouten": "^1.3.0",
+    "ramda": "^0.19.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Argyle-Turtles/Argyle-Server.git"
+  },
+  "keywords": [
+    "argyle",
+    "spotify"
+  ],
+  "author": "argyle turtles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Argyle-Turtles/Argyle-Server/issues"
+  },
+  "homepage": "https://github.com/Argyle-Turtles/Argyle-Server#readme"
+}
