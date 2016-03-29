@@ -1,1 +1,5 @@
-import m from 'mithril';
+import start from 'start';
+
+export default {
+  start,
+}
