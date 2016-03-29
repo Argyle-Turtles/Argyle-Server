@@ -1,0 +1,22 @@
+body {
+  text-align: center;
+  margin: 0px; }
+
+.banner {
+  background-color: gray;
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.content {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+div {
+  padding-bottom: inherit;
+  padding-top: inherit; }
+
+button {
+  margin: 15px; }
+
+input {
+  margin: 15px; }

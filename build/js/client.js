@@ -52,6 +52,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	__webpack_require__(4);
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -71,7 +73,7 @@
 
 	var stageOne = {
 	  view: function view() {
-	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='style.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageOne", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("div", "Enter Your Code")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Enter the code from the sticker....newly-created playlist!"), (0, _mithril2.default)("input", { type: "text" }), (0, _mithril2.default)("br"), (0, _mithril2.default)("input", { type: "text" }, "My Mixtape"), (0, _mithril2.default)("br"), (0, _mithril2.default)("button", { onclick: function onclick(e) {
+	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageOne", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("div", "Enter Your Code")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Enter the code from the sticker....newly-created playlist!"), (0, _mithril2.default)("input", { type: "text" }), (0, _mithril2.default)("br"), (0, _mithril2.default)("input", { type: "text" }, "My Mixtape"), (0, _mithril2.default)("br"), (0, _mithril2.default)("button", { onclick: function onclick(e) {
 	        location.hash = "/two";
 	      } }, "Rock On!")])])])]);
 	  }
@@ -79,7 +81,7 @@
 
 	var stageTwo = {
 	  view: function view() {
-	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='style.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageTwo", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
+	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageTwo", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/";
 	      } }, "Back"), (0, _mithril2.default)("div", "My Mixtape")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Congrats!"), (0, _mithril2.default)("div", "We have saved your Mixtape to a spotify playlist..."), (0, _mithril2.default)("button", { onclick: function onclick(e) {
 	        location.hash = "/three";
@@ -89,7 +91,7 @@
 
 	var stageThree = {
 	  view: function view() {
-	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='style.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageThree", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
+	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageThree", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/two";
 	      } }, "Back"), (0, _mithril2.default)("div", "My Mixtape")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Keep Your sticker!"), (0, _mithril2.default)("div", "Remove the sticker with your code...."), (0, _mithril2.default)("button", { onclick: function onclick(e) {
 	        location.hash = "/four";
@@ -99,7 +101,7 @@
 
 	var stageFour = {
 	  view: function view() {
-	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='style.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFour", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
+	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFour", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/three";
 	      } }, "Back"), (0, _mithril2.default)("div", "My Mixtape")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Return the tape"), (0, _mithril2.default)("div", "Drop off the mixtape as you exit...."), (0, _mithril2.default)("button", { onclick: function onclick(e) {
 	        location.hash = "/five";
@@ -109,7 +111,7 @@
 
 	var stageFive = {
 	  view: function view() {
-	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='style.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFive", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
+	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFive", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/four";
 	      } }, "Back"), (0, _mithril2.default)("div", "My Mixtape")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Enjoy your mix"), (0, _mithril2.default)("div", "Follow the sticker instructions to add the playlist...")])])])]);
 	  }
@@ -2288,6 +2290,12 @@
 		return module;
 	}
 
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

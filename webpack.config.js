@@ -1,5 +1,7 @@
 /* eslint-disable */
 var path = require('path');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractCSS = new ExtractTextPlugin('css/main.css');
 
 module.exports = {
   entry: {
@@ -14,6 +16,11 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        loader: extractCSS.extract(['css-loader', 'sass-loader']),
+      },
+      {
         test: /\.js$/,
         include: [
           path.resolve(__dirname, 'src/client'),
@@ -23,4 +30,8 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    extractCSS,
+  ],
 };

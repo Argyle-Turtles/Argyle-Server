@@ -6,7 +6,7 @@ var stageOne = {
 	view: function(){
 		return m("html",[
 							 m("head", [
-    					 	m("link[href='style.css'][rel=stylesheet]")
+    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
   						]),
               m("body",[
                 m(".stageOne",[
@@ -31,7 +31,7 @@ var stageTwo = {
 	view: function(){
 		return m("html",[
 							m("head", [
-    					 	m("link[href='style.css'][rel=stylesheet]")
+    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
   						]),
               m("body",[
                 m(".stageTwo",[
@@ -54,7 +54,7 @@ var stageThree = {
 	view: function(){
 		return m("html",[
 							m("head", [
-    					 	m("link[href='style.css'][rel=stylesheet]")
+    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
   						]),
               m("body",[
                 m(".stageThree",[
@@ -77,7 +77,7 @@ var stageFour = {
 	view: function(){
 		return m("html",[
 							m("head", [
-    					 	m("link[href='style.css'][rel=stylesheet]")
+    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
   						]),
               m("body",[
                 m(".stageFour",[
@@ -100,7 +100,7 @@ var stageFive= {
 	view: function(){
 		return m("html",[
 							m("head", [
-    					 	m("link[href='style.css'][rel=stylesheet]")
+    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
   						]),
               m("body",[
                 m(".stageFive",[
