@@ -46,19 +46,40 @@
 
 	'use strict';
 
+	var _mithril = __webpack_require__(2);
+
+	var _mithril2 = _interopRequireDefault(_mithril);
+
 	var _tablet = __webpack_require__(1);
 
-	var _tablet2 = _interopRequireDefault(_tablet);
+	var tab = _interopRequireWildcard(_tablet);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	__webpack_require__(4);
+
+	_mithril2.default.route.mode = "hash";
+
+	_mithril2.default.route(document, "/", {
+	    "/tablet/": tab.stageOne,
+	    "/tablet/two": tab.stageTwo,
+	    "/tablet/three": tab.stageThree,
+	    "/tablet/four": tab.stageFour,
+	    "/tablet/five": tab.stageFive
+	});
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.stageFive = exports.stageFour = exports.stageThree = exports.stageTwo = exports.stageOne = undefined;
 
 	var _mithril = __webpack_require__(2);
 
@@ -67,11 +88,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// client entry file
-	window.onload = function () {
-	  location.hash = "/";
-	};
 
-	var stageOne = {
+	var stageOne = exports.stageOne = {
 	  view: function view() {
 	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageOne", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("div", "Enter Your Code")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Enter the code from the sticker....newly-created playlist!"), (0, _mithril2.default)("input", { type: "text" }), (0, _mithril2.default)("br"), (0, _mithril2.default)("input", { type: "text" }, "My Mixtape"), (0, _mithril2.default)("br"), (0, _mithril2.default)("button", { onclick: function onclick(e) {
 	        location.hash = "/two";
@@ -79,7 +97,7 @@
 	  }
 	};
 
-	var stageTwo = {
+	var stageTwo = exports.stageTwo = {
 	  view: function view() {
 	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageTwo", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/";
@@ -89,7 +107,7 @@
 	  }
 	};
 
-	var stageThree = {
+	var stageThree = exports.stageThree = {
 	  view: function view() {
 	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageThree", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/two";
@@ -99,7 +117,7 @@
 	  }
 	};
 
-	var stageFour = {
+	var stageFour = exports.stageFour = {
 	  view: function view() {
 	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFour", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/three";
@@ -109,23 +127,13 @@
 	  }
 	};
 
-	var stageFive = {
+	var stageFive = exports.stageFive = {
 	  view: function view() {
 	    return (0, _mithril2.default)("html", [(0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]), (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageFive", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("button[class=back]", { onclick: function onclick(e) {
 	        location.hash = "/four";
 	      } }, "Back"), (0, _mithril2.default)("div", "My Mixtape")]), (0, _mithril2.default)(".content", [(0, _mithril2.default)("div", "Enjoy your mix"), (0, _mithril2.default)("div", "Follow the sticker instructions to add the playlist...")])])])]);
 	  }
 	};
-
-	_mithril2.default.route.mode = "hash";
-
-	_mithril2.default.route(document, "/", {
-	  "/": stageOne,
-	  "/two": stageTwo,
-	  "/three": stageThree,
-	  "/four": stageFour,
-	  "/five": stageFive
-	});
 
 /***/ },
 /* 2 */

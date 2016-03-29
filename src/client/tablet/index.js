@@ -1,8 +1,7 @@
 import m from 'mithril';
 // client entry file
-window.onload = function(){location.hash = "/"};
 
-var stageOne = {
+export const stageOne = {
 	view: function(){
 		return m("html",[
 							 m("head", [
@@ -27,7 +26,7 @@ var stageOne = {
 	}
 };
 
-var stageTwo = {
+export const stageTwo = {
 	view: function(){
 		return m("html",[
 							m("head", [
@@ -50,7 +49,7 @@ var stageTwo = {
 	}
 };
 
-var stageThree = {
+export const stageThree = {
 	view: function(){
 		return m("html",[
 							m("head", [
@@ -73,7 +72,7 @@ var stageThree = {
 	}
 };
 
-var stageFour = {
+export const stageFour = {
 	view: function(){
 		return m("html",[
 							m("head", [
@@ -96,7 +95,7 @@ var stageFour = {
 	}
 };
 
-var stageFive= {
+export const stageFive= {
 	view: function(){
 		return m("html",[
 							m("head", [
@@ -117,15 +116,3 @@ var stageFive= {
             ]);
 	}
 };
-
-
-
-m.route.mode = "hash";
-
-m.route(document, "/", {
-    "/": stageOne,
-    "/two": stageTwo,
-    "/three":stageThree,
-    "/four":stageFour,
-    "/five":stageFive
-});
