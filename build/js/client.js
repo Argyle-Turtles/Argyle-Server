@@ -50,25 +50,18 @@
 
 	var _mithril2 = _interopRequireDefault(_mithril);
 
-	var _tablet = __webpack_require__(1);
+	var _routes = __webpack_require__(7);
 
-	var tab = _interopRequireWildcard(_tablet);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+	var _routes2 = _interopRequireDefault(_routes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// oh webpack you sultry son-of-a-dev
 	__webpack_require__(4);
 
 	_mithril2.default.route.mode = "hash";
 
-	_mithril2.default.route(document, "/", {
-	    "/tablet/": tab.stageOne,
-	    "/tablet/two": tab.stageTwo,
-	    "/tablet/three": tab.stageThree,
-	    "/tablet/four": tab.stageFour,
-	    "/tablet/five": tab.stageFive
-	});
+	_mithril2.default.route(document, "/", _routes2.default);
 
 /***/ },
 /* 1 */
@@ -2304,6 +2297,110 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 5 */,
+/* 6 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _start = __webpack_require__(8);
+
+	var _start2 = _interopRequireDefault(_start);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = {
+	  start: _start2.default
+	};
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _tablet = __webpack_require__(1);
+
+	var tab = _interopRequireWildcard(_tablet);
+
+	var _projector = __webpack_require__(6);
+
+	var _projector2 = _interopRequireDefault(_projector);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	// pages
+	exports.default = {
+	    "/tablet/": tab.stageOne,
+	    "/tablet/two": tab.stageTwo,
+	    "/tablet/three": tab.stageThree,
+	    "/tablet/four": tab.stageFour,
+	    "/tablet/five": tab.stageFive,
+	    "/projector/start": _projector2.default.start
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.stageOne = undefined;
+
+	var _mithril = __webpack_require__(2);
+
+	var _mithril2 = _interopRequireDefault(_mithril);
+
+	var _head = __webpack_require__(9);
+
+	var _head2 = _interopRequireDefault(_head);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var view = function view() {
+	  return (0, _mithril2.default)("html", [_head2.default, (0, _mithril2.default)("body", [(0, _mithril2.default)(".stageOne", [(0, _mithril2.default)(".banner", [(0, _mithril2.default)("div", "Enter Your Code")])])])]);
+	};
+
+	var stageOne = exports.stageOne = {
+	  view: function view() {
+	    return;
+	  }
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _mithril = __webpack_require__(2);
+
+	var _mithril2 = _interopRequireDefault(_mithril);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var head = (0, _mithril2.default)("head", [(0, _mithril2.default)("link[href='./build/css/main.css'][rel=stylesheet]")]);
+
+	exports.default = head;
 
 /***/ }
 /******/ ]);

@@ -1,14 +1,10 @@
 import m from 'mithril';
 
-import * as tab from './tablet';
+import routes from './routes';
+
+// oh webpack you sultry son-of-a-dev
 require('../../assets/css/main.scss');
 
 m.route.mode = "hash";
 
-m.route(document, "/", {
-    "/tablet/": tab.stageOne,
-    "/tablet/two": tab.stageTwo,
-    "/tablet/three": tab.stageThree,
-    "/tablet/four": tab.stageFour,
-    "/tablet/five": tab.stageFive
-});
+m.route(document, "/", routes);
