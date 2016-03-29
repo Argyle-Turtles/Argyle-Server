@@ -1,6 +1,6 @@
 import m from 'mithril';
 
-import head from '../components/head';
+import { head } from '../components';
 // client entry file
 
 export const stageOne = {

@@ -1,5 +1,5 @@
 import m from 'mithril';
-import head from '../components/head';
+import { head } from '../components';
 
 const view = () =>
   m("html", [
