@@ -1,12 +1,12 @@
 import m from 'mithril';
+
+import head from '../components/head';
 // client entry file
 
 export const stageOne = {
 	view: function(){
 		return m("html",[
-							 m("head", [
-    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
-  						]),
+							head,
               m("body",[
                 m(".stageOne",[
                 	m(".banner",[
@@ -18,7 +18,7 @@ export const stageOne = {
                 		m("br"),
                 		m("input",{type:"text"},"My Mixtape"),
                 		m("br"),
-                		m("button",{onclick:function(e){location.hash = "/two"}},"Rock On!")
+                		m("button",{onclick:function(e){location.hash = "/tablet/two"}},"Rock On!")
                 	]),
                 ]),
               ]),
@@ -29,19 +29,17 @@ export const stageOne = {
 export const stageTwo = {
 	view: function(){
 		return m("html",[
-							m("head", [
-    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
-  						]),
+							head,
               m("body",[
                 m(".stageTwo",[
                 	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/"}},"Back"),
+                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/"}},"Back"),
                 		m("div","My Mixtape")
                 	]),
                 	m(".content",[
                 		m("div","Congrats!"),
                 		m("div","We have saved your Mixtape to a spotify playlist..."),
-                		m("button",{onclick:function(e){location.hash = "/three"}},"Next")
+                		m("button",{onclick:function(e){location.hash = "/tablet/three"}},"Next")
                 	]),
                 ]),
               ]),
@@ -52,19 +50,17 @@ export const stageTwo = {
 export const stageThree = {
 	view: function(){
 		return m("html",[
-							m("head", [
-    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
-  						]),
+							head,
               m("body",[
                 m(".stageThree",[
                 	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/two"}},"Back"),
+                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/two"}},"Back"),
                 		m("div","My Mixtape")
                 	]),
                 	m(".content",[
                 		m("div","Keep Your sticker!"),
                 		m("div","Remove the sticker with your code...."),
-                		m("button",{onclick:function(e){location.hash = "/four"}},"Next")
+                		m("button",{onclick:function(e){location.hash = "/tablet/four"}},"Next")
                 	]),
                 ]),
               ]),
@@ -75,19 +71,17 @@ export const stageThree = {
 export const stageFour = {
 	view: function(){
 		return m("html",[
-							m("head", [
-    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
-  						]),
+							head,
               m("body",[
                 m(".stageFour",[
                 	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/three"}},"Back"),
+                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/three"}},"Back"),
                 		m("div","My Mixtape")
                 	]),
                 	m(".content",[
                 		m("div","Return the tape"),
                 		m("div","Drop off the mixtape as you exit...."),
-                		m("button",{onclick:function(e){location.hash = "/five"}},"Next")
+                		m("button",{onclick:function(e){location.hash = "/tablet/five"}},"Next")
                 	]),
                 ]),
               ]),
@@ -98,13 +92,11 @@ export const stageFour = {
 export const stageFive= {
 	view: function(){
 		return m("html",[
-							m("head", [
-    					 	m("link[href='./build/css/main.css'][rel=stylesheet]")
-  						]),
+							head,
               m("body",[
                 m(".stageFive",[
                 	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/four"}},"Back"),
+                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/four"}},"Back"),
                 		m("div","My Mixtape")
                 	]),
                 	m(".content",[
