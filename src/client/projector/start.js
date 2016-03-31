@@ -35,6 +35,10 @@ const view = () =>
     m('body', [
       m('#pageone', [
         bandInfo(),
+        m('button', {
+          onclick: () => location.hash = '/projector/two',
+        },
+        'Rock Out!'),
       ]),
     ]),
   ]);
