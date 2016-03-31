@@ -1,7 +1,8 @@
 import { map } from 'ramda';
 import m, { prop } from 'mithril';
+import leap from '../leap';
 
-import { head } from '../components';
+import { head, cursor } from '../components';
 
 // VIEW MODEL
 const vm = {
@@ -39,12 +40,28 @@ const view = () =>
           onclick: () => location.hash = '/projector/two',
         },
         'Rock Out!'),
+        cursor,
       ]),
     ]),
   ]);
 
+const moveCursor = ({ x, y }) => {
+  const c = document.querySelector('#cursor');
+  c.style.left = `${x}px`;
+  c.style.top = `${y}px`;
+};
+
+const touchScreen = (finger) => {
+  moveCursor(finger);
+  console.log(document.elementFromPoint(finger.x, finger.y - 10));
+  document.elementFromPoint(finger.x, finger.y - 10).click();
+};
+
 // CONTROLER
-const controller = () => vm.init();
+const controller = () => {
+  leap.init(touchScreen, moveCursor);
+  vm.init();
+};
 
 // EXPORT
 export default {

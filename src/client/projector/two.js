@@ -1,6 +1,6 @@
 import m from 'mithril';
 
-import { head } from '../components';
+import { head, cursor } from '../components';
 
 // VIEW
 const view = () =>
@@ -9,6 +9,7 @@ const view = () =>
     m('body', [
       m('#page-two', [
         m('h1', 'Something clever'),
+        cursor,
       ]),
     ]),
   ]);
