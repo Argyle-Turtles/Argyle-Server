@@ -12,17 +12,6 @@ const vm = {
   },
 };
 
-// VIEW
-const view = () =>
-  m('html', [
-    head,
-    m('body', [
-      m('#pageone', [
-        bandInfo(),
-      ]),
-    ]),
-  ]);
-
 // COMPONENTS
 const subGenres = () =>
   map(genre => m('span[class=sub-genre]', genre), vm.subGenres());
@@ -39,12 +28,23 @@ const bandInfo = () =>
     bandGenre(),
   ]);
 
+// VIEW
+const view = () =>
+  m('html', [
+    head,
+    m('body', [
+      m('#pageone', [
+        bandInfo(),
+      ]),
+    ]),
+  ]);
+
 // CONTROLER
 const controller = () => vm.init();
 
 // EXPORT
 export default {
   vm,
-	view,
+  view,
   controller,
 };
