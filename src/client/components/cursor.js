@@ -1,5 +1,7 @@
 import m from 'mithril';
 
-const head = m('#cursor', m.trust('&nbsp;&nbsp;'));
+const view = () => <div id="cursor">{m.trust('&nbsp;&nbsp;')}</div>;
 
-export default head;
+export default {
+  view,
+};

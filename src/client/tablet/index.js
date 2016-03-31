@@ -1,12 +1,13 @@
 import m from 'mithril';
 
-import { head } from '../components';
 // client entry file
 
 export const stageOne = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageOne",[
                 	m(".banner",[
@@ -29,7 +30,9 @@ export const stageOne = {
 export const stageTwo = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageTwo",[
                 	m(".banner",[
@@ -50,7 +53,9 @@ export const stageTwo = {
 export const stageThree = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageThree",[
                 	m(".banner",[
@@ -71,7 +76,9 @@ export const stageThree = {
 export const stageFour = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageFour",[
                 	m(".banner",[
@@ -92,7 +99,9 @@ export const stageFour = {
 export const stageFive= {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageFive",[
                 	m(".banner",[
