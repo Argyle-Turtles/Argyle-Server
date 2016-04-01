@@ -1,6 +1,5 @@
 import m from 'mithril';
 
-import { head } from '../components';
 // client entry file
 const accessToken = "BQCTArAfX5YwDrC3Ti36xci8XMKQ-HBDY7jOEJbiNw4qRSuFoMLNdDNPuQS8oZj7gj36Zs75fmcDpU7tfgCHfKZm3Z9ZilxD9q6pFoBNMPkyUil5JDftGZMbETGhS2_yzLNZkTJJwlhOB6qWpNJxqj70M5RZHYh8lq2jS06k6YKlU1efR3LF6z5mGEAqhzh7ClKolEwqrYwbPJffI1bG1Bbcm58YBZmB6rw79Fbg0Ku8NCR-UbCE0A"
 const spotify = {
@@ -53,7 +52,9 @@ export const myMix = {
 export const stageTwo = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageTwo",[
                 	m(".banner",[
@@ -74,7 +75,9 @@ export const stageTwo = {
 export const stageThree = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageThree",[
                 	m(".banner",[
@@ -95,7 +98,9 @@ export const stageThree = {
 export const stageFour = {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageFour",[
                 	m(".banner",[
@@ -116,7 +121,9 @@ export const stageFour = {
 export const stageFive= {
 	view: function(){
 		return m("html",[
-							head,
+							m('head', [
+								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
+							]),
               m("body",[
                 m(".stageFive",[
                 	m(".banner",[

@@ -1,7 +1,7 @@
-import head from './head';
-import cursor from './cursor';
+import Head from './head';
+import Cursor from './cursor';
 
 export {
-  head,
-  cursor,
+  Head,
+  Cursor,
 };

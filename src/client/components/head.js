@@ -1,7 +1,8 @@
-import m from 'mithril';
+const view = () =>
+  <head>
+    <link href="./build/css/main.css" rel="stylesheet"></link>
+  </head>;
 
-const head = m('head', [
-  m(`link[href='./build/css/main.css'][rel=stylesheet]`),
-]);
-
-export default head;
+export default {
+  view,
+};

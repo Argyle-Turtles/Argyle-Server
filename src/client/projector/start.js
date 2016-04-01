@@ -1,8 +1,11 @@
-import { map } from 'ramda';
 import m, { prop } from 'mithril';
 import leap from '../leap';
 
-import { head, cursor } from '../components';
+// Shared components
+import { Head, Cursor } from '../components';
+
+// Local Components
+import BandInfo from './components/BandInfo';
 
 // VIEW MODEL
 const vm = {
@@ -13,37 +16,24 @@ const vm = {
   },
 };
 
-// COMPONENTS
-const subGenres = () =>
-  map(genre => m('span[class=sub-genre]', genre), vm.subGenres());
-
-const bandGenre = () =>
-  m('.band-genre', [
-    m('h2', vm.primaryGenre()),
-    subGenres(),
-  ]);
-
-const bandInfo = () =>
-  m('.band-info', [
-    m('h1', vm.bandName()),
-    bandGenre(),
-  ]);
-
 // VIEW
 const view = () =>
-  m('html', [
-    head,
-    m('body', [
-      m('#pageone', [
-        bandInfo(),
-        m('button', {
-          onclick: () => location.hash = '/projector/two',
-        },
-        'Rock Out!'),
-        cursor,
-      ]),
-    ]),
-  ]);
+  <html>
+    <Head />
+    <body>
+      <div id="PageOne">
+        <BandInfo
+          bandName={vm.bandName()}
+          primaryGenre={vm.primaryGenre()}
+          subGenres={vm.subGenres()}/>
+        <input
+          type="button"
+          onclick={() => location.hash = '/projector/two'}
+          value="Rock out !" />
+        <Cursor />
+      </div>
+    </body>
+  </html>;
 
 const moveCursor = ({ x, y }) => {
   const c = document.querySelector('#cursor');
@@ -53,8 +43,8 @@ const moveCursor = ({ x, y }) => {
 
 const touchScreen = (finger) => {
   moveCursor(finger);
-  console.log(document.elementFromPoint(finger.x, finger.y - 10));
-  document.elementFromPoint(finger.x, finger.y - 10).click();
+  const clickSpot = document.elementFromPoint(finger.x, finger.y - 10);
+  return clickSpot && clickSpot.click();
 };
 
 // CONTROLER
