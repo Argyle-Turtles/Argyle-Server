@@ -18,7 +18,7 @@ export const stageOne = {
               m("body",[
                 m(".stageOne",[
                 	m(".banner",[
-                        m("button",{onclick:function(e){document.location.href='https://accounts.spotify.com:/authorize?client_id=f81d5574fd5b4b57b517ba20081f3235&response_type=token&redirect_uri=http://localhost:3000/#tablet/&scope=playlist-modify-private playlist-modify-public&show_dialog=false';}},"Authorize"),
+                        m("button",{onclick:function(e){document.location.href='https://accounts.spotify.com:/authorize?client_id=f81d5574fd5b4b57b517ba20081f3235&response_type=token&redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_dialog=false';}},"Authorize"),
                 		m("div","Enter Your Code")
                 	]),
                 	m(".content",[
