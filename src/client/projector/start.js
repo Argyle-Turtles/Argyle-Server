@@ -28,25 +28,12 @@ const view = () =>
           subGenres={vm.subGenres()}/>
         <input
           type="button"
-          onclick={() => location.hash = '/projector/two'}>
-          {"Rock out!"}</input>
+          onclick={() => location.hash = '/projector/two'}
+          value="Rock out !" />
         <Cursor />
       </div>
     </body>
   </html>;
-  // m('html', [
-  //   head,
-  //   m('body', [
-  //     m('#pageone', [
-  //       bandInfo(),
-  //       m('button', {
-  //         onclick: () => location.hash = '/projector/two',
-  //       },
-  //       'Rock Out!'),
-  //       cursor,
-  //     ]),
-  //   ]),
-  // ]);
 
 const moveCursor = ({ x, y }) => {
   const c = document.querySelector('#cursor');

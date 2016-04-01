@@ -1,18 +1,18 @@
 import m from 'mithril';
 
-import { head, cursor } from '../components';
+import { Head, Cursor } from '../components';
 
 // VIEW
 const view = () =>
-  m('html', [
-    head,
-    m('body', [
-      m('#page-two', [
-        m('h1', 'Something clever'),
-        cursor,
-      ]),
-    ]),
-  ]);
+  <html>
+    <Head/>
+    <body>
+      <div id="#page-two">
+        <h1>Something clever</h1>
+      </div>
+      <Cursor/>
+    </body>
+  </html>;
 
 // EXPORT
 export default {
