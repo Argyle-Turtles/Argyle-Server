@@ -1,7 +1,9 @@
 import m from 'mithril';
 
+import head from '../components/head';
+
 // client entry file
-const accessToken = "BQCTArAfX5YwDrC3Ti36xci8XMKQ-HBDY7jOEJbiNw4qRSuFoMLNdDNPuQS8oZj7gj36Zs75fmcDpU7tfgCHfKZm3Z9ZilxD9q6pFoBNMPkyUil5JDftGZMbETGhS2_yzLNZkTJJwlhOB6qWpNJxqj70M5RZHYh8lq2jS06k6YKlU1efR3LF6z5mGEAqhzh7ClKolEwqrYwbPJffI1bG1Bbcm58YBZmB6rw79Fbg0Ku8NCR-UbCE0A"
+const accessToken = ""
 const spotify = {
     getPlaylist: function(){
         return m.request({method:"GET", url:"https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}",headers:{
@@ -17,7 +19,7 @@ export const stageOne = {
               m("body",[
                 m(".stageOne",[
                 	m(".banner",[
-                        m("button",{onclick:function(e){document.location.href='https://accounts.spotify.com:/authorize?client_id=f81d5574fd5b4b57b517ba20081f3235&response_type=token&redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_dialog=false';}},"Authorize"),
+                        m("button",{onclick:function(e){document.location.href='https://accounts.spotify.com:/authorize?client_id=b5dc615d0bcc47109e0ea1c5725f1cb8&response_type=token&redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_dialog=false';}},"Authorize"),
                 		m("div","Enter Your Code")
                 	]),
                 	m(".content",[
