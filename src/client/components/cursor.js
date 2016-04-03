@@ -1,6 +1,6 @@
-import m from 'mithril';
+import { trust } from 'mithril';
 
-const view = () => <div id="cursor">{m.trust('&nbsp;&nbsp;')}</div>;
+const view = () => <div id="cursor">{trust('&nbsp;&nbsp;')}</div>;
 
 export default {
   view,
