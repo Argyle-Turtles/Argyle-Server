@@ -2,16 +2,9 @@ import m from 'mithril';
 
 import head from '../components/head';
 
-// client entry file
-const accessToken = ""
-const spotify = {
-    getPlaylist: function(){
-        return m.request({method:"GET", url:"https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}",headers:{
-                         'Authorization': 'Bearer ' + accessToken,
-                         'Content-type': 'application/json'}});
-    }
-}
+import spotify from '..components/spotify';
 
+// client entry file
 export const stageOne = { 
 	view: function(){
 		return m("html",[
@@ -28,7 +21,8 @@ export const stageOne = {
                 		m("br"),
                 		m("input",{type:"text"},"My Mixtape"),
                 		m("br"),
-                		m("button",{onclick:function(e){location.hash = "/tablet/two"}},"Rock On!")
+                    m("button",{onclick:function(e){ const access = spotify.getAuthorization(); var playlist = spotify.makePlaylist("New");}},"Get Music"),
+                		m("button",{onclick:function(e){location.search = "/tablet/two"}},"Rock On!")
                 	]),
                 ]),
               ]),
@@ -66,7 +60,7 @@ export const stageTwo = {
                 	m(".content",[
                 		m("div","Congrats!"),
                 		m("div","We have saved your Mixtape to a spotify playlist..."),
-                		m("button",{onclick:function(e){location.hash = "/tablet/three"}},"Next")
+                		m("button",{onclick:function(e){location.search = "/tablet/three"}},"Next")
                 	]),
                 ]),
               ]),
@@ -89,7 +83,7 @@ export const stageThree = {
                 	m(".content",[
                 		m("div","Keep Your sticker!"),
                 		m("div","Remove the sticker with your code...."),
-                		m("button",{onclick:function(e){location.hash = "/tablet/four"}},"Next")
+                		m("button",{onclick:function(e){location.search = "/tablet/four"}},"Next")
                 	]),
                 ]),
               ]),
@@ -112,7 +106,7 @@ export const stageFour = {
                 	m(".content",[
                 		m("div","Return the tape"),
                 		m("div","Drop off the mixtape as you exit...."),
-                		m("button",{onclick:function(e){location.hash = "/tablet/five"}},"Next")
+                		m("button",{onclick:function(e){location.search = "/tablet/five"}},"Next")
                 	]),
                 ]),
               ]),
@@ -129,7 +123,7 @@ export const stageFive= {
               m("body",[
                 m(".stageFive",[
                 	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/four"}},"Back"),
+                		m("button[class=back]",{onclick:function(e){location.search = "/tablet/four"}},"Back"),
                 		m("div","My Mixtape")
                 	]),
                 	m(".content",[
