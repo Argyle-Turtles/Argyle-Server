@@ -27,8 +27,9 @@ const view = () =>
           primaryGenre={vm.primaryGenre()}
           subGenres={vm.subGenres()}/>
         <input
+          className="big"
           type="button"
-          onclick={() => location.hash = '/projector/two'}
+          onclick={() => { console.log('h'); location.search = '/projector/two';}}
           value="Rock out !" />
         <Cursor />
       </div>
