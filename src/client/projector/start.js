@@ -12,7 +12,7 @@ const vm = {
   init: () => {
     vm.bandName = prop('Red Hot Chili Peppers');
     vm.primaryGenre = prop('Rock');
-    vm.subGenres = prop(['Funck Rock', 'Alt Rock', 'Funk Metal']);
+    vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
   },
 };
 

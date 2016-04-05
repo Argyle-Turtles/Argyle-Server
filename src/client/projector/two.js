@@ -1,14 +1,17 @@
 import m from 'mithril';
 
 import { Head, Cursor } from '../components';
+import SongCard from './components/SongCard'
+import PreviewCard from './components/SongCard'
 
 // VIEW
 const view = () =>
   <html>
     <Head/>
     <body>
-      <div id="#page-two">
-        <h1>Something clever</h1>
+      <div id="page-two" className="hero is-fullheight">
+        <SongCard />
+        <PreviewCard />
       </div>
     </body>
   </html>;
