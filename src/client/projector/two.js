@@ -10,7 +10,6 @@ const view = () =>
       <div id="#page-two">
         <h1>Something clever</h1>
       </div>
-      <Cursor/>
     </body>
   </html>;
 

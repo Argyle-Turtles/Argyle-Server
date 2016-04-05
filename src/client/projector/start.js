@@ -10,7 +10,7 @@ import BandInfo from './components/BandInfo';
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.bandName = prop('Captain Trey and the Peppy Peters');
+    vm.bandName = prop('Red Hot Chili Peppers');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funck Rock', 'Alt Rock', 'Funk Metal']);
   },
@@ -21,25 +21,27 @@ const view = () =>
   <html>
     <Head />
     <body>
-      <div id="PageOne">
-        <BandInfo
-          bandName={vm.bandName()}
-          primaryGenre={vm.primaryGenre()}
-          subGenres={vm.subGenres()}/>
-        <input
-          className="big"
-          type="button"
-          onclick={() => { console.log('h'); location.search = '/projector/two';}}
-          value="Rock out !" />
-        <Cursor />
+      <div id="PageOne" className="hero is-fullheight">
+        <div className="hero-content">
+          <BandInfo
+            bandName={vm.bandName()}
+            primaryGenre={vm.primaryGenre()}
+            subGenres={vm.subGenres()}/>
+          <br />
+          <input
+            className="button is-medium container"
+            type="button"
+            onclick={() => location.search = '/projector/two'}
+            value="Rock out!" />
+        </div>
       </div>
     </body>
   </html>;
 
 const moveCursor = ({ x, y }) => {
-  const c = document.querySelector('#cursor');
-  c.style.left = `${x}px`;
-  c.style.top = `${y}px`;
+  // const c = document.querySelector('#cursor');
+  // c.style.left = `${x}px`;
+  // c.style.top = `${y}px`;
 };
 
 const touchScreen = (finger) => {
