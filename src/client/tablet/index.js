@@ -2,7 +2,7 @@ import m from 'mithril';
 
 import head from '../components/head';
 
-import spotify from '..components/spotify';
+import * as spot from '../components/spotify';
 
 // client entry file
 export const stageOne = { 
@@ -21,7 +21,7 @@ export const stageOne = {
                 		m("br"),
                 		m("input",{type:"text"},"My Mixtape"),
                 		m("br"),
-                    m("button",{onclick:function(e){ const access = spotify.getAuthorization(); var playlist = spotify.makePlaylist("New");}},"Get Music"),
+                    m("button",{onclick:function(e){ const playlist = spot.spotify.makePlaylist("New");}},"Get Music"),
                 		m("button",{onclick:function(e){location.search = "/tablet/two"}},"Rock On!")
                 	]),
                 ]),
