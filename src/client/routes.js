@@ -4,6 +4,7 @@ import projector from './projector';
 
 export default {
   '/tablet/': tab.stageOne,
+  '/tablet/mix':tab.myMix,
   '/tablet/two': tab.stageTwo,
   '/tablet/three': tab.stageThree,
   '/tablet/four': tab.stageFour,
