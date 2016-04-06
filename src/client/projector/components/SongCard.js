@@ -23,17 +23,17 @@ const desc = () =>
     <p>This is some smooth funkalucious stuff right here</p>
   </div>;
 
-const button = () =>
+const foot = () =>
   <footer className="card-footer">
     <a class="card-footer-item">Add</a>
   </footer>;
 
 const view = () =>
-  <div class="card">
+  <div className="card">
     <div className="card-content">
       {top()}{mid()}{desc()}
     </div>
-    {button()}
+    {foot()}
   </div>;
 
 export default {
