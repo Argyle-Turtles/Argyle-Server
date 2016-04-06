@@ -16,6 +16,13 @@ server.use(cookieParser('peter'))
 
 server.use(router(routes));
 
+server.use(express.static('build'));
+server.use(express.static(__dirname));
+
+server.get('/',function(req,res){
+  res.sendFile(path.join(__dirname+'/index.html'));
+});
+
 // Start server
 server.set('port', 3000)
   .listen(3000, (err) => {
