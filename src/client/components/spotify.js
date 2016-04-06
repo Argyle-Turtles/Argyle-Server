@@ -12,7 +12,7 @@ Get the token by directing the page to this link -> https://accounts.spotify.com
         xhr.setRequestHeader("Authorization","Bearer "+ accessToken);
         xhr.setRequestHeader("Content-type","application/json");
       };
-      m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists/1LMIR46zW0b982mupRtH5W/tracks",
+      m.request({url:"https://api.spotify.com/v1/users/argyleturtles/playlists/1LMIR46zW0b982mupRtH5W/tracks",
           config: headerData,
           method: "GET"
       }).then(function(resp){
@@ -51,7 +51,7 @@ Get the token by directing the page to this link -> https://accounts.spotify.com
         xhr.setRequestHeader("Authorization","Bearer "+ accessToken);
         xhr.setRequestHeader("Content-type","application/json");
       };
-      m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists/"+ playlistId +"/tracks",
+      m.request({url:"https://api.spotify.com/v1/users/argyleturtles/playlists/"+ playlistId +"/tracks",
         config: headerData,
         method: "POST",
         data:data,
