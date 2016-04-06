@@ -10,9 +10,9 @@ import BandInfo from './components/BandInfo';
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.bandName = prop('Captain Trey and the Peppy Peters');
+    vm.bandName = prop('Red Hot Chili Peppers');
     vm.primaryGenre = prop('Rock');
-    vm.subGenres = prop(['Funck Rock', 'Alt Rock', 'Funk Metal']);
+    vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
   },
 };
 
@@ -21,29 +21,39 @@ const view = () =>
   <html>
     <Head />
     <body>
-      <div id="PageOne">
-        <BandInfo
-          bandName={vm.bandName()}
-          primaryGenre={vm.primaryGenre()}
-          subGenres={vm.subGenres()}/>
-        <input
-          type="button"
-          onclick={() => location.hash = '/projector/two'}
-          value="Rock out !" />
-        <Cursor />
+      <div id="page-one" className="hero is-fullheight">
+        <div className="hero-content heh">
+          <BandInfo
+            bandName={vm.bandName()}
+            primaryGenre={vm.primaryGenre()}
+            subGenres={vm.subGenres()}/>
+          <br />
+          <input
+            className="button is-medium container"
+            type="button"
+            onclick={() => location.search = '/projector/two'}
+            value="Rock out!" />
+        </div>
       </div>
     </body>
   </html>;
 
+// SOME HACKY BULLSHIT
+// top left coords 1320 100
+// bot right 240 876
+
 const moveCursor = ({ x, y }) => {
-  const c = document.querySelector('#cursor');
-  c.style.left = `${x}px`;
-  c.style.top = `${y}px`;
+  // const c = document.querySelector('#cursor');
+  // console.log(c);
+  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
+  // c.style.top = `${(y - 100) / 776 * window.innerHeight - 5}px`;
 };
 
-const touchScreen = (finger) => {
-  moveCursor(finger);
-  const clickSpot = document.elementFromPoint(finger.x, finger.y - 10);
+const touchScreen = ({ x, y }) => {
+  moveCursor({ x, y });
+  const clickSpot = document.elementFromPoint(
+    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
+    (y - 100) / 776 * window.innerHeight);
   return clickSpot && clickSpot.click();
 };
 
