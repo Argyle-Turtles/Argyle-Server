@@ -22,7 +22,7 @@ const view = () =>
     <Head />
     <body>
       <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content">
+        <div className="hero-content heh">
           <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
@@ -44,13 +44,13 @@ const view = () =>
 
 const moveCursor = ({ x, y }) => {
   // const c = document.querySelector('#cursor');
+  // console.log(c);
   // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
-  console.log('cmon');
+  // c.style.top = `${(y - 100) / 776 * window.innerHeight - 5}px`;
 };
 
 const touchScreen = ({ x, y }) => {
-  // moveCursor(finger);
+  moveCursor({ x, y });
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);

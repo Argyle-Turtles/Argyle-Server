@@ -34,6 +34,7 @@ const view = () =>
   <html>
     <Head/>
     <body>
+      <Cursor />
       <div id="page-two" className="hero is-fullheight">
         <div className="hero-content">
           <div className="columns container">
@@ -46,13 +47,13 @@ const view = () =>
   </html>;
 
 const moveCursor = ({ x, y }) => {
-  // const c = document.querySelector('#cursor');
-  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
+  const c = document.querySelector('#cursor');
+  c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
+  c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
 };
 
 const touchScreen = ({ x, y }) => {
-  // moveCursor(finger);
+  moveCursor({ x, y });
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);

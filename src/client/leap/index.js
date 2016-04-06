@@ -44,6 +44,7 @@ export const init = (touchHandler, moveHandler) => {
   try {
     Leap.loop({
       hand: ({ fingers }) => {
+        console.log('wat');
         const f = getIndexFinger(fingers);
         return isTouch(f) ? touchHandler(getScreenPos(f)) : moveHandler(getScreenPos(f));
       },
