@@ -22,7 +22,7 @@ export const stageOne = {
                 		m("input",{type:"text"},"My Mixtape"),
                 		m("br"),
                     m("button",{onclick:function(e){ const playlist = spot.spotify.makePlaylist("New");}},"Get Music"),
-                		m("button",{onclick:function(e){location.search = "/tablet/two"}},"Rock On!")
+                		m("button",{onclick:function(e){location.search = "/tablet/mix"}},"Rock On!")
                 	]),
                 ]),
               ]),
@@ -37,6 +37,8 @@ export const myMix = {
                   m("body",[
                     m(".myMix",[
                       m(".graph","Graph goes here"),
+                       m("button",{onclick:function(e){ const playlist = spot.spotify.getPlaylist();}},"Get Music"),
+                       m("button",{onclick:function(e){location.search = "/tablet/two"}},"Rock On!"),
                       m(".songList","Song list")
                       ]),
                     ]),
