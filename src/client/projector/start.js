@@ -21,7 +21,7 @@ const view = () =>
   <html>
     <Head />
     <body>
-      <div id="PageOne" className="hero is-fullheight">
+      <div id="page-one" className="hero is-fullheight">
         <div className="hero-content">
           <BandInfo
             bandName={vm.bandName()}
@@ -38,15 +38,22 @@ const view = () =>
     </body>
   </html>;
 
+// SOME HACKY BULLSHIT
+// top left coords 1320 100
+// bot right 240 876
+
 const moveCursor = ({ x, y }) => {
   // const c = document.querySelector('#cursor');
-  // c.style.left = `${x}px`;
-  // c.style.top = `${y}px`;
+  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
+  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
+  console.log('cmon');
 };
 
-const touchScreen = (finger) => {
-  moveCursor(finger);
-  const clickSpot = document.elementFromPoint(finger.x, finger.y - 10);
+const touchScreen = ({ x, y }) => {
+  // moveCursor(finger);
+  const clickSpot = document.elementFromPoint(
+    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
+    (y - 100) / 776 * window.innerHeight);
   return clickSpot && clickSpot.click();
 };
 

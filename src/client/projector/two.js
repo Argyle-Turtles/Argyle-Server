@@ -2,8 +2,9 @@ import m from 'mithril';
 import R from 'ramda';
 
 import { Head, Cursor } from '../components';
-import SongCard from './components/SongCard'
-import PreviewCard from './components/PreviewCard'
+import SongCard from './components/SongCard';
+import PreviewCard from './components/PreviewCard';
+import leap from '../leap';
 
 // VIEW MODEL
 const vm = {
@@ -36,6 +37,7 @@ const view = () =>
       <div id="page-two" className="hero is-fullheight">
         <div className="hero-content">
           <div className="columns container">
+            <div className="column is-offset-3"></div>
             {vm.songCards().map((card, i) => card ? selectedCard() : unselectedCard(i))}
           </div>
         </div>
@@ -43,9 +45,25 @@ const view = () =>
     </body>
   </html>;
 
+const moveCursor = ({ x, y }) => {
+  // const c = document.querySelector('#cursor');
+  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
+  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
+};
+
+const touchScreen = ({ x, y }) => {
+  // moveCursor(finger);
+  const clickSpot = document.elementFromPoint(
+    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
+    (y - 100) / 776 * window.innerHeight);
+  return clickSpot && clickSpot.click();
+};
+
 // CONTROLLER
-const controller = () =>
+const controller = () => {
+  leap.init(touchScreen, moveCursor);
   vm.init();
+};
 
 // EXPORT
 export default {

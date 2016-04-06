@@ -27,7 +27,7 @@ const halfHeight = 139.7;
 const halfWidth = 190.5;
 const below = 50.8;
 
-const breakPlane = finger => (finger.extended && finger.dipPosition[2] < 0.5);
+const breakPlane = finger => (finger.extended && finger.dipPosition[2] < -35);
 const xBound = x => (Math.abs(x) < halfWidth);
 const yBound = y => (y - below < halfHeight * 2);
 
