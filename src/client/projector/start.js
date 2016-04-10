@@ -2,7 +2,7 @@ import m, { prop } from 'mithril';
 import leap from '../leap';
 
 // Shared components
-import { Head, Cursor } from '../components';
+import { Head, Cursor, Spotify } from '../components';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -61,6 +61,7 @@ const touchScreen = ({ x, y }) => {
 const controller = () => {
   leap.init(touchScreen, moveCursor);
   vm.init();
+  Spotify.getAuthorization();
 };
 
 // EXPORT

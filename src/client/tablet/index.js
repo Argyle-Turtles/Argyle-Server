@@ -5,7 +5,7 @@ import head from '../components/head';
 import * as spot from '../components/spotify';
 
 // client entry file
-export const stageOne = { 
+export const stageOne = {
 	view: function(){
 		return m("html",[
 				head,
@@ -21,7 +21,7 @@ export const stageOne = {
                 		m("br"),
                 		m("input",{type:"text"},"My Mixtape"),
                 		m("br"),
-                    m("button",{onclick:function(e){ const playlist = spot.spotify.makePlaylist("New");}},"Get Music"),
+                    m("button",{onclick:function(e){ const playlist = spot.makePlaylist("New");}},"Get Music"),
                 		m("button",{onclick:function(e){location.search = "/tablet/mix"}},"Rock On!")
                 	]),
                 ]),
@@ -37,7 +37,7 @@ export const myMix = {
                   m("body",[
                     m(".myMix",[
                       m(".graph","Graph goes here"),
-                       m("button",{onclick:function(e){ const playlist = spot.spotify.getPlaylist();}},"Get Music"),
+                       m("button",{onclick:function(e){ const playlist = spot.getPlaylist();}},"Get Music"),
                        m("button",{onclick:function(e){location.search = "/tablet/two"}},"Rock On!"),
                       m(".songList","Song list")
                       ]),
