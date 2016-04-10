@@ -45,7 +45,6 @@ const view = () =>
       </div>
     </body>
   </html>;
-
 const moveCursor = ({ x, y }) => {
   const c = document.querySelector('#cursor');
   c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
