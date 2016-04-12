@@ -7,6 +7,8 @@ import path from 'path';
 
 import routes from './routes';
 
+const port = process.env.PORT || 3000;
+
 const server = express();
 
 // Set parsers
@@ -19,12 +21,11 @@ server.use(router(routes));
 server.use(express.static('build'));
 server.use(express.static(__dirname));
 
-server.get('/',function(req,res){
-  res.sendFile(path.join(__dirname+'/index.html'));
-});
+server.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname + '/index.html')));
 
 // Start server
-server.set('port', 3000)
+server.set('port', port)
   .listen(3000, (err) => {
     if (err) throw err;
     console.log('Listening on port:', 3000, '\n');
