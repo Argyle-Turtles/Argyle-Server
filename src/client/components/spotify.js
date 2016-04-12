@@ -42,10 +42,10 @@ export const makePlaylist = (name) => {
 
 //playlistId example 1LMIR46zW0b982mupRtH5W
 //songId example spotify:track:6FVYwnVrnAEIRnY3bHJb46
-export const addSong = (songId, playlistId) => {
+export const addSong = (songIds, playlistId) => {
   const accessToken = getAuthorization();
   const data = {
-    "uris":[songId],
+    "uris": songIds,
   };
   const headerData = function(xhr){
     xhr.setRequestHeader("Authorization","Bearer "+ accessToken);

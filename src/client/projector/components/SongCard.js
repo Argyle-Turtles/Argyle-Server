@@ -25,7 +25,7 @@ const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 const foot = uri =>
   <footer className="card-footer">
     <a class="card-footer-item"
-      onclick={() => Spotify.addSong(uri)}>Add</a>
+      onclick={() => Spotify.addSong([uri])}>Add</a>
   </footer>;
 
 const view = (_, { song }) =>

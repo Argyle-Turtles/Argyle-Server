@@ -20,7 +20,7 @@ const songData = [
     name: 'What About Me?',
     year: '2014',
     length: '6:43',
-    description: 'Trey loves this fuckadelic stuff',
+    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
   },
   {
