@@ -24,6 +24,9 @@ server.use(express.static(__dirname));
 server.get('/', (req, res) =>
   res.sendFile(path.join(__dirname + '/index.html')));
 
+server.get('/homepage', (req, res) =>
+  res.sendFile(path.join(__dirname + '/homepage/index.html')));
+
 // Start server
 server.set('port', port)
   .listen(port, (err) => {
