@@ -26,7 +26,7 @@ server.get('/', (req, res) =>
 
 // Start server
 server.set('port', port)
-  .listen(3000, (err) => {
+  .listen(port, (err) => {
     if (err) throw err;
     console.log('Listening on port:', 3000, '\n');
   });
