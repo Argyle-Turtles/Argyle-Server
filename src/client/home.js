@@ -5,6 +5,9 @@ const view = () =>
   <html>
     <Head />
     <body>
+      <a className="button is-medium" href ="/homepage">
+        Homepage
+      </a>
       <a className="button is-medium" href ="/projector/" config={m.route}>
         Projector
       </a>
