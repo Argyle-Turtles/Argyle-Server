@@ -2,7 +2,7 @@ import m, { prop } from 'mithril';
 import leap from '../leap';
 
 // Shared components
-import { Head, Cursor } from '../components';
+import { Head, Cursor, Spotify } from '../components';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -28,11 +28,9 @@ const view = () =>
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>
           <br />
-          <input
-            className="button is-medium container"
-            type="button"
-            onclick={() => location.search = '/projector/two'}
-            value="Rock out!" />
+          <a className="button is-medium container" href ="/projector/two" config={m.route}>
+            Rock out!
+          </a>
         </div>
       </div>
     </body>
@@ -61,6 +59,7 @@ const touchScreen = ({ x, y }) => {
 const controller = () => {
   leap.init(touchScreen, moveCursor);
   vm.init();
+  Spotify.getAuthorization();
 };
 
 // EXPORT
