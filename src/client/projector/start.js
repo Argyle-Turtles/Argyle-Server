@@ -28,11 +28,9 @@ const view = () =>
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>
           <br />
-          <input
-            className="button is-medium container"
-            type="button"
-            onclick={() => location.search = '/projector/two'}
-            value="Rock out!" />
+          <a className="button is-medium container" href ="/projector/two" config={m.route}>
+            Rock out!
+          </a>
         </div>
       </div>
     </body>
