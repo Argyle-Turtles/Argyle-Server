@@ -11,7 +11,7 @@ const songs = [
     track:'Soul Meets Body', artist:'Death Cab For Cutie',
     album:'Plans', year:'2005',
     length:'3:49',
-    info:'¯\_('-')_/¯ i have no clue what were gonna put here for all those tracks',
+    info:'\('-')/ i have no clue what were gonna put here for all those tracks',
     art:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
     uri:'spotify:track:1NFGnxmeIEBakre4DvLaJq'
   }
