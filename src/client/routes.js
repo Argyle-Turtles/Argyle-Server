@@ -1,14 +1,20 @@
 // pages
 import * as tab from './tablet';
 import projector from './projector';
+import code from './tablet/code';
+import mix from './tablet/mix';
+import one from './tablet/one';
+import two from './tablet/two';
+import three from './tablet/three';
+import four from './tablet/four';
 
 export default {
-  '/tablet/': tab.stageOne,
-  '/tablet/mix':tab.myMix,
-  '/tablet/two': tab.stageTwo,
-  '/tablet/three': tab.stageThree,
-  '/tablet/four': tab.stageFour,
-  '/tablet/five': tab.stageFive,
+  '/tablet/': code,
+  '/tablet/mix':mix,
+  '/tablet/one': one,
+  '/tablet/two': two,
+  '/tablet/three': three,
+  '/tablet/four': four,
   '/projector/': projector.start,
   '/projector/two': projector.two,
 };

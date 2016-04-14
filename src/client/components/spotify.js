@@ -57,7 +57,7 @@ Get the token by directing the page to this link -> https://accounts.spotify.com
         data:data,
         dataType:'json'
       }).then(function(resp){
-        console.log("song added")
+        console.log("song added");
       });
 
     },
