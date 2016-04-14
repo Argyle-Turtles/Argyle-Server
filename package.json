@@ -34,7 +34,7 @@
   "scripts": {
     "start": "node ./index.js",
     "lint": "./node_modules/.bin/eslint src/**",
-    "build": "webpack --progress --colors",
+    "build": "webpack",
     "watch": "webpack --progress --colors --watch",
     "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
