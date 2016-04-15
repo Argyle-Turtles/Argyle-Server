@@ -10,7 +10,8 @@ const view = () =>
 		<body>
 			<div className="banner">mixy tape</div>
 			<div className = "content">
-				<Graph />
+				<div className='graphSpace' config={function(){Graph.init(".graphSpace")}}>
+				</div>
 				<div className="cards"> Cards go here </div>
 				<input 
 					className="button is-medium container"
