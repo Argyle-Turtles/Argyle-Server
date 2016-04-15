@@ -9,30 +9,53 @@ import d3 from 'd3';
 
 
  export const init = (append) => {
+  //scale from 1 to 8
+  //labels will be customized to be decades
+  const yScale = d3.scale.linear()
+                          //min and max number
+                          .domain([0, 8])
+                          //pixels the graph can render
+                          .range([0, 200]);
+  //should be length of graph/total songs on playlist
+  const xScale = d3.scale.linear()
+                          .domain([0, 8])
+                          .range([0, 200]);
+
+  //creates axis with x and y scales
+  const yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+  //draw graph line
+  const lineGen = d3.svg.line()
+                  .x(function(d) {
+                    return xScale(d.x);
+                  })
+                  .y(function(d) {
+                    return yScale(d.y);
+                  }).interpolate("basis");
+
 	//The data for our line
- const lineData = [ { "x": 1,   "y": 5},  { "x": 20,  "y": 20},
-                  { "x": 40,  "y": 10}, { "x": 60,  "y": 40},
-                  { "x": 80,  "y": 5},  { "x": 100, "y": 60}];
+ const data = [ { "x": 1,   "y": 5},  { "x": 2,  "y": 2},
+                  { "x": 3,  "y": 1}, { "x": 4,  "y": 4},
+                  { "x": 5,  "y": 5},  { "x": 6, "y": 6}];
  
  //This is the accessor function we talked about above
- const lineFunction = d3.svg.line()
-                          .x(function(d) { return d.x; })
-                          .y(function(d) { return d.y; })
-                         .interpolate("basis");
 
 //The SVG Container
 const svgContainer = d3.select(append).append("svg")
-                                    .attr("width", 200)
-                                    .attr("height", 200);
+                                    .attr("width", 250)
+                                    .attr("height", 250);
+
+const yAxisGroup = svgContainer.append("g").attr("transform", "translate(" + 20 + ","+ 10 +")").call(yAxis);
 
 //The line SVG Path we draw
+
 const lineGraph = svgContainer.append("path")
-                            .attr("d", lineFunction(lineData))
+                            .attr('d', lineGen(data))
                             .attr("stroke", "blue")
                             .attr("stroke-width", 2)
                             .attr("fill", "none");
-
-                            console.log("SUCCESS");
+                            
+                            
 };
 
 
