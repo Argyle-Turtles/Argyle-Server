@@ -1,73 +1,108 @@
-body {
-    background-color: lightblue;
+/* General ------------------------------------------------------------------------------- */
+
+#HomeArea, #SolutionArea, #ProblemArea, #WhatArea, #AboutArea { 
+	background-color: #ffffff;
+	height: 100vh;
+	min-height: 800px;
+	margin: 0 auto;
+	text-align: center;
 }
 
-/* Dropdown CSS: http://cssdeck.com/labs/pure-css3-smooth-drop-down-menu */
-
-nav ul {
-	-webkit-font-smoothing:antialiased;
-	/* text-shadow:0 1px 0 #FFF; */
-    background: #ddd;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    position: fixed; /* need to keep at top */
+#HomeContent, #SolutionContent, #ProblemContent, #WhatContent, #AboutContent { 
+	position: relative;
+  	top: 50%;
+  	transform: translateY(-50%);
 }
 
-nav li {
-    float: right;
-    margin: 0;
-    padding: 0;
-    position: relative;
-    min-width: 25%; /* width of dropdown list */
+#HomeArea { 
+	background-color: #ffffff;
 }
 
-nav a {
-    background: #ddd;
-    color: #444;
-    display: block;
-    font: bold 16px/50px sans-serif; /* font size of dropdown text & ??? */
-    padding: 0 25px;
-    text-align: center;
-    text-decoration: none;
-    -webkit-transition: all .25s ease;
-       -moz-transition: all .25s ease;
-        -ms-transition: all .25s ease;
-         -o-transition: all .25s ease;
-            transition: all .25s ease;
+#SolutionArea, #ProblemArea { 
+	background-color: #de302f;
 }
 
-nav li:hover a {
-    background: #ccc;
+#WhatArea, #AboutArea { 
+	background-color: #f0f0f0;
 }
 
-nav li ul {
-    float: left;
-    left: 0;
-    opacity: 0;
-    position: absolute;
-    top: 35px;
-    visibility: hidden;
-    z-index: 1;
-    -webkit-transition: all .25s ease;
-       -moz-transition: all .25s ease;
-        -ms-transition: all .25s ease;
-         -o-transition: all .25s ease;
-            transition: all .25s ease;
+/* Pop-out Navigation -------------------------------------------------------------------- */
+/* Pop-out navigation CSS: https://codyhouse.co/gem/full-screen-pop-out-navigation/ */
+
+.cd-header {
+	-webkit-transition: background-color 0.3s;
+	-moz-transition: background-color 0.3s;
+	transition: background-color 0.3s;
+	/* Force Hardware Acceleration in WebKit */
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
 }
 
-nav li:hover ul {
-    opacity: 1;
-    top: 50px; /* distance between bottom of image and top of dropdown list */
-    visibility: visible;
+.cd-header.is-fixed {
+	position: fixed;
+	top: -80px;
+	background-color: ???;
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s;
 }
 
-nav li ul li {
-    float: none;
-    width: 100%;
+.cd-header.is-visible {
+	-webkit-transform: translate3d(0, 100%, 0);
+	-moz-transform: translate3d(0, 100%, 0);
+	-ms-transform: translate3d(0, 100%, 0);
+	-o-transform: translate3d(0, 100%, 0);
+	transform: translate3d(0, 100%, 0);
 }
 
-nav li ul a:hover {
-    background: #bbb;
+.cd-primary-nav-trigger {
+	height: 40px;
+	width: 40px;
+	z-index: 2;
+	float:right;
+	position: fixed;
+	right: 0;
+	top: 0;
+	margin-top: 20px;
+    margin-right: 20px;
+}
+
+.cd-primary-nav {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 1;
+  text-align: center;
+  padding: 50px 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(200px);
+  -moz-transform: translateX(200px);
+  -ms-transform: translateX(200px);
+  -o-transform: translateX(200px);
+  transform: translateY(200px);
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.4s;
+  -moz-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+.cd-primary-nav.is-visible {
+  -webkit-transform: translateY(0);
+  -moz-transform: translateY(0);
+  -ms-transform: translateY(0);
+  -o-transform: translateY(0);
+  transform: translateY(0);
 }
