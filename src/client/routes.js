@@ -1,6 +1,7 @@
 // pages
 import * as tab from './tablet';
 import projector from './projector';
+import station from  './soundStation';
 import home from './home';
 
 export default {
@@ -13,4 +14,7 @@ export default {
   '/tablet/five': tab.stageFive,
   '/projector/': projector.start,
   '/projector/two': projector.two,
+  '/soundStation/': station.pageOne,
+  '/soundStation/two': station.pageTwo,
+  '/soundStation/three': station.pageThree,
 };
