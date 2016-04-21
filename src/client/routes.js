@@ -4,6 +4,8 @@ import projector from './projector';
 import station from  './soundStation';
 import home from './home';
 
+console.log(station);
+
 export default {
   '/': home,
   '/tablet/': tab.stageOne,
