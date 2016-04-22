@@ -5,6 +5,7 @@ import { Head, Cursor, Spotify } from '../components';
 import SongCard from './components/SongCard';
 import PreviewCard from './components/PreviewCard';
 import leap from '../leap';
+import { init as rfid } from '../rfid';
 
 const songData = [
   {
@@ -94,6 +95,7 @@ const touchScreen = ({ x, y }) => {
 // CONTROLLER
 const controller = () => {
   leap.init(touchScreen, moveCursor);
+  rfid(id => console.log(id));
   vm.init();
 };
 
