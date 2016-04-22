@@ -1,22 +1,25 @@
-import m from 'mithril';
+import m, { prop } from 'mithril';
 /*
 Almost all api requests need an authorization token
 Get the token by directing the page to this link -> https://accounts.spotify.com:/authorize?client_id=b5dc615d0bcc47109e0ea1c5725f1cb8&response_type=token&
                                                        redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_
                                                        dialog=false
 */
+//do we even need this?
 export const getPlaylist = () => {
    const accessToken = getAuthorization();
+   // list of song names from spotify
+   let songList = [];
    const headerData = function(xhr) {
     xhr.setRequestHeader("Authorization","Bearer "+ accessToken);
     xhr.setRequestHeader("Content-type","application/json");
-  };
-  m.request({url:"https://api.spotify.com/v1/users/argyleturtles/playlists/1LMIR46zW0b982mupRtH5W/tracks",
+    };
+                                                    //argyleturtles
+    return m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists/4mCm92pwUBT5mvbVtQTcZL/tracks?fields=items(track(name))",
       config: headerData,
       method: "GET"
-  }).then(function(resp){
-    console.log(resp);
-  });
+    });
+
 };
 
 export const makePlaylist = (name) => {
@@ -30,14 +33,16 @@ export const makePlaylist = (name) => {
     xhr.setRequestHeader("Content-type","application/json");
   };
   console.log(accessToken);
-  m.request({url:"https://api.spotify.com/v1/users/argyleturtles/playlists",
+                                                    //argyleturtles
+  m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists",
     config: headerData,
     method:"POST",
     data:data,
     dataType:'json',
   }).then(function(resp){
     console.log(resp['id']);
-  });
+  })
+  .catch((e) => console.log(e));
 };
 
 //playlistId example 1LMIR46zW0b982mupRtH5W
