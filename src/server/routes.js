@@ -1,26 +1,29 @@
-import playlist from './controllers/playlist';
-import media from './controllers/media';
+
 
 export default {
   routes: [
     // {
-    //   path: '/create', method: 'POST', handler: playlist.create,
+    //   path: '/user', method: 'GET', handler: , // gets user code
     // },
     //
     // {
-    //   path: '/add', method: 'POST', handler: playlist.add,
+    //   path: '/user/clear', method: 'POST', handler: , // clears user rfid
     // },
     //
     // {
-    //   path: '/remove', method: 'POST', handler: playlist.remove,
+    //   path: '/user/create', method: 'POST', handler: , // create user with rfid value and and creates a playlist somehow
     // },
     //
     // {
-    //   path: '/playlist', method: 'GET', handler: playlist.get,
+    //   path: '/user/songs', method: 'GET', handler: , // return song array
     // },
     //
     // {
-    //   path: '/media', method: 'GET', handler: media.get,
-    // }
+    //   path: '/user/playlist', method: 'GET', handler: , // gets user playlist
+    // },
+    //
+    // {
+    //   path: '/user/add', method: 'POST', handler: , // adds song to user account
+    // },
   ],
 }
