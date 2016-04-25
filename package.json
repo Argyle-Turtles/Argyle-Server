@@ -21,13 +21,15 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "leapjs": "^0.6.4",
     "mithril": "^0.2.3",
+    "mongoose": "^4.4.13",
     "msx": "^0.4.1",
     "node-sass": "3.4.2",
     "path": "^0.12.7",
     "ramda": "^0.19.1",
     "sass-loader": "3.1.2",
     "velocity-animate": "^1.2.3",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "winston": "^2.2.0"
   },
   "devDependencies": {},
   "scripts": {
