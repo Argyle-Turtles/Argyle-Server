@@ -1,9 +1,59 @@
-/* General ------------------------------------------------------------------------------- */
+/* Fonts and Text ------------------------------------------------------------------------ */
+
+@font-face {
+	font-family: 'Edo';
+	src: url('../media/edosz.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Bebas Neue Book';
+	src: url('../media/BebasNeue Book.otf') format('truetype');
+}
+
+@font-face {
+	font-family: 'Lato Thin';
+	src: url('../media/Lato-Thin.ttf') format('truetype');
+}
+
+#PageTitle {
+	font-family: 'Edo';
+	font-size: 200px; /* ????? */
+}
+
+#MenuLink {
+	font-family: 'Bebas Neue Book';
+	font-size: 28px;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-family: 'Edo';
+	font-size: 50px; /* should be 85 */
+}
+
+h2 {
+	font-family: 'Bebas Neue Book';
+	font-size: 28px;
+}
+
+p {
+	font-family: 'Lato Thin';
+	font-size: 14px;
+}
+
+table, th, td { /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+   /* border: 1px solid black; */
+}
+
+/* Positioning and Sizing ---------------------------------------------------------------- */
 
 #HomeArea, #SolutionArea, #ProblemArea, #WhatArea, #AboutArea { 
-	background-color: #ffffff;
-	height: 100vh;
-	min-height: 800px;
+	/* height: 100vh;
+	min-height: 800px; */
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
@@ -17,26 +67,51 @@
     vertical-align: middle;
 }
 
-#HomeContent, #SolutionInner, #ProblemInner, #WhatInner, #AboutInner { 
+#HomeInner, #SolutionInner, #ProblemInner, #WhatInner, #AboutInner { 
     margin-left: auto;
     margin-right: auto; 
-    /* width: /*whatever width you want*/; */
+    /* width: whatever width you want */
+    /*padding-top: 350px;
+    padding-bottom: 350px;
+    vertical-align:bottom;*/
 }
-
-
-
-
 
 #HomeArea { 
 	background-color: #ffffff;
+	height: 1080px;
+	background-image: url('../media/tape_cut.png');
+	background-repeat: no-repeat;
+	background-position: bottom;
 }
 
-#SolutionArea, #ProblemArea { 
+#SolutionArea {
 	background-color: #de302f;
+	height: 1080px;
+	color: white;
+	text-align: left;
 }
 
-#WhatArea, #AboutArea { 
+#WhatArea { 
 	background-color: #f0f0f0;
+	height: 850px;
+}
+
+#ProblemArea { 
+	background-color: #de302f;
+	height: 1490px;
+}
+
+#AboutArea { 
+	background-color: #f0f0f0;
+	height: 1560px;
+}
+
+td {
+	vertical-align: middle;
+}
+
+#TableText {
+	text-align: left;
 }
 
 /* Pop-out Navigation -------------------------------------------------------------------- */
@@ -59,7 +134,7 @@
 .cd-header.is-fixed {
 	position: fixed;
 	top: -80px;
-	background-color: ???;
+	/* background-color: ???; */
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s;
@@ -74,15 +149,15 @@
 }
 
 .cd-primary-nav-trigger {
-	height: 40px;
+	/* height: 40px;
 	width: 40px;
-	z-index: 2;
+	z-index: 2; */
 	float:right;
 	position: fixed;
 	right: 0;
 	top: 0;
-	margin-top: 20px;
-    margin-right: 20px;
+	margin-top: 80px;
+    margin-right: 80px;
 }
 
 .cd-primary-nav {
@@ -94,7 +169,7 @@
   background: rgba(0, 0, 0, 0.95);
   z-index: 1;
   text-align: center;
-  padding: 50px 0;
+  padding: 80px 0; /* Top padding for nav items */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: auto;

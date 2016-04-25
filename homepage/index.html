@@ -10,7 +10,9 @@
 
 	<script>
 	$(document).ready(function() {
-		$("li a").click(function() {
+		$("li a").click(function(e) {
+			e.preventDefault();
+		
         	if($(this).attr('id') == 'HomeMenu') {
         		$('html, body').animate({scrollTop: $(document.getElementById("HomeArea")).offset().top}, 1000);
         	}
@@ -32,24 +34,32 @@
 </head>
 <body>
 
-	<img src="media/TESTBARS2.png" class="cd-primary-nav-trigger" alt="Bars">
+	<img src="media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
 	
 	<nav>
 		<ul class="cd-primary-nav">
-			<li><a href="#" id="HomeMenu">Home</a></li>
-			<li><a href="#" id="SolutionMenu">The Solution</a></li>
-			<li><a href="#" id="WhatMenu">What is Mixta?</a></li>
-			<li><a href="#" id="ProblemMenu">The Problem</a></li>
-			<li><a href="#" id="AboutMenu">About Us</a></li>
+			<li><img src="media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
+			<br>
+			<br>
+			<br>
+			<br>
+			<li><a href="#" id="HomeMenu"><div id="MenuLink">Home</div></a></li>
+			<br>
+			<li><a href="#" id="SolutionMenu"><div id="MenuLink">The Solution</div></a></li>
+			<br>
+			<li><a href="#" id="WhatMenu"><div id="MenuLink">What is Mixta?</div></a></li>
+			<br>
+			<li><a href="#" id="ProblemMenu"><div id="MenuLink">The Problem</div></a></li>
+			<br>
+			<li><a href="#" id="AboutMenu"><div id="MenuLink">About Us</div></a></li>
 		</ul>
 	</nav>
 	
 	<div id="HomeArea">
 		<div id="HomeContent">
 			<div id="HomeInner">
-				<p>Team Argyle Turtles Presents</p>
-				<p>MIXTA</p>
-				<img src="media/TESTBARS.png" alt="Bars" style="width:500px;height:500px;">
+				<h2>Team Argyle Turtles Presents</h2>
+				<div id="PageTitle">MIXTA</div>
 			</div>
 		</div>
 	</div>
@@ -57,13 +67,17 @@
 	<div id="SolutionArea">
 		<div id="SolutionContent">
 			<div id="SolutionInner">
-				<table border="0">
+				<table border="0" width="1474px" style="margin-left:auto; margin-right:auto;">
 					<tr>
-					<td>The Solution</td>
-					<td><img src="media/TESTBARS.png" alt="Bars" style="width:500px;height:500px;"></td>
-					</tr>
-					<tr>
-					<td>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</td>
+					<td style="width:450px; padding-right:115px;">
+						<h1><span style="color:#b82928">/</span> The Solution</h1>
+						<h2 style="padding-top:40px;">Lorem ipsum</h2>
+						<br>
+						<p>Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p>
+						<br>
+						<p>Sed imperdiet commodo mauris vitae efficitur. Nullam in risus dictum, vestibulum ex vel, ullamcorper sapien. Aliquam sit amet dolor eget sapien tempus faucibus id dictum felis. Vestibulum augue leo, pellentesque a diam at, malesuada facilisis lorem. Phasellus vestibulum volutpat felis, a auctor felis efficitur sed.</p>
+					</td>
+					<td><iframe width="900" height="720" src="https://www.youtube.com/embed/4U4oItOeeL4" frameborder="0" allowfullscreen></iframe></td>
 					</tr>
 				</table>
 			</div>
@@ -73,25 +87,24 @@
 	<div id="WhatArea">
 		<div id="WhatContent">
 			<div id="WhatInner">
-				<p>What is Mixit?</p>
-				<table border="0">
+				<h1>What is Mixta?</h1>
+				<table border="0" width="1546px" style="margin-left:auto; margin-right:auto; text-align:left; margin-top:144px;">
 					<tr>
-					<td><img src="media/TESTBARS.png" alt="Bars" style="width:50px;height:50px;"></td>
-					<td><img src="media/TESTBARS.png" alt="Bars" style="width:50px;height:50px;"></td>
-					<td><img src="media/TESTBARS.png" alt="Bars" style="width:50px;height:50px;"></td>
+					<td><img src="media/tape.png" alt="Mixtape" style="width:188px; height:144px;"></td>
+					<td><img src="media/tape.png" alt="Mixtape" style="width:188px; height:144px;"></td>
+					<td><img src="media/tape.png" alt="Mixtape" style="width:188px; height:144px;"></td>
 					</tr>
 					<tr>
-					<td>Lorem Ipsum</td>
-					<td>Lorem Ipsum</td>
-					<td>Lorem Ipsum</td>
+					<td style="padding-top:40px;"><h2>Lorem Ipsum</h2></td>
+					<td style="padding-top:40px;"><h2>Lorem Ipsum</h2></td>
+					<td style="padding-top:40px;"><h2>Lorem Ipsum</h2></td>
 					</tr>
 					<tr>
-					<td>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</td>
-					<td>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</td>
-					<td>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</td>
+					<td style="padding-top:40px; padding-right:90px;"><p>Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p></td>
+					<td style="padding-top:40px; padding-right:90px;"><p>Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p></td>
+					<td style="padding-top:40px;"><p>Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p></td>
 					</tr>
 				</table>
-				<iframe width="600" height="337.5" src="https://www.youtube.com/embed/4U4oItOeeL4" frameborder="0" allowfullscreen></iframe>
 			</div>
 		</div>
 	</div>
@@ -99,7 +112,31 @@
 	<div id="ProblemArea">
 		<div id="ProblemContent">
 			<div id="ProblemInner">
-				<img src="media/TESTBARS.png" alt="Bars" style="width:500px;height:500px;">
+				<table border="0" width="1800px" style="margin-left:auto; margin-right:auto;">
+					<tr>
+					<td style="background-color: #000000; color: white;">
+						<h1><span style="color:#b82928">/</span> The Problem</h1>
+						<h2 style="padding-top:40px;">Let's Break it down</h2>
+						<br>
+						<p style="margin-left:auto; margin-right:auto; width:450px">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p>
+						<br>
+						<br>
+						<br>
+						<br>
+						<p>[View Deck]</p>
+					</td>
+					<td style="line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:900px; height:550px;"></td>
+					</tr>
+					<tr>
+					<td style="line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:900px; height:550px;"></td>
+					<td style="background-color: #ffffff;">
+						<h1><span style="color:#b82928">/</span> We Overcame</h1>
+						<h2 style="padding-top:40px;">Lorem ipsum</h2>
+						<br>
+						<p style="margin-left:auto; margin-right:auto; width:450px">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p>
+					</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -107,13 +144,168 @@
 	<div id="AboutArea">
 		<div id="AboutContent">
 			<div id="AboutInner">
-				<table border="0">
+				<table border="0" width="1474px" style="margin-left:auto; margin-right:auto; text-align:left;">
 					<tr>
-					<td>Team Argyle Turtles</td>
-					<td><img src="media/TESTBARS.png" alt="Bars" style="width:500px;height:500px;"></td>
-					</tr>
-					<tr>
-					<td>About Us - Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</td>
+					<td style="vertical-align:top; padding-top:180px;">
+						<h1 style="margin-left:40px;">Team Argyle<br><br>Turtles</h1>
+						<h2 style="margin-left:40px; padding-top:40px;">About Us</h2>
+						<br>
+						<p style="width:450px; margin-left:40px; padding-right:150px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas, lorem leo ultrices nulla, non lobortis enim lacus sed orci. Donec consequat, orci a ullamcorper congue, mi erat maximus diam, quis maximus eros justo sit amet ligula.</p>
+					</td>
+					<td>
+					<table border="0">
+						<tr>
+						<td>
+							<table border="0" style="border-collapse:separate; border-spacing:40px 0;">
+								<tr>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Anthony Amici</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Melissa Samworth</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Hailey Thorp</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								</tr>
+							</table>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<table border="0" style="border-collapse:separate; border-spacing:40px;">
+								<tr>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Tim Davcev</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Nathan Christiansen</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Trey Boro</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								</tr>
+							</table>
+						</td>
+						</tr>
+						<tr>
+						<td>
+							<table border="0" style="border-collapse:separate; border-spacing:40px 0;">
+								<tr>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Aaron Miller</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Joseph Horsmann</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								<td>
+								<table>
+									<tr>
+									<td style="background:#313131; width:260px; height:220px; line-height: 0;"><img src="media/MrKrabs.png" alt="Krabs" style="width:260px; height:220px;"></td>
+									</tr>
+									<tr>
+									<td style="background:#dfdede; width:260px; height: 175px;">
+										<h2 style="margin-left:30px;">Peter Gyory</h2>
+										<br>
+										<p style="margin: 0 30px 0 30px;">Dolor sit amet, consectetur adipiscing elit. Duis placerat, leo a sagittis egestas.</p>
+									</td>
+									</tr>
+								</table>
+								</td>
+								</tr>
+							</table>
+						</td>
+						</tr>
+					</table>
+					</td>
 					</tr>
 				</table>
 			</div>
