@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
-import routes from './routes';
+import routes from './src/server/routes';
 
 const port = process.env.PORT || 3000;
 
