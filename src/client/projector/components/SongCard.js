@@ -6,6 +6,15 @@ const vm = {
   init: () => vm.flipped = m.prop(false),
 };
 
+const triggerFlip = () => vm.flipped(!vm.flipped());
+
+const handleFlip = () =>
+  Velocity(
+    document.querySelector('.flipper'),
+    { rotateY: vm.flipped() ? '180deg' : '0deg' },
+    800
+  );
+
 // View Helpers
 const mid = (year, length) =>
   <div className="columns is-text-left">
@@ -68,15 +77,6 @@ const back = song =>
     </div>
     {foot(song.uri)}
   </div>;
-
-const triggerFlip = () => vm.flipped(!vm.flipped());
-
-const handleFlip = () =>
-  Velocity(
-    document.querySelector('.flipper'),
-    { rotateY: vm.flipped() ? '180deg' : '0deg' },
-    800
-  );
 
 const view = (_, { song }) =>
   <div className="flip-container">
