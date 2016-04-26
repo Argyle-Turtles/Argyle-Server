@@ -3,15 +3,15 @@ import user from './controllers/user';
 export default {
   routes: [
     {
-      path: '/user', method: 'GET', handler: user.usercode.GET,
+      path: '/user/:rfid', method: 'GET', handler: user.usercode.GET, // :D
     },
 
     {
-      path: '/user/create', method: 'POST', handler: user.create.POST,
+      path: '/user/create', method: 'POST', handler: user.create.POST, // :D
     },
 
     {
-      path: '/user/clear', method: 'POST', handler: user.clear.POST,
+      path: '/user/clear', method: 'POST', handler: user.clear.POST, // untested
     },
 
     {

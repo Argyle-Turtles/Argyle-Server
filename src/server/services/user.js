@@ -44,6 +44,7 @@ export const addSongs = (rfid, songsToAdd) =>
   User.findOne({ rfid })
   .exec()
   .then(u => {
+    console.log(u);
     u.songs = R.concat(u.songs, songsToAdd);
     return u.save();
   });
