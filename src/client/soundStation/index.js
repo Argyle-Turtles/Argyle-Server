@@ -4,10 +4,9 @@ import {Head, Spotify} from '../components';
 
 //vars
 
-
 //songs
 //need to add song albums to each song
-const songs = [  {
+var songs = [  {
     track:'Soul Meets Body', artist:'Death Cab For Cutie',album:'Plans', year:'2005',length:'3:49',
     info:'\('-')/ i have no clue what were gonna put here for all those tracks',
     art:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
@@ -24,13 +23,13 @@ const songs = [  {
   {
     track:'Come As You Are', artist:'Nirvana',album:'Nevermind', year:'1991',length:'3:39',
     info:'\('-')/ i have no clue what were gonna put here for all those tracks',
-    art:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',uri:'spotify:track:4P5KoWXOxwuobLmHXLMobV',
+    art:'https://i.scdn.co/image/864bd75b46a575917d795b7a484f7f1fe43d23e9',uri:'spotify:track:4P5KoWXOxwuobLmHXLMobV',
     selected:false
   },
   {
     track:'Vertigo', artist:'U2',album:'How to Dismantle An Atomic Bomb', year:'2004',length:'3:14',
     info:'\('-')/ i have no clue what were gonna put here for all those tracks',
-    art:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',uri:'spotify:track:57ZXcBtCZXSg9TVV5xRdnR',
+    art:'https://i.scdn.co/image/1ba80e91c966d08ba4340b4e9f21c55b064a1e21',uri:'spotify:track:57ZXcBtCZXSg9TVV5xRdnR',
     selected:false
   },
   {
@@ -116,101 +115,135 @@ const songs = [  {
     info:'\('-')/ i have no clue what were gonna put here for all those tracks',
     art:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',uri:'spotify:track:1ru5R5iSawvuMELqKXxLjS',
 	selected:false
-  }
+  },
+  
 ]
 //****views****
+const selectedSongs =[];
+
 
 //View 1 - Track List
 export const pageOne = {
   view: () =>
     <html>
-	  <Head />
+    <Head />
       <body>
-      <div style='margin-top:100px;margin-left:100px;'>
-	     
-       <div class="card" id='0'>
-        <img src='https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753' />
-        <p>{songs[0].track}<br />{songs[0].artist}</p>
+      <div style='margin-top:100px;margin-left:90px;'>
+       
+       <div class="card">
+        <img src={songs[0].art} />
+        <p>{songs[0].track}</p>
         <button
-          onclick={hello}
-        >Add me</button>
+          onclick={() =>cardSelect(0)}>
+          Add me
+        </button>
         </div>
-	    </div> 
+         <div class="card">
+          <img src={songs[1].art} />
+          <p>{songs[1].track}</p>
+        <button
+          onclick={() =>cardSelect(1)}>
+          Add me
+        </button>
+        </div>
+
+        <div class="card">
+        <img src={songs[2].art} />
+        <p>{songs[2].track}</p>
+        <button
+          onclick={() =>cardSelect(2)}>
+          Add me
+        </button>
+        </div>
+
+        <div class="card">
+        <img src={songs[3].art} />
+        <p>{songs[3].track}</p>
+        <button
+          onclick={() =>cardSelect(3)}>
+          Add me
+        </button>
+        </div>
 
 
-		
-      </body>
-	  
+      </div> 
+    <a className="button is-medium container" onclick = "selectedSongTwo" href ="/soundStation/two" config={m.route}>
+            Add Songs to Playlist!
+          </a><br />
+          <button onclick={() =>Spotify.makePlaylist('test')}>Make Playlist</button>
+  
+          </body>
+    
     </html>,
 }
 
-function hello(){
-  songs[0].selected = !(songs[0].selected);
-    console.log('The song is selected: ' + songs[0].selected );
+export const pageTwo = {
+  view: () =>
+  <html>
+    <Head />
+   
+    <body>
+    <h2>Scan Casette</h2>
+    <button onclick={check}>Check songs </button>
+    <input type = "text" id = "rfid" onkeydown = {rfid} style = "opacity: 5"autofocus />
+    </body>
+
+  </html>,
 
 }
 
-/*
-
-
-
-
-/*
-//View 2 - Scan Cassette
-export const pageTwo = {
-  view: function(){
-    return m("html",[
-      head,
-      m('body',[
-        m('div',{onkeydown:function(e){
-		//onkeydown it will make rfid reader go
-		
-		//get full ID from keypress until length =
-		
-		//check for user ID
-		var playID;
-
-		//get selected songs
-		for (var z = 0; z< songs.length; z++){
-		  if (songs[z].selected){
-			selected.push(songs[z].uri)
-		  }		
-		}
-		//send spotify 
-		for (var x = 0; x < selectedSongs.length; x++){
-		  spotify.addSong(selectedSongs[x].uri,playID);}
-		
-		//head to next page
-		location.search = "/soundStation/pageThree";
-		}} ),[
-          m('h1',"Scan your Mixtape!"),
-          m('p',"Place your tape in the outlined area."),
-		  
-        ]),
-      ]),
-    ]),
-  }	
-};
-
-
-//View 3 - Success/Fail
 export const pageThree = {
-  view: function(){
-	return m("html",[
-      head,
-      m('body',[
-        m('div',[
-          m('h1',"Your songs have been added!"),
-		  m('p',"Please go to the end kiosk!"),
-		  m('button',{onclick:function(e){location.search = "/soundStation/pageOne"}}, "<-- Return to Song Selection")
-        ]),
-      ]),
-    ]),  
-  }	
-};
-*/
+  view: () =>
+    <html>
+    <Head />
+      <body>
+      <h1>Songs have been added to playlist!</h1>
+      <p>Please head toward the end kiosk.</p>
+      <button onclick={check}>Check songs </button>
+      </body>
+
+    
+    </html>,
+}
+
+
+function check(){
+  for (var z = 0; z < songs.length; z++){
+  console.log(songs[z].selected)
+
+  }
+}
+
+
+function cardSelect(cardnum){
+  var x = cardnum;
+  songs[x].selected = !(songs[x].selected);
+  console.log(songs[x].track + ", " + songs[x].selected);
+}
+
+function rfid(){
+      
+  if(document.getElementById("rfid").value.length == 10) {
+      var idnum = document.getElementById("rfid").value;
+     
+      console.log("RFID IS WORKING");
+      console.log("ID # = " + idnum);
+      document.getElementById("rfid").value = "";
+      document.getElementById("rfid").focus();
+
+    }
+  }
+
+
+const controller = () => {
+  Spotify.getAuthorization();
+}
+
 
 export default {
 	pageOne,
-	
+  pageTwo,
+  pageThree,
+  controller,
+
 }
