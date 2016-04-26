@@ -1,18 +1,19 @@
-
+import user from './controllers/user';
 
 export default {
   routes: [
-    // {
-    //   path: '/user', method: 'GET', handler: , // gets user code
-    // },
+    {
+      path: '/user', method: 'GET', handler: user.usercode,
+    },
+
+    {
+      path: '/user/create', method: 'POST', handler: user.create,
+    },
+
+    {
+      path: '/user/clear', method: 'POST', handler: user.clear,
+    },
     //
-    // {
-    //   path: '/user/clear', method: 'POST', handler: , // clears user rfid
-    // },
-    //
-    // {
-    //   path: '/user/create', method: 'POST', handler: , // create user with rfid value and and creates a playlist somehow
-    // },
     //
     // {
     //   path: '/user/songs', method: 'GET', handler: , // return song array
