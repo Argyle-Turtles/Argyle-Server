@@ -15,15 +15,15 @@ export default {
     },
 
     {
-      path: '/user/songs', method: 'GET', handler: user.songs, // return song array
+      path: '/user/songs', method: 'GET', handler: user.songs,
     },
     //
     // {
     //   path: '/user/playlist', method: 'GET', handler: , // gets user playlist
     // },
     //
-    // {
-    //   path: '/user/add', method: 'POST', handler: , // adds song to user account
-    // },
+    {
+      path: '/user/add', method: 'POST', handler: user.addSongs,
+    },
   ],
 }

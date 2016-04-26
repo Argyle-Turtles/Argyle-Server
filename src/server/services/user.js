@@ -40,7 +40,7 @@ export const clearRFID = rfid =>
  * @param {String} rfid - rfid number
  * @return {User}
  */
-export const addSong = (rfid, songsToAdd) =>
+export const addSongs = (rfid, songsToAdd) =>
   User.findOne({ rfid })
   .exec()
   .then(u => {
