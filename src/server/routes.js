@@ -13,11 +13,10 @@ export default {
     {
       path: '/user/clear', method: 'POST', handler: user.clear,
     },
-    //
-    //
-    // {
-    //   path: '/user/songs', method: 'GET', handler: , // return song array
-    // },
+
+    {
+      path: '/user/songs', method: 'GET', handler: user.songs, // return song array
+    },
     //
     // {
     //   path: '/user/playlist', method: 'GET', handler: , // gets user playlist
