@@ -12,7 +12,7 @@ const vm = {
   },
 };
 
-const addSongs = id =>
+const addSongsToServer = id =>
   m.request({
     method: 'POST',
     url: '/user/add',
@@ -24,8 +24,14 @@ const addSongs = id =>
     config: xhr => {
       xhr.setRequestHeader('Content-Type', 'application/json');
     },
+  });
+
+const addSongsToSpotify = id =>
+  m.request({
+    method: 'GET',
+    url: '/user/playlist/rfid/' + id,
   })
-  .then(res => console.log(res, 'do spotify here'));
+  .then(res => console.log(res));
 
 // VIEW
 const view = () =>
@@ -34,7 +40,9 @@ const view = () =>
     <body>
       <div id="page-one" className="hero is-fullheight">
         <div className="hero-content heh">
-          <a className="button is-medium container">
+          <a className="button is-medium container" onclick={() => {
+            addSongsToSpotify('07616121');
+          }}>
             Rock out!
           </a>
         </div>
@@ -57,7 +65,10 @@ const touchScreen = ({ x, y }) => {
 const controller = () => {
   leap.init(touchScreen, () => false);
   vm.init();
-  rfid(id => addSongs(id));
+  rfid(id => {
+    addSongsToServer(id);
+    addSongsToSpotify(id);
+  });
   Spotify.getAuthorization();
 };
 
