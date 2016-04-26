@@ -9,7 +9,7 @@ const getByUsercodeOrRFID =
     ({ rfid }) => getUserSongsByRFID(rfid));
 
 export default {
-  GET: ({ body }, res) =>
-    getByUsercodeOrRFID(body)
+  GET: ({ params }, res) =>
+    getByUsercodeOrRFID(params)
     .then(songs => res.send(JSON.stringify(songs))),
 };

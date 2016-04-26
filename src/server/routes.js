@@ -15,15 +15,23 @@ export default {
     },
 
     {
-      path: '/user/songs', method: 'GET', handler: user.songs.GET,
+      path: '/user/songs/rfid/:rfid', method: 'GET', handler: user.songs.GET, // :D
     },
 
     {
-      path: '/user/add', method: 'POST', handler: user.addSongs.POST,
+      path: '/user/songs/usercode/:usercode', method: 'GET', handler: user.songs.GET, // :D
     },
 
     {
-      path: '/user/playlist', method: 'GET', handler: user.playlist.GET,
+      path: '/user/add', method: 'POST', handler: user.addSongs.POST, // :D
+    },
+
+    {
+      path: '/user/playlist/rfid/:rfid', method: 'GET', handler: user.playlist.GET, // :D
+    },
+
+    {
+      path: '/user/playlist/usercode/:usercode', method: 'GET', handler: user.playlist.GET, // :D
     },
 
     {

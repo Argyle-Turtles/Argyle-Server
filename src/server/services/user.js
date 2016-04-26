@@ -1,5 +1,20 @@
 import R from 'ramda';
+import Promise from 'bluebird';
+
 import { model as User } from '../models/user';
+
+/**
+ * Clears out user rfid
+ * @param {String} rfid - rfid number
+ * @return {User}
+ */
+export const clearRFID = rfid =>
+  User.findOne({ rfid })
+  .exec()
+  .then(u =>
+    R.isNil(u) ?
+      Promise.resolve(false) :
+      u.update({ rfid: '0000000' }).exec());
 
 /**
  * Create a new user
@@ -8,8 +23,8 @@ import { model as User } from '../models/user';
  * @return {User}
  */
 export const create = (usercode, rfid) =>
-  new User({ usercode, rfid })
-  .save()
+  clearRFID(rfid)
+  .then(() => new User({ usercode, rfid }).save())
   .then(u => u.usercode);
 
 /**
@@ -23,19 +38,6 @@ export const findByRFID = rfid =>
   .then(u => u.usercode);
 
 /**
- * Clears out user rfid
- * @param {String} rfid - rfid number
- * @return {User}
- */
-export const clearRFID = rfid =>
-  User.findOne({ rfid })
-  .exec()
-  .then(u => {
-    u.rfid = '00000000';
-    return u.save();
-  });
-
-/**
  * Adds songs to user songlist
  * @param {String} rfid - rfid number
  * @return {User}
@@ -44,7 +46,6 @@ export const addSongs = (rfid, songsToAdd) =>
   User.findOne({ rfid })
   .exec()
   .then(u => {
-    console.log(u);
     u.songs = R.concat(u.songs, songsToAdd);
     return u.save();
   });
@@ -74,8 +75,8 @@ export const getUserSongsByUsercode = usercode =>
  * @param {String} playlistURI - spotify playlist uri
  * @return {User}
  */
-export const setPlaylist = (rfid, playlistURI) =>
-  User.findOne({ rfid })
+export const setPlaylist = (usercode, playlistURI) =>
+  User.findOne({ usercode })
   .exec()
   .then(u => {
     u.playlist = playlistURI;
