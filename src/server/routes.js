@@ -11,7 +11,7 @@ export default {
     },
 
     {
-      path: '/user/clear', method: 'POST', handler: user.clear.POST, // untested
+      path: '/user/clear', method: 'POST', handler: user.clear.POST, // :D
     },
 
     {
@@ -35,7 +35,7 @@ export default {
     },
 
     {
-      path: '/user/playlist', method: 'POST', handler: user.playlist.POST,
+      path: '/user/playlist', method: 'POST', handler: user.playlist.POST, // :D
     },
 
   ],

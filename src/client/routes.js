@@ -13,4 +13,5 @@ export default {
   '/tablet/five': tab.stageFive,
   '/projector/': projector.start,
   '/projector/two': projector.two,
+  '/projector/three': projector.three,
 };
