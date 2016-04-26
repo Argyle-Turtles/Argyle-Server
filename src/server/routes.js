@@ -22,9 +22,13 @@ export default {
       path: '/user/add', method: 'POST', handler: user.addSongs.POST,
     },
 
-    // {
-    //   path: '/user/playlist', method: 'GET', handler: , // gets user playlist
-    // },
-    //
+    {
+      path: '/user/playlist', method: 'GET', handler: user.playlist.GET,
+    },
+
+    {
+      path: '/user/playlist', method: 'POST', handler: user.playlist.POST,
+    },
+
   ],
 };
