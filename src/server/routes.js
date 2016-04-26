@@ -3,27 +3,28 @@ import user from './controllers/user';
 export default {
   routes: [
     {
-      path: '/user', method: 'GET', handler: user.usercode,
+      path: '/user', method: 'GET', handler: user.usercode.GET,
     },
 
     {
-      path: '/user/create', method: 'POST', handler: user.create,
+      path: '/user/create', method: 'POST', handler: user.create.POST,
     },
 
     {
-      path: '/user/clear', method: 'POST', handler: user.clear,
+      path: '/user/clear', method: 'POST', handler: user.clear.POST,
     },
 
     {
-      path: '/user/songs', method: 'GET', handler: user.songs,
+      path: '/user/songs', method: 'GET', handler: user.songs.GET,
     },
-    //
+
+    {
+      path: '/user/add', method: 'POST', handler: user.addSongs.POST,
+    },
+
     // {
     //   path: '/user/playlist', method: 'GET', handler: , // gets user playlist
     // },
     //
-    {
-      path: '/user/add', method: 'POST', handler: user.addSongs,
-    },
   ],
-}
+};
