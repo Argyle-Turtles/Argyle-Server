@@ -5,7 +5,11 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import path from 'path';
 
-import routes from './routes';
+import routes from './src/server/routes';
+import config from './src/server/config';
+import db from './src/server/services/database';
+
+db(config.mongoURL);
 
 const port = process.env.PORT || 3000;
 

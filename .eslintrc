@@ -2,7 +2,7 @@
   "extends": "airbnb/base",
   "rules": {
     "brace-style": [2, "stroustrup", { "allowSingleLine": true }],
-    "no-param-reassign": 1,
+    "no-param-reassign": 0,
     "no-shadow": 1,
     "default-case": 0,
     "new-cap": 0,
