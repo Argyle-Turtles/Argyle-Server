@@ -1,7 +1,7 @@
 import m from 'mithril';
 import R from 'ramda';
 
-import { Head, Cursor, Spotify } from '../components';
+import { Spotify } from '../components';
 import SongCard from './components/SongCard';
 import PreviewCard from './components/PreviewCard';
 import leap from '../leap';
@@ -62,34 +62,28 @@ const unselectedCard = i =>
   </div>;
 
 const view = () =>
-  <html>
-    <Head/>
-    <body>
-      <Cursor />
-      <div id="page-two" className="hero is-fullheight">
-        <div className="columns container">
-          <div className="column is-offset-3"></div>
-          {
-            vm.songCards().map(
-            ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
-          }
-        </div>
-      </div>
-    </body>
-  </html>;
+  <div id="page-two" className="hero is-fullheight">
+    <div className="columns container">
+      <div className="column is-offset-3"></div>
+      {
+        vm.songCards().map(
+        ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
+      }
+    </div>
+  </div>;
 
 const moveCursor = ({ x, y }) => {
-  const c = document.querySelector('#cursor');
-  c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
+  // const c = document.querySelector('#cursor');
+  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
+  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
 };
 
 const touchScreen = ({ x, y }) => {
-  moveCursor({ x, y });
-  const clickSpot = document.elementFromPoint(
-    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
-    (y - 100) / 776 * window.innerHeight);
-  return clickSpot && clickSpot.click();
+  // moveCursor({ x, y });
+  // const clickSpot = document.elementFromPoint(
+  //   window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
+  //   (y - 100) / 776 * window.innerHeight);
+  // return clickSpot && clickSpot.click();
 };
 
 // CONTROLLER

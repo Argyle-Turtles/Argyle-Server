@@ -6,6 +6,8 @@ import { Head, Cursor, Spotify } from '../components';
 
 // Local Components
 import BandInfo from './components/BandInfo';
+import PageTwo from './two';
+import PageThree from './three';
 
 // VIEW MODEL
 const vm = {
@@ -13,7 +15,27 @@ const vm = {
     vm.bandName = prop('Red Hot Chili Peppers');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
+    vm.page = prop('ONE');
   },
+};
+
+const currentPage = page => {
+  if (page === 'ONE') {
+    return <div id="page-one" className="hero is-fullheight">
+        <div className="hero-content heh">
+          <BandInfo
+            bandName={vm.bandName()}
+            primaryGenre={vm.primaryGenre()}
+            subGenres={vm.subGenres()}/>
+          <br />
+          <a className="button is-medium container" onclick={() => vm.page('TWO')}>
+            Rock out!
+          </a>
+        </div>
+      </div>;
+  }
+  else if (page === 'TWO') return <PageTwo nextPage={() => vm.page('THREE')}/>;
+  else if (page === 'THREE') return <PageThree />;
 };
 
 // VIEW
@@ -21,18 +43,7 @@ const view = () =>
   <html>
     <Head />
     <body>
-      <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content heh">
-          <BandInfo
-            bandName={vm.bandName()}
-            primaryGenre={vm.primaryGenre()}
-            subGenres={vm.subGenres()}/>
-          <br />
-          <a className="button is-medium container" href ="/projector/two" config={m.route}>
-            Rock out!
-          </a>
-        </div>
-      </div>
+      {currentPage(vm.page())}
     </body>
   </html>;
 
@@ -40,15 +51,7 @@ const view = () =>
 // top left coords 1320 100
 // bot right 240 876
 
-const moveCursor = ({ x, y }) => {
-  // const c = document.querySelector('#cursor');
-  // console.log(c);
-  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  // c.style.top = `${(y - 100) / 776 * window.innerHeight - 5}px`;
-};
-
 const touchScreen = ({ x, y }) => {
-  moveCursor({ x, y });
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);
@@ -57,9 +60,8 @@ const touchScreen = ({ x, y }) => {
 
 // CONTROLER
 const controller = () => {
-  leap.init(touchScreen, moveCursor);
+  leap.init(touchScreen, () => false);
   vm.init();
-  Spotify.getAuthorization();
 };
 
 // EXPORT
