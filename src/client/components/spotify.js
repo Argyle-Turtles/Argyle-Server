@@ -5,6 +5,35 @@ Get the token by directing the page to this link -> https://accounts.spotify.com
                                                        redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_
                                                        dialog=false
 */
+
+const url = () => `https://accounts.spotify.com:/authorize?client_id=be7cab20471747848c74c18e4e845c08&response_type=token&redirect_uri=${window.location}&scope=playlist-modify-private playlist-modify-public&show_dialog=false`;
+
+const isAuthTokenExpired = () => {
+
+};
+
+const authCode = () => {
+  let urlParams = "";
+  let match = "",
+  pl     = /\+/g,
+  search = /([^&=]+)=?([^&]*)/g,
+  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+  query  = window.location.hash.substring(1);
+
+  urlParams = {};
+  match = search.exec(query);
+  urlParams[decode(match[1])] = decode(match[2]);
+
+  return urlParams["access_token"];
+};
+
+// grabs the authorization token from the hash in the url
+export const getAuthorization = () => {
+  if (authTokenExpired()) window.location = url();
+
+
+};
+
 export const getPlaylist = () => {
    const accessToken = getAuthorization();
    const headerData = function(xhr) {
@@ -64,25 +93,10 @@ export const addSong = (songIds, playlistId) => {
 
 };
 
-//grabs the authorization token from the hash in the url
-export const getAuthorization = () => {
-  let urlParams = "";
-  let match = "",
-  pl     = /\+/g,
-  search = /([^&=]+)=?([^&]*)/g,
-  decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-  query  = window.location.hash.substring(1);
-
-  urlParams = {};
-  while (match = search.exec(query))
-  urlParams[decode(match[1])] = decode(match[2]);
-
-  return urlParams["access_token"];
-};
-
 export default {
   addSong,
   getPlaylist,
   makePlaylist,
   getAuthorization,
+  url,
 };

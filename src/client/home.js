@@ -1,5 +1,5 @@
 import m from 'mithril';
-import { Head } from './components';
+import { Head, Spotify } from './components';
 
 const view = () =>
   <html>
