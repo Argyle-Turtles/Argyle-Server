@@ -3,6 +3,7 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
+import { transition1 } from './animations';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -19,22 +20,21 @@ const vm = {
   },
 };
 
+const trans = {
+  ONE: () => transition1().then(() => {
+    vm.page('TWO');
+    m.redraw();
+  }),
+};
+
 const currentPage = page => {
   if (page === 'ONE') {
-    return <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content heh">
-          <BandInfo
+    return <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
-            subGenres={vm.subGenres()}/>
-          <br />
-          <a className="button is-medium container" onclick={() => vm.page('TWO')}>
-            Rock out!
-          </a>
-        </div>
-      </div>;
+            subGenres={vm.subGenres()}/>;
   }
-  else if (page === 'TWO') return <PageTwo nextPage={() => vm.page('THREE')}/>;
+  else if (page === 'TWO') return <PageTwo />;
   else if (page === 'THREE') return <PageThree />;
 };
 
@@ -43,7 +43,15 @@ const view = () =>
   <html>
     <Head />
     <body>
-      {currentPage(vm.page())}
+      <div id="page-one" className="hero is-fullheight">
+        <div className="hero-content heh">
+          <h1 className="band-name title is-1">{vm.bandName()}</h1>
+          {currentPage(vm.page())}
+          <a className="button is-medium container" onclick={trans[vm.page()]}>
+            Rock out!
+          </a>
+        </div>
+      </div>
     </body>
   </html>;
 
@@ -52,6 +60,7 @@ const view = () =>
 // bot right 240 876
 
 const touchScreen = ({ x, y }) => {
+  console.log('h');
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);

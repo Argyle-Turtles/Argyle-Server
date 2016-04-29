@@ -62,15 +62,13 @@ const unselectedCard = i =>
   </div>;
 
 const view = () =>
-  <div id="page-two" className="hero is-fullheight">
-    <div className="columns container">
+    <div id="selection" className="columns container">
       <div className="column is-offset-3"></div>
       {
         vm.songCards().map(
         ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
       }
-    </div>
-  </div>;
+    </div>;
 
 const moveCursor = ({ x, y }) => {
   // const c = document.querySelector('#cursor');
