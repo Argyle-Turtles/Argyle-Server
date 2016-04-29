@@ -1,10 +1,28 @@
 import m from 'mithril';
 import R from 'ramda';
+import Velocity from 'velocity-animate';
 
 import { Spotify } from '../components';
 import SongCard from './components/SongCard';
 import PreviewCard from './components/PreviewCard';
-import leap from '../leap';
+
+const animateIn = () =>
+  Velocity.animate(
+    document.querySelector('#selection'),
+    {
+      opacity: 1,
+      translateY: [-20, 0],
+    },
+    { duration: 500 });
+
+const animateOut = () =>
+  Velocity.animate(
+    document.querySelector('#selection'),
+    {
+      opacity: [1, 0],
+      translateY: [-20, 0],
+    },
+    { duration: 500 });
 
 const songData = [
   {
@@ -62,7 +80,7 @@ const unselectedCard = i =>
   </div>;
 
 const view = () =>
-    <div id="selection" className="columns container">
+    <div id="selection" className="columns container" config={animateIn}>
       <div className="column is-offset-3"></div>
       {
         vm.songCards().map(
@@ -70,29 +88,13 @@ const view = () =>
       }
     </div>;
 
-const moveCursor = ({ x, y }) => {
-  // const c = document.querySelector('#cursor');
-  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  // c.style.top = `${(y - 100) / 776 * window.innerHeight}px`;
-};
-
-const touchScreen = ({ x, y }) => {
-  // moveCursor({ x, y });
-  // const clickSpot = document.elementFromPoint(
-  //   window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
-  //   (y - 100) / 776 * window.innerHeight);
-  // return clickSpot && clickSpot.click();
-};
-
 // CONTROLLER
-const controller = () => {
-  leap.init(touchScreen, moveCursor);
-  vm.init();
-};
+const controller = () => vm.init();
 
 // EXPORT
 export default {
   vm,
   view,
   controller,
+  animateOut,
 };

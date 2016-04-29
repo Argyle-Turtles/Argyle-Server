@@ -7,7 +7,7 @@ import { transition1 } from './animations';
 
 // Local Components
 import BandInfo from './components/BandInfo';
-import PageTwo from './two';
+import Selection from './selection';
 import PageThree from './three';
 
 // VIEW MODEL
@@ -34,7 +34,7 @@ const currentPage = page => {
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>;
   }
-  else if (page === 'TWO') return <PageTwo />;
+  else if (page === 'TWO') return <Selection />;
   else if (page === 'THREE') return <PageThree />;
 };
 
