@@ -6,14 +6,34 @@ import { Spotify } from '../components';
 import SongCard from './components/SongCard';
 import PreviewCard from './components/PreviewCard';
 
-const animateIn = () =>
+const animateIn = () => {
+  const time = vm.firstRender() ? 1 : 0;
   Velocity.animate(
-    document.querySelector('#selection'),
+    document.querySelector('#card-0'),
     {
       opacity: 1,
-      translateY: [-20, 0],
+      translateY: -20,
     },
-    { duration: 500 });
+    { duration: 500 * time });
+
+  Velocity.animate(
+    document.querySelector('#card-1'),
+    {
+      opacity: 1,
+      translateY: -20,
+    },
+    { delay: 200 * time, duration: 500 * time });
+
+  Velocity.animate(
+    document.querySelector('#card-2'),
+    {
+      opacity: 1,
+      translateY: -20,
+    },
+    { delay: 400 * time, duration: 500 * time });
+
+  vm.firstRender(false);
+};
 
 const animateOut = () =>
   Velocity.animate(
@@ -58,6 +78,7 @@ const songData = [
 const vm = {
   init: () => {
     vm.songCards = m.prop(R.zip(songData, [true, false, false]));
+    vm.firstRender = m.prop(true);
   },
 };
 
@@ -68,14 +89,14 @@ const select = i => {
 };
 
 // VIEWS
-const selectedCard = data =>
-  <div className="column is-4">
+const selectedCard = (data, id) =>
+  <div id={`card-${id}`} className="column is-4 invis">
     <SongCard
       song={data} />
   </div>;
 
-const unselectedCard = i =>
-  <div className="column is-3" onclick={() => select(i)}>
+const unselectedCard = id =>
+  <div id={`card-${id}`} className="column is-3 invis" onclick={() => select(id)}>
     <PreviewCard />
   </div>;
 
@@ -84,7 +105,7 @@ const view = () =>
       <div className="column is-offset-3"></div>
       {
         vm.songCards().map(
-        ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
+        ([card, visible], i) => visible ? selectedCard(card, i) : unselectedCard(i))
       }
     </div>;
 

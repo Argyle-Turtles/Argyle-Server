@@ -21,10 +21,12 @@ const vm = {
 };
 
 const trans = {
-  ONE: () => transition1().then(() => {
-    vm.page('TWO');
-    m.redraw();
-  }),
+  ONE: () =>
+    transition1()
+    .then(() => {
+      vm.page('TWO');
+      m.redraw();
+    }),
 };
 
 const currentPage = page => {
