@@ -63,4 +63,4 @@ export const moveAddedCard = id =>
     document.querySelector(`#card-${id}`),
     { translateY: -100 },
     1000
-  );
+  ).then(e => Velocity(e, { translateY: [-20, -100] }, 300));

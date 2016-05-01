@@ -17,7 +17,7 @@ const animateIn = () => {
     document.querySelector('#card-0'),
     {
       opacity: 1,
-      translateY: -20,
+      // translateY: -20,
     },
     { duration: 500 * time });
 
@@ -25,7 +25,7 @@ const animateIn = () => {
     document.querySelector('#card-1'),
     {
       opacity: 1,
-      translateY: -20,
+      // translateY: -20,
     },
     { delay: 200 * time, duration: 500 * time });
 
@@ -33,7 +33,7 @@ const animateIn = () => {
     document.querySelector('#card-2'),
     {
       opacity: 1,
-      translateY: -20,
+      // translateY: -20,
     },
     { delay: 400 * time, duration: 500 * time });
 
@@ -46,7 +46,6 @@ const animateCardAdd = () => {
 
   addedSongs.map((song, index) => {
     deselectCard(index)();
-    console.log(song);
     return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
   });
 
