@@ -6,8 +6,8 @@
 }
 
 @font-face {
-	font-family: 'Gotham Book';
-	src: url('../media/Gotham-Book.otf') format('truetype');
+	font-family: 'Bebas Neue Book';
+	src: url('../media/BebasNeue Book.otf') format('truetype');
 }
 
 @font-face {
@@ -15,13 +15,8 @@
 	src: url('../media/Lato-Thin.ttf') format('truetype');
 }
 
-#PageTitle {
-	font-family: 'Edo';
-	font-size: 200px;
-}
-
 #MenuLink {
-	font-family: 'Gotham Book';
+	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 	color: white;
 }
@@ -36,13 +31,17 @@ h1 {
 }
 
 h2 {
-	font-family: 'Gotham Book';
+	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 }
 
 p {
 	font-family: 'Lato Thin';
 	font-size: 14px;
+}
+
+table, th, td {
+   border: 1px solid black;
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
@@ -69,6 +68,7 @@ p {
 	height: 100vh;
 	max-height: 1080px;
 	background-image: url('../media/tape_cut.png');
+	background-size: 40vh 22vh;
 	background-repeat: no-repeat;
 	background-position: bottom;
 }
