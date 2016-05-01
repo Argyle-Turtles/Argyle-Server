@@ -79,7 +79,7 @@ export const getAuthorization = () => {
   query  = window.location.hash.substring(1);
 
   urlParams = {};
-  while (match = search.exec(query))
+  match = search.exec(query);
   urlParams[decode(match[1])] = decode(match[2]);
 
   return urlParams["access_token"];

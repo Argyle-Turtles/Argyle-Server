@@ -15,37 +15,80 @@ const songData = [
     name: 'Shofukan',
     year: '2014',
     length: '6:33',
-    description: 'Peter peter peter. Peter, peter peter.',
+    description: 'This is some smooth funkalucious stuff right here',
     uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
   },
   {
     album: 'We Like it Here',
     name: 'What About Me?',
     year: '2014',
     length: '6:43',
-    description: 'Peter your music is crap.',
+    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
   },
   {
     album: 'We Like it Here',
     name: 'Tia Macaco',
     year: '2014',
     length: '5:44',
-    description: 'Bring it home with some peter sounds',
+    description: 'Bring it home with some fucktastic sounds',
     uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
   },
+   {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
+  },
+   {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
+  },
+   {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'http://placehold.it/433x433',
+    artist: 'Peter',
+    genre: "Alternative, maybe",
+  },
+
 ];
 
 // VIEW MODEL
 const vm = {
   init: function(){
-    vm.songCards = m.prop(R.zip(songData, [true, false, false]));
-    vm.circleRadius = m.prop([5,5,5]);
+    vm.songCards = m.prop(R.zip(songData, [true, false, false,false,false,false]));
+    vm.circleRadius = m.prop([10,5,5,5,5,5]);
   },
 };
 
 const select = function(i){
-  const arr = [false, false, false];
+  const arr = [false, false, false,false,false,false];
   arr[i] = true;
   vm.songCards(R.zip(songData, arr));
 };
@@ -59,7 +102,7 @@ const selectedCard = data =>
 const unselectedCard = i =>
   <div className="column is-3" onclick={function(){
    	select(i);
-   	vm.circleRadius([3.5,3.5,3.5]);
+   	vm.circleRadius([5,5,5,5,5,5]);
    	vm.circleRadius()[i] = 10;
    	console.log(i);
    }}>
@@ -67,25 +110,21 @@ const unselectedCard = i =>
   </div>;
 
 const view = () =>
-	<html>
+	<html className="endKiosk">
 		<Head />
 		<body>
-			<div className="banner">mixy tape</div>
+			<div className="banner">
+        <div
+        className="backButton"
+        onclick={function(){location.search = "/tablet/mix"}}>
+        Back </div>
+        <div className="bannerHead"> Mixy Tape</div>
+      </div>
 			<div className = "content">
-				<input
-            		className="button is-medium container"
-            		type="button"
-            		onclick={ function(){document.location.href="https://accounts.spotify.com:/authorize?client_id=b5dc615d0bcc47109e0ea1c5725f1cb8&response_type=token&redirect_uri=http://localhost:3000/?/tablet/mix&scope=playlist-modify-private playlist-modify-public&show_dialog=false";}}
-            		value="Autorize" />
-            	<input
-            		className="button is-medium container"
-            		type="button"
-            		onclick={ function(){ Spotify.getPlaylist();}}
-            		value="Get Music" />
 				<div className='graphSpace' config={function(){Graph.init(".graphSpace",vm.circleRadius()); 
 											d3.selectAll("circle").on("click",function(){
 												//reset the values to the original size
-												vm.circleRadius([3.5,3.5,3.5]);
+												vm.circleRadius([5,5,5,5,5,5]);
 												//increase the clicked circles radius by setting the size in the vm
 												vm.circleRadius()[d3.select(this).attr("class")] = 10;
 													//d3.selectAll("circle").attr("r",3.5);
@@ -95,20 +134,23 @@ const view = () =>
 					 							//draw the view again
 					 							m.redraw();
 					 						})}}>
+          <div className="rockJourney"> Your Rock Journey </div>
 				</div>
-        		<div className="hero-content">
-          			<div className="columns container">
-            			{
-              				vm.songCards().map(
-              				([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
-            			}
-         			</div>
+				<div className="cards">
+        			<div className="hero-content">
+          				<div className="columns container">
+            				{
+              					vm.songCards().map(
+              					([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
+            				}
+         				</div>
+        			</div>
         		</div>
 				<input 
 					className="button is-medium container"
 					type="button"
             		onclick={function(){location.search = '/tablet/one'}}
-            		value="Rock On!" />
+            		value="Finalize" />
             </div>
         </body>
     </html>;

@@ -12,18 +12,18 @@ let i = -1;
  export const init = (append,radius) => {
   //no dupicating graphs!
   d3.select("svg").remove();
+
   //scale from 1 to 8
-  //labels will be customized to be decades
   const yScale = d3.scale.linear()
                           //min and max number
                           .domain([0, 8])
                           //pixels the graph can render
-                          .range([0, 200]);
+                          .range([0, 509]);
 
   //should be length of graph/total songs on playlist
   const xScale = d3.scale.linear()
                           .domain([0, 8])
-                          .range([0, 200]);
+                          .range([0, 500]);
 
   // tick labels
   const ticks = ["10s","00s","90s","80s","70s","60s","50s","40s","30s"];
@@ -34,7 +34,7 @@ let i = -1;
   
 
   //creates axis with y scale
-  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-200).tickSubdivide(true).orient("left");
+  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-520).orient("left");
 
   //function to extract data points from the data set
   const lineGen = d3.svg.line()
@@ -49,21 +49,22 @@ let i = -1;
   // y = 1 = 10s
   //y = 8 = 30s
  const data = [ { "x": 1,   "y": 5},  { "x": 2,  "y": 2},
-                  { "x": 3,  "y": 1}];//, { "x": 4,  "y": 4},
-                 // { "x": 5,  "y": 5},  { "x": 6, "y": 6},
+                  { "x": 3,  "y": 1}, { "x": 4,  "y": 4},
+                  { "x": 5,  "y": 5},  { "x": 6, "y": 6}];
                   //{"x": 7, "y": 8}];
  
+console.log(d3.select(".graphSpace").style("width"));
 
 //The SVG Container
 const svgContainer = d3.select(append).append("svg")
-                                    .attr("width", 250)
-                                    .attr("height", 250);
+                                    .attr("width", 500)
+                                    .attr("height", 509);
 
 // add y axis to the graph
 const yAxisGroup = svgContainer.append("g").attr("class"," y axis").attr("transform", "translate(" + 30 + ","+ 10 +")").call(yAxis);
 
 //move the y axis tick marks 
-yAxisGroup.selectAll(".tick line").attr("transform", "translate(-10,10)");
+yAxisGroup.selectAll(".tick line").attr("transform", "translate(-30,10)");
 
 
 const pathContainers = svgContainer.selectAll('g.line').data(data);
@@ -78,7 +79,7 @@ const lineGraph = svgContainer.append("path")
                             .attr('d', lineGen(data))
                             .attr("class", "line")
                             .attr("transform", "translate(15,0)")
-                            .attr("stroke", "blue")
+                            .attr("stroke", "#FFFFFF")
                             .attr("stroke-width", 2)
                             .attr("fill", "none");
 
@@ -97,7 +98,6 @@ svgContainer.selectAll("dot")
         .attr("transform", "translate(15,0)")
         .style("stroke","black")
         .style("fill","lightgray");
-       // .on("click",function(){ d3.selectAll("circle").attr("r",3.5); d3.select(this).attr("r",1000);});
 
                             
     i = -1;                        

@@ -32,6 +32,16 @@ const mid = (year, length) =>
 
 const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 
+const artist = (artist, genre) =>
+  <div>
+    <div className="artist">
+      {artist}
+    </div>
+    <div className="genre">
+      {genre}
+    </div>
+  </div>
+
 const foot = uri =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item"
@@ -70,6 +80,10 @@ const back = song =>
     </div>
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
+    </div>
+    <hr/>
+    <div className="card-content song-card-artist">
+      {artist(song.artist, song.genre)}
     </div>
     <div className="card-content song-card-info">
       {mid(song.year, song.length)}
