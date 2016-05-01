@@ -3,7 +3,7 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
-import { transition1 } from './animations';
+import { transition1, transition2 } from './animations';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -20,7 +20,7 @@ const vm = {
   },
 };
 
-const isPage = page => vm.page === page;
+const isPage = page => vm.page() === page;
 
 const trans = {
   ONE: () =>
@@ -29,17 +29,23 @@ const trans = {
       vm.page('TWO');
       m.redraw();
     }),
+  TWO: () =>
+    transition2()
+    .then(() => {
+      // vm.page('TWO');
+      m.redraw();
+    }),
 };
 
 const currentPage = page => {
-  if (page === 'ONE') {
+  if (isPage('ONE')) {
     return <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>;
   }
-  else if (page === 'TWO') return <Selection />;
-  else if (page === 'THREE') return <PageThree />;
+  else if (isPage('TWO')) return <Selection />;
+  else if (isPage('THREE')) return <PageThree />;
 };
 
 const titleClass = () => 'band-name title is-1 pg1-title';
@@ -64,7 +70,6 @@ const view = () =>
 // bot right 240 876
 
 const touchScreen = ({ x, y }) => {
-  console.log('h');
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);

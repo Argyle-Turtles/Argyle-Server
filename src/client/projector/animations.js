@@ -13,6 +13,14 @@ const animateTitle = () =>
     },
     { duration: 500 });
 
+const hideNextButton = () =>
+  Velocity.animate(
+    document.querySelector('.bottom-button'),
+    {
+      opacity: 0,
+    },
+    { duration: 500 });
+
 export const transition1 = () =>
   Promise.all([
     BandInfo.animate(),
@@ -21,5 +29,22 @@ export const transition1 = () =>
 
 export const transition2 = () =>
   Promise.all([
-    Selection.animateOut(),
+    Selection.animateCards(),
+    hideNextButton(),
   ]);
+
+export const selectCard = id => () => {
+  const changeSize = element => Velocity(element, { width: '400px' }, 500);
+
+  changeSize(document.querySelector(`#flip-box-${id}`));
+  changeSize(document.querySelector(`#front-${id}`));
+  changeSize(document.querySelector(`#back-${id}`));
+};
+
+export const deselectCard = id => () => {
+  const changeSize = element => Velocity(element, { width: '300px' }, 500);
+
+  changeSize(document.querySelector(`#flip-box-${id}`));
+  changeSize(document.querySelector(`#front-${id}`));
+  changeSize(document.querySelector(`#back-${id}`));
+};

@@ -1,9 +1,15 @@
 import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
+import Promise from 'bluebird';
 
 import { Spotify } from '../components';
 import SongCard from './components/SongCard';
+import { transition1, transition2, selectCard } from './animations';
+
+const addedSongs = [];
+
+const addSongToPlaylist = (id, uri) => addedSongs.push({ id, uri });
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -34,14 +40,9 @@ const animateIn = () => {
   vm.firstRender(false);
 };
 
-const animateOut = () =>
-  Velocity.animate(
-    document.querySelector('#selection'),
-    {
-      opacity: [1, 0],
-      translateY: [-20, 0],
-    },
-    { duration: 500 });
+const animateCards = () => {
+  console.log(addedSongs);
+};
 
 const songData = [
   {
@@ -81,25 +82,28 @@ const vm = {
   },
 };
 
-const select = i => {
+const unselectOtherCards = i => {
   const arr = [false, false, false];
   arr[i] = true;
   vm.songCards(R.zip(songData, arr));
 };
 
 // VIEWS
-const selectedCard = (data, id, addCallback) =>
+const createCard = (data, id) =>
   <div id={`card-${id}`} className="song-card invis">
     <SongCard
-      song={data} cardId={id} addSong={addCallback}/>
+      song={data}
+      cardId={id}
+      addSong={addSongToPlaylist}
+      select={unselectOtherCards}/>
   </div>;
 
-const view = (_, { addSong }) =>
+const view = () =>
     <div id="selection" config={animateIn}>
-      <div className="column is-offset-1 is-10">
+      <div className="card-holder">
         {
           vm.songCards().map(
-          ([card, visible], i) => selectedCard(card, i, addSong))
+          ([card, visible], i) => createCard(card, i))
         }
       </div>
     </div>;
@@ -112,5 +116,5 @@ export default {
   vm,
   view,
   controller,
-  animateOut,
+  animateCards,
 };

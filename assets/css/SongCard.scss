@@ -31,8 +31,16 @@
 .song-card {
   width: 30%;
 
-  margin: 0px; 
+  margin: 0px;
   display: inline-block;
+}
+
+.card-width {
+  width: 300px;
+}
+
+.selected-card-width {
+  width: 400px;
 }
 
 .song-card-face {
