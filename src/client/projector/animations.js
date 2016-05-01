@@ -36,6 +36,7 @@ export const transition2 = () =>
 export const selectCard = id => () => {
   const changeSize = element => Velocity(element, { width: '400px' }, 500);
 
+  changeSize(document.querySelector(`#card-${id}`));
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
@@ -44,6 +45,7 @@ export const selectCard = id => () => {
 export const deselectCard = id => () => {
   const changeSize = element => Velocity(element, { width: '300px' }, 500);
 
+  changeSize(document.querySelector(`#card-${id}`));
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
