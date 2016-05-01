@@ -76,9 +76,8 @@ p {
 #SolutionArea {
 	background-color: #de302f;
 	height: 100vh;
-	max-height: 1080px;
+	max-height: 850px;
 	color: white;
-	text-align: left;
 }
 
 #WhatArea { 
