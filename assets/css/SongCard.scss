@@ -22,9 +22,22 @@
     }
 
     .back {
+      z-index: -3;
       transform: rotateY(180deg);
     }
   }
+}
+
+.song-card {
+  width: 30%;
+
+  margin: 0px; 
+  display: inline-block;
+}
+
+.song-card-face {
+  width: 100%;
+  background-color: white;
 }
 
 .song-card-name {
@@ -45,8 +58,10 @@
 
 .flip-button {
   position: absolute;
+  top: 0px;
+  left: 0px;
   z-index: 1;
-  margin-left: 260px;
+  // margin-left: 260px;
   min-width: 40px;
   max-width: 40px;
   height: 30px;

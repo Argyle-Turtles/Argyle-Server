@@ -78,14 +78,14 @@ const back = song =>
     {foot(song.uri)}
   </div>;
 
-const view = (_, { song }) =>
+const view = (_, { song, addSong, id }) =>
   <div className="flip-container">
     <div className="flipper" config={handleFlip}>
       <div className="face front">
         {front(song)}
       </div>
       <div className="face back">
-        {back(song)}
+        {back(song, id, addSong)}
       </div>
     </div>
   </div>;

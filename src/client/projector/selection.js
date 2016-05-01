@@ -88,8 +88,8 @@ const select = i => {
 };
 
 // VIEWS
-const selectedCard = (data, id) =>
-  <div id={`card-${id}`} className="column is-4 invis">
+const selectedCard = (data, id, addCallback) =>
+  <div id={`card-${id}`} className="song-card invis">
     <SongCard
       song={data} cardId={id} addSong={addCallback}/>
   </div>;

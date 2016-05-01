@@ -7,20 +7,17 @@
 @import '~bulma/bulma/layout/layout.sass';
 
 // COLORS
+* {
+	box-sizing: border-box;
+}
 
 body {
 	text-align: center;
 	margin: 0px;
 }
-	// -webkit-transform: rotateY(180deg)
-  // transform: rotateY(180deg)
+
 .heh {
 	z-index: 1;
-}
-
-#page-one {
-	background-color: white;
-	z-index: -2;
 }
 
 .invis {
@@ -53,10 +50,6 @@ input {
 
 #cursor {
 	position: absolute;
-}
-
-.pageOne {
-	position: relative;
 }
 
 @import './SongCard';
