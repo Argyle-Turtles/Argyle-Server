@@ -9,6 +9,10 @@
 	<script src="js/main.js"></script>
 
 	<script>
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+ 		location.replace("http://mixta.herokuapp.com/homepage/mobile.html");
+	}
+	
 	$(document).ready(function() {
 		$("li a").click(function(e) {
 			e.preventDefault();
@@ -112,50 +116,6 @@
 		</div>
 	</div>
 	
-	<div id="ProblemArea">
-		<div id="ProblemContent">
-			<div id="ProblemInner">
-				<table border="0" style="margin-left:auto; margin-right:auto;">
-					<tr>
-					<td style="background-color:#000000; color:white;">
-						<h1><span style="color:#b82928">/</span> The Problem</h1>
-						<h2 style="padding-top:40px;">Let's Break it down</h2>
-						<br>
-						<br>
-						<p style="margin-left:auto; margin-right:auto; width:450px;">
-							Visitors at the Rock and Roll Hall of Fame lack a way to establish connections between static artifacts and the music they represent.
-							<br>
-							<br>
-							Our aim is to engage, teach and inspire through the power of rock and roll, using our three pillars of connection, tour, and takeaway.
-						</p>
-						<br>
-						<br>
-						<p>[View Deck]</p>
-					</td>
-					<td style="line-height:0;"><img src="media/rock1.jpg" alt="Concert Audience" style="width:50vw; height:30vw;"></td>
-					</tr>
-					<tr>
-					<td style="line-height:0;"><img src="media/rock2.jpg" alt="Concert Stage" style="width:50vw; height:30vw;"></td>
-					<td style="background-color: #ffffff;">
-						<h1><span style="color:#b82928">/</span> We Overcame</h1>
-						<h2 style="padding-top:40px;">Design Challenges</h2>
-						<br>
-						<br>
-						<p style="margin-left:auto; margin-right:auto; width:450px;">
-							Designing for the Rock and Roll Hall of Fame required that we provide a solution that integrates into an existing system.
-							<br>
-							<br>
-							We created and refined a visual identity and accessable design architecture that feels like rock and fits in with the Rock and Roll Hall of Fame's style, while exemplifying our own unique flair.
-							<br>
-							<br>
-							We used the latest technologies to create a modern and approachable experience designed to enhance to visitor's experience, assembling our technological and industrial components from the ground up.
-						</p>
-					</td>
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
 	
 </body>
 </html>
