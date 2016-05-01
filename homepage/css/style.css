@@ -19,6 +19,9 @@
 	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 	color: white;
+	padding-left:40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 a {
@@ -169,8 +172,8 @@ iframe {
   width: 200px;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1;
-  text-align: center;
-  padding: 80px 0; /* Top padding for nav items */
+  text-align: left;
+  padding-top: 80px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: auto;
