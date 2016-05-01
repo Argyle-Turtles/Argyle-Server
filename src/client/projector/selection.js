@@ -5,11 +5,11 @@ import Promise from 'bluebird';
 
 import { Spotify } from '../components';
 import SongCard from './components/SongCard';
-import { selectCard, deselectCard } from './animations';
+import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
-const addedSongs = [];
+const addedSongs = [null, null, null];
 
-const addSongToPlaylist = (id, uri) => addedSongs.push({ id, uri });
+const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -38,6 +38,19 @@ const animateIn = () => {
     { delay: 400 * time, duration: 500 * time });
 
   vm.firstRender(false);
+};
+
+const animateCardAdd = () => {
+  R.map(button => Velocity(button, 'slideUp', 500),
+    document.querySelectorAll('.song-card-button'));
+
+  addedSongs.map((song, index) => {
+    deselectCard(index)();
+    console.log(song);
+    return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
+  });
+
+
 };
 
 const songData = [
@@ -109,4 +122,5 @@ export default {
   vm,
   view,
   controller,
+  animateCardAdd,
 };

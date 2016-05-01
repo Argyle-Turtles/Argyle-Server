@@ -29,7 +29,7 @@ export const transition1 = () =>
 
 export const transition2 = () =>
   Promise.all([
-    Selection.animateCards(),
+    Selection.animateCardAdd(),
     hideNextButton(),
   ]);
 
@@ -48,3 +48,17 @@ export const deselectCard = id => () => {
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
 };
+
+export const fadeCardOut = id =>
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    { opacity: 0, width: 0, translateY: -60 },
+    500)
+    .then(() => document.querySelector(`#card-${id}`).style.display = 'none');
+
+export const moveAddedCard = id =>
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    { translateY: -100 },
+    1000
+  );

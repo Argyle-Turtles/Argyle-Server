@@ -43,7 +43,7 @@ const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 
 const foot = (uri, id, addSong) =>
   <footer className="card-footer song-card-button">
-    <a class="card-footer-item"
+    <a class="card-footer-item song-card-button-link"
       onclick={() => addSong(id, uri)}>Add</a>
   </footer>;
 
