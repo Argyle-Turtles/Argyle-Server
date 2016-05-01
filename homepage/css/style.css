@@ -40,6 +40,9 @@ p {
 	font-size: 14px;
 }
 
+table, th, td {
+   /*border: 1px solid black;/*
+}
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
 
