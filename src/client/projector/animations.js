@@ -9,7 +9,7 @@ const animateTitle = () =>
     document.querySelector('.band-name'),
     {
       fontSize: '30px',
-      translateY: -50,
+      translateY: -180,
     },
     { duration: 500 });
 
