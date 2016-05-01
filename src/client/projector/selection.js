@@ -5,7 +5,7 @@ import Promise from 'bluebird';
 
 import { Spotify } from '../components';
 import SongCard from './components/SongCard';
-import { transition1, transition2, selectCard } from './animations';
+import { selectCard, deselectCard } from './animations';
 
 const addedSongs = [];
 
@@ -38,10 +38,6 @@ const animateIn = () => {
     { delay: 400 * time, duration: 500 * time });
 
   vm.firstRender(false);
-};
-
-const animateCards = () => {
-  console.log(addedSongs);
 };
 
 const songData = [
@@ -77,25 +73,22 @@ const songData = [
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.songCards = m.prop(R.zip(songData, [true, false, false]));
+    vm.songCards = m.prop(songData);
     vm.firstRender = m.prop(true);
   },
 };
 
-const unselectOtherCards = i => {
-  const arr = [false, false, false];
-  arr[i] = true;
-  vm.songCards(R.zip(songData, arr));
+const pickACard = id => () => {
+  [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 };
 
 // VIEWS
 const createCard = (data, id) =>
-  <div id={`card-${id}`} className="song-card invis">
+  <div id={`card-${id}`} className="song-card invis" onclick={pickACard(id)}>
     <SongCard
       song={data}
       cardId={id}
-      addSong={addSongToPlaylist}
-      select={unselectOtherCards}/>
+      addSong={addSongToPlaylist}/>
   </div>;
 
 const view = () =>
@@ -103,7 +96,7 @@ const view = () =>
       <div className="card-holder">
         {
           vm.songCards().map(
-          ([card, visible], i) => createCard(card, i))
+          (card, i) => createCard(card, i))
         }
       </div>
     </div>;
@@ -116,5 +109,4 @@ export default {
   vm,
   view,
   controller,
-  animateCards,
 };
