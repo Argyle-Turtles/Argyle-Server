@@ -4,7 +4,6 @@ import Velocity from 'velocity-animate';
 
 import { Spotify } from '../components';
 import SongCard from './components/SongCard';
-import PreviewCard from './components/PreviewCard';
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -92,21 +91,17 @@ const select = i => {
 const selectedCard = (data, id) =>
   <div id={`card-${id}`} className="column is-4 invis">
     <SongCard
-      song={data} />
+      song={data} cardId={id} addSong={addCallback}/>
   </div>;
 
-const unselectedCard = id =>
-  <div id={`card-${id}`} className="column is-3 invis" onclick={() => select(id)}>
-    <PreviewCard />
-  </div>;
-
-const view = () =>
-    <div id="selection" className="columns container" config={animateIn}>
-      <div className="column is-offset-3"></div>
-      {
-        vm.songCards().map(
-        ([card, visible], i) => visible ? selectedCard(card, i) : unselectedCard(i))
-      }
+const view = (_, { addSong }) =>
+    <div id="selection" config={animateIn}>
+      <div className="column is-offset-1 is-10">
+        {
+          vm.songCards().map(
+          ([card, visible], i) => selectedCard(card, i, addSong))
+        }
+      </div>
     </div>;
 
 // CONTROLLER

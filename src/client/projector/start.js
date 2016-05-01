@@ -20,6 +20,8 @@ const vm = {
   },
 };
 
+const isPage = page => vm.page === page;
+
 const trans = {
   ONE: () =>
     transition1()
@@ -40,19 +42,19 @@ const currentPage = page => {
   else if (page === 'THREE') return <PageThree />;
 };
 
+const titleClass = () => 'band-name title is-1 pg1-title';
+
 // VIEW
 const view = () =>
   <html>
     <Head />
     <body>
-      <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content heh">
-          <h1 className="band-name title is-1">{vm.bandName()}</h1>
+      <div id="projector is-fullheight">
+          <h1 className={titleClass()}>{vm.bandName()}</h1>
           {currentPage(vm.page())}
-          <a className="button is-medium container" onclick={trans[vm.page()]}>
+          <a className="button is-medium bottom-button" onclick={trans[vm.page()]}>
             Rock out!
           </a>
-        </div>
       </div>
     </body>
   </html>;

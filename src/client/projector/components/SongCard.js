@@ -32,10 +32,10 @@ const mid = (year, length) =>
 
 const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 
-const foot = uri =>
+const foot = (uri, addSong) =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item"
-      onclick={() => Spotify.addSong([uri])}>Add</a>
+      onclick={() => addSong(uri)}>Add</a>
   </footer>;
 
 const img = url =>
