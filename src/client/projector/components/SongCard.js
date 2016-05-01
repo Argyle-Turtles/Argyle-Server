@@ -4,20 +4,25 @@ import Velocity from 'velocity-animate';
 
 const vm = {
   init: () => {
-    vm.flipped = m.prop(false);
+    vm.flipped = m.prop([false, false, false]);
     vm.selected = m.prop(false);
     vm.added = m.prop(false);
   },
 };
 
-const triggerFlip = () => vm.flipped(!vm.flipped());
+const triggerFlip = id => () => {
+  const flippedArray = vm.flipped();
+  flippedArray[id] = !flippedArray[id];
+  vm.flipped(flippedArray);
+};
 
-const handleFlip = id => () =>
+const handleFlip = id => () => {
   Velocity(
-    document.querySelector(id),
-    { rotateY: vm.flipped() ? '180deg' : '0deg' },
+    document.querySelector(`#flip-box-${id}`),
+    { rotateY: vm.flipped()[id] ? '180deg' : '0deg' },
     800
   );
+};
 
 // View Helpers
 const mid = (year, length) =>
@@ -57,7 +62,7 @@ const songTitle = (name, album) =>
 
 const front = (song, id, addSong) =>
   <div id={`front-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip}>
+    <div className="flip-button" onclick={triggerFlip(id)}>
       flip
     </div>
     {img(song.img)}
@@ -69,7 +74,7 @@ const front = (song, id, addSong) =>
 
 const back = (song, id, addSong) =>
   <div id={`back-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip}>
+    <div className="flip-button" onclick={triggerFlip(id)}>
       flip
     </div>
     <div className="card-content song-card-name">
@@ -86,7 +91,7 @@ const view = (_, { song, addSong, cardId }) =>
   <div className="flip-container">
     <div id={`flip-box-${cardId}`}
       className="flipper card-width"
-      config={handleFlip(`#flip-box-${cardId}`)}>
+      config={handleFlip(cardId)}>
       <div className="face front">
         {front(song, cardId, addSong)}
       </div>
