@@ -41,7 +41,7 @@ p {
 }
 
 table, th, td {
-   /*border: 1px solid black;/*
+   /*border: 1px solid black;*/
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
@@ -67,12 +67,6 @@ table, th, td {
 	background-color: #ffffff;
 	height: 100vh;
 	max-height: 1080px;
-	/*
-	background-image: url('../media/tape_cut.png');
-	background-size: 40vh 22vh;
-	background-repeat: no-repeat;
-	background-position: bottom;
-	*/
 }
 
 #SolutionArea {
