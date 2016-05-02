@@ -4,6 +4,7 @@ import leap from '../leap';
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
 import { transition1, transition2, transition3 } from './animations';
+import rfid from '../rfid';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -35,10 +36,11 @@ const trans = {
       // vm.page('TWO');
       m.redraw();
     }),
-  TWO: () =>
+  THREE: () =>
     transition3()
     .then(() => {
-      // vm.page('TWO');
+      console.log('ian');
+      // vm.page('THREE');
       m.redraw();
     }),
 };
@@ -51,7 +53,7 @@ const currentPage = page => {
             subGenres={vm.subGenres()}/>;
   }
   else if (isPage('TWO')) {
-    return <div>
+    return <div config={() => rfid.init(trans.THREE)}>
         <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
         <Selection />
       </div>;

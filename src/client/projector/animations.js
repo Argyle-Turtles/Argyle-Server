@@ -35,8 +35,7 @@ export const transition2 = () =>
 
 export const transition3 = () =>
   Promise.all([
-    Selection.animateCardAdd(),
-    hideNextButton(),
+    animateSlideOut(),
   ]);
 
 const changeCardSize = (size, time) => element =>
@@ -79,6 +78,31 @@ export const moveAddedCard = id =>
     changeSize(document.querySelector(`#flip-box-${id}`));
     changeSize(document.querySelector(`#front-${id}`));
     changeSize(document.querySelector(`#back-${id}`));
-    Velocity(document.querySelector('#rfid-feedback'), { opacity: 1 }, { delay: 200, duration: 300 });
+    Velocity(
+      document.querySelector('#rfid-feedback'),
+      { opacity: 1 },
+      { delay: 200, duration: 300 });
     return Velocity(e, { width: '200px', translateY: 100 }, { delay: 100, duration: 300 });
   });
+
+export const animateSlideOut = () => {
+  const removeWidth = element =>
+    Velocity(
+      element,
+      {
+        width: 0,
+        translateX: -100,
+        marginLeft: '3px',
+        marginRight: '3px',
+      },
+      300)
+    .then(e => Velocity(e, { translateY: 40 }, { delay: 50, duration: 200 }))
+    .then(e => Velocity(e, { translateY: 3000 }, { delay: 150, duration: 400 }));
+
+
+  return Promise.all([
+    removeWidth(document.querySelector(`#card-0`)),
+    removeWidth(document.querySelector(`#card-1`)),
+    removeWidth(document.querySelector(`#card-2`)),
+  ]);
+};
