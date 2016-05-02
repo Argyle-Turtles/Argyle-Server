@@ -1,13 +1,46 @@
-import m, { prop } from 'mithril';
+import m from 'mithril';
 import R from 'ramda';
+import Velocity from 'velocity-animate';
+import Promise from 'bluebird';
 
 import {Head, Spotify} from '../components';
 
 import Graph from './components/graph';
 import SongCard from '../projector/components/SongCard';
-import PreviewCard from '../projector/components/PreviewCard';
+import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from '../projector/animations';
 
 import d3 from 'd3';
+
+const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
+
+const animateIn = () => {
+  const time = vm.firstRender() ? 1 : 0;
+  Velocity.animate(
+    document.querySelector('#card-0'),
+    {
+      opacity: 1,
+      // translateY: -20,
+    },
+    { duration: 500 * time });
+
+  Velocity.animate(
+    document.querySelector('#card-1'),
+    {
+      opacity: 1,
+      // translateY: -20,
+    },
+    { delay: 200 * time, duration: 500 * time });
+
+  Velocity.animate(
+    document.querySelector('#card-2'),
+    {
+      opacity: 1,
+      // translateY: -20,
+    },
+    { delay: 400 * time, duration: 500 * time });
+
+  vm.firstRender(false);
+};
 
 const songData = [
   {
@@ -83,22 +116,25 @@ const songData = [
 const vm = {
   init: function(){
     vm.songCards = m.prop(R.zip(songData, [true, false, false,false,false,false]));
+    vm.firstRender = m.prop(true);
     vm.circleRadius = m.prop([10,5,5,5,5,5]);
   },
 };
 
-const select = function(i){
-  const arr = [false, false, false,false,false,false];
-  arr[i] = true;
-  vm.songCards(R.zip(songData, arr));
+const pickACard = id => () => {
+  [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 };
 
-const selectedCard = data =>
-  <div className="column is-4">
+// VIEWS
+const createCard = (data, id) =>
+  <div id={`card-${id}`} className="song-card invis" onclick={pickACard(id)}>
     <SongCard
       song={data}
-      end=true />
+      end={true}
+      cardId={id}
+      addSong={addSongToPlaylist}/>
   </div>;
+
 
 const unselectedCard = i =>
   <div className="column is-3" onclick={function(){
@@ -128,25 +164,23 @@ const view = () =>
 												vm.circleRadius([5,5,5,5,5,5]);
 												//increase the clicked circles radius by setting the size in the vm
 												vm.circleRadius()[d3.select(this).attr("class")] = 10;
-													//d3.selectAll("circle").attr("r",3.5);
-													//d3.select(this).attr("r",10);
 												//select the card that matches with the clicked circle 
-					 							select(d3.select(this).attr("class")); 
+					 							pickACard(d3.select(this).attr("class")); 
 					 							//draw the view again
 					 							m.redraw();
 					 						})}}>
           <div className="rockJourney"> Your Rock Journey </div>
 				</div>
 				<div className="cards">
-        			<div className="hero-content">
-          				<div className="columns container">
-            				{
-              					vm.songCards().map(
-              					([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
-            				}
-         				</div>
-        			</div>
-        		</div>
+        			<div id="selection" config={animateIn}>
+                <div className="card-holder">
+                  {
+                    vm.songCards().map(
+                    (card, i) => createCard(card, i))
+                  }
+                </div>
+              </div>
+        </div>
 				<input 
 					className="button is-medium container"
 					type="button"

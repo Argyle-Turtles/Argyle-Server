@@ -1,60 +1,14 @@
-<<<<<<< HEAD
-import m, { prop } from 'mithril';
-=======
 import m from 'mithril';
 import { isNil, curry } from 'ramda';
 import Promise from 'bluebird';
->>>>>>> upstream/master
 /*
 Almost all api requests need an authorization token
 Get the token by directing the page to this link -> https://accounts.spotify.com:/authorize?client_id=b5dc615d0bcc47109e0ea1c5725f1cb8&response_type=token&
                                                        redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_
                                                        dialog=false
 */
-<<<<<<< HEAD
-//do we even need this?
-export const getPlaylist = () => {
-   const accessToken = getAuthorization();
-   // list of song names from spotify
-   let songList = [];
-   const headerData = function(xhr) {
-    xhr.setRequestHeader("Authorization","Bearer "+ accessToken);
-    xhr.setRequestHeader("Content-type","application/json");
-    };
-                                                    //argyleturtles
-    return m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists/4mCm92pwUBT5mvbVtQTcZL/tracks?fields=items(track(name))",
-      config: headerData,
-      method: "GET"
-    });
-
-};
-
-export const makePlaylist = (name) => {
-  const accessToken = getAuthorization();
-  const data = {
-      "name":name,
-      "public":true
-    };
-  const headerData = function(xhr) {
-    xhr.setRequestHeader("Authorization","Bearer "+ accessToken);
-    xhr.setRequestHeader("Content-type","application/json");
-  };
-  console.log(accessToken);
-                                                    //argyleturtles
-  m.request({url:"https://api.spotify.com/v1/users/nimrinoth/playlists",
-    config: headerData,
-    method:"POST",
-    data:data,
-    dataType:'json',
-  }).then(function(resp){
-    console.log(resp['id']);
-  })
-  .catch((e) => console.log(e));
-};
-=======
 
 const url = () => `https://accounts.spotify.com:/authorize?client_id=be7cab20471747848c74c18e4e845c08&response_type=token&redirect_uri=${window.location}&scope=playlist-modify-private playlist-modify-public&show_dialog=false`;
->>>>>>> upstream/master
 
 /* @return authcode from url */
 const authCode = () => {
@@ -70,11 +24,7 @@ const authCode = () => {
 
   if (isNil(match)) return null;
 
-<<<<<<< HEAD
-  urlParams = {};
-  match = search.exec(query);
-=======
->>>>>>> upstream/master
+
   urlParams[decode(match[1])] = decode(match[2]);
   return urlParams.access_token;
 };
