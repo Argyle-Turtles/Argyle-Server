@@ -3,7 +3,7 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
-import { transition1, transition2 } from './animations';
+import { transition1, transition2, transition3 } from './animations';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -35,6 +35,12 @@ const trans = {
       // vm.page('TWO');
       m.redraw();
     }),
+  TWO: () =>
+    transition3()
+    .then(() => {
+      // vm.page('TWO');
+      m.redraw();
+    }),
 };
 
 const currentPage = page => {
@@ -44,7 +50,12 @@ const currentPage = page => {
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>;
   }
-  else if (isPage('TWO')) return <Selection />;
+  else if (isPage('TWO')) {
+    return <div>
+        <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
+        <Selection />
+      </div>;
+  }
   else if (isPage('THREE')) return <PageThree />;
 };
 

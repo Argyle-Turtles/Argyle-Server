@@ -33,8 +33,17 @@ export const transition2 = () =>
     hideNextButton(),
   ]);
 
+export const transition3 = () =>
+  Promise.all([
+    Selection.animateCardAdd(),
+    hideNextButton(),
+  ]);
+
+const changeCardSize = (size, time) => element =>
+  Velocity(element, { width: size }, time);
+
 export const selectCard = id => () => {
-  const changeSize = element => Velocity(element, { width: '400px' }, 500);
+  const changeSize = changeCardSize('400px', 500);
 
   changeSize(document.querySelector(`#card-${id}`));
   changeSize(document.querySelector(`#flip-box-${id}`));
@@ -43,7 +52,7 @@ export const selectCard = id => () => {
 };
 
 export const deselectCard = id => () => {
-  const changeSize = element => Velocity(element, { width: '300px' }, 500);
+  const changeSize = changeCardSize('300px', 500);
 
   changeSize(document.querySelector(`#card-${id}`));
   changeSize(document.querySelector(`#flip-box-${id}`));
@@ -63,4 +72,13 @@ export const moveAddedCard = id =>
     document.querySelector(`#card-${id}`),
     { translateY: -100 },
     1000
-  ).then(e => Velocity(e, { translateY: [-20, -100] }, 300));
+  ).then(e => {
+    const changeSize = element =>
+      Velocity(element, { width: '200px' }, { delay: 100, duration: 300 });
+
+    changeSize(document.querySelector(`#flip-box-${id}`));
+    changeSize(document.querySelector(`#front-${id}`));
+    changeSize(document.querySelector(`#back-${id}`));
+    Velocity(document.querySelector('#rfid-feedback'), { opacity: 1 }, { delay: 200, duration: 300 });
+    return Velocity(e, { width: '200px', translateY: 100 }, { delay: 100, duration: 300 });
+  });
