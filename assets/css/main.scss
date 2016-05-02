@@ -92,6 +92,11 @@ body {
 	line-height: 150px;
 }
 
+.cards{
+	overflow-x: auto;
+	height: 690px;
+}
+
 ::-webkit-scrollbar  {
     display: none;
 }

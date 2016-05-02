@@ -6,41 +6,13 @@ import Promise from 'bluebird';
 import {Head, Spotify} from '../components';
 
 import Graph from './components/graph';
-import SongCard from '../projector/components/SongCard';
-import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from '../projector/animations';
+import EndCard from './components/EndCard';
+import { selectCard, deselectCard} from '../projector/animations';
 
 import d3 from 'd3';
 
+//change to delete song at some point 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
-
-const animateIn = () => {
-  const time = vm.firstRender() ? 1 : 0;
-  Velocity.animate(
-    document.querySelector('#card-0'),
-    {
-      opacity: 1,
-      // translateY: -20,
-    },
-    { duration: 500 * time });
-
-  Velocity.animate(
-    document.querySelector('#card-1'),
-    {
-      opacity: 1,
-      // translateY: -20,
-    },
-    { delay: 200 * time, duration: 500 * time });
-
-  Velocity.animate(
-    document.querySelector('#card-2'),
-    {
-      opacity: 1,
-      // translateY: -20,
-    },
-    { delay: 400 * time, duration: 500 * time });
-
-  vm.firstRender(false);
-};
 
 const songData = [
   {
@@ -115,27 +87,26 @@ const songData = [
 // VIEW MODEL
 const vm = {
   init: function(){
-    vm.songCards = m.prop(R.zip(songData, [true, false, false,false,false,false]));
-    vm.firstRender = m.prop(true);
+    vm.songCards = m.prop(songData);
     vm.circleRadius = m.prop([10,5,5,5,5,5]);
   },
 };
 
 const pickACard = id => () => {
-  [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+  [0, 1, 2,3,4,5].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 };
 
 // VIEWS
 const createCard = (data, id) =>
-  <div id={`card-${id}`} className="song-card invis" onclick={pickACard(id)}>
-    <SongCard
+  <div id={`card-${id}`} className="song-card" onclick={pickACard(id)}>
+    <EndCard
       song={data}
-      end={true}
       cardId={id}
       addSong={addSongToPlaylist}/>
   </div>;
 
 
+/*
 const unselectedCard = i =>
   <div className="column is-3" onclick={function(){
    	select(i);
@@ -145,7 +116,7 @@ const unselectedCard = i =>
    }}>
     <PreviewCard />
   </div>;
-
+*/
 const view = () =>
 	<html className="endKiosk">
 		<Head />
@@ -172,7 +143,7 @@ const view = () =>
           <div className="rockJourney"> Your Rock Journey </div>
 				</div>
 				<div className="cards">
-        			<div id="selection" config={animateIn}>
+        			<div id="selection">
                 <div className="card-holder">
                   {
                     vm.songCards().map(
