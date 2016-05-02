@@ -2,7 +2,7 @@ import m, { prop } from 'mithril';
 import leap from '../leap';
 
 // Shared components
-import { Head, Spotify } from '../components';
+import { Spotify } from '../components';
 import { init as rfid } from '../rfid';
 
 // VIEW MODEL
@@ -35,20 +35,15 @@ const addSongsToSpotify = id =>
 
 // VIEW
 const view = () =>
-  <html>
-    <Head />
-    <body>
-      <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content heh">
-          <a className="button is-medium container" onclick={() => {
-            addSongsToSpotify('07616121');
-          }}>
-            Rock out!
-          </a>
-        </div>
-      </div>
-    </body>
-  </html>;
+  <div id="page-one" className="hero is-fullheight">
+    <div className="hero-content heh">
+      <a className="button is-medium container" onclick={() => {
+        addSongsToSpotify('07616121');
+      }}>
+        Rock out!
+      </a>
+    </div>
+  </div>;
 
 // SOME HACKY BULLSHIT
 // top left coords 1320 100

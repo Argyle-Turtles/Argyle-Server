@@ -96,7 +96,8 @@ const select = function(i){
 const selectedCard = data =>
   <div className="column is-4">
     <SongCard
-      song={data} />
+      song={data}
+      end=true />
   </div>;
 
 const unselectedCard = i =>

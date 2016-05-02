@@ -1,14 +1,17 @@
 .flip-container {
   perspective: 1000;
   backface-visibility: hidden;
+  background-color: white;
 
   .flipper {
     transform-style: preserve-3d;
     position: relative;
+    background-color: white;
 
     .face {
       backface-visibility: hidden;
       position: absolute;
+      background-color: white;
       top: 0;
       left: 0;
     }
@@ -19,9 +22,30 @@
     }
 
     .back {
+      z-index: -3;
       transform: rotateY(180deg);
     }
   }
+}
+
+.song-card {
+  margin-left: 23px;
+  margin-right: 23px;
+  width: 300px;
+  display: inline-block;
+}
+
+.card-width {
+  width: 300px;
+}
+
+.selected-card-width {
+  width: 400px;
+}
+
+.song-card-face {
+  width: 100%;
+  background-color: white;
 }
 
 .song-card-name {
@@ -42,8 +66,10 @@
 
 .flip-button {
   position: absolute;
+  top: 0px;
+  left: 0px;
   z-index: 1;
-  margin-left: 260px;
+  // margin-left: 260px;
   min-width: 40px;
   max-width: 40px;
   height: 30px;

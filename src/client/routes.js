@@ -16,6 +16,4 @@ export default {
   '/tablet/three': three,
   '/tablet/four': four,
   '/projector/': projector.start,
-  '/projector/two': projector.two,
-  '/projector/three': projector.three,
 };

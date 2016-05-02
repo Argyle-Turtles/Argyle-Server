@@ -6,8 +6,8 @@
 }
 
 @font-face {
-	font-family: 'Gotham Book';
-	src: url('../media/Gotham-Book.otf') format('truetype');
+	font-family: 'Bebas Neue Book';
+	src: url('../media/BebasNeue Book.otf') format('truetype');
 }
 
 @font-face {
@@ -15,15 +15,13 @@
 	src: url('../media/Lato-Thin.ttf') format('truetype');
 }
 
-#PageTitle {
-	font-family: 'Edo';
-	font-size: 200px; /* ????? */
-}
-
 #MenuLink {
-	font-family: 'Gotham Book';
+	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 	color: white;
+	padding-left:40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 a {
@@ -32,17 +30,32 @@ a {
 
 h1 {
 	font-family: 'Edo';
-	font-size: 50px; /* should be 85 */
+	font-size: 50px;
 }
 
 h2 {
-	font-family: 'Gotham Book';
+	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 }
 
 p {
 	font-family: 'Lato Thin';
 	font-size: 14px;
+}
+
+.button {
+	font-family: 'Bebas Neue Book';
+	font-size: 16px;
+	border: 1px solid white;
+	padding: 10px 50px 10px 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background: none;
+	color: white;
+}
+
+table, th, td {
+   /*border: 1px solid black;*/
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
@@ -68,17 +81,13 @@ p {
 	background-color: #ffffff;
 	height: 100vh;
 	max-height: 1080px;
-	background-image: url('../media/tape_cut.png');
-	background-repeat: no-repeat;
-	background-position: bottom;
 }
 
 #SolutionArea {
 	background-color: #de302f;
 	height: 100vh;
-	max-height: 1080px;
+	max-height: 850px;
 	color: white;
-	text-align: left;
 }
 
 #WhatArea { 
@@ -105,6 +114,13 @@ td {
 .SolutionTable, .WhatTable, .AboutTable {
 	width: 80vw;
 	max-width: 1474px;
+}
+
+iframe { 
+    width: 50vw;
+    height: 28vw;
+    max-width: 800px;
+    max-height: 450px;
 }
 
 /* Pop-out Navigation -------------------------------------------------------------------- */
@@ -156,8 +172,8 @@ td {
   width: 200px;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1;
-  text-align: center;
-  padding: 80px 0; /* Top padding for nav items */
+  text-align: left;
+  padding-top: 80px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: auto;
