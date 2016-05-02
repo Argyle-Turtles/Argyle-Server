@@ -28,6 +28,7 @@
     "path": "^0.12.7",
     "ramda": "^0.19.1",
     "sass-loader": "3.1.2",
+    "socket.io": "^1.4.5",
     "url-loader": "^0.5.7",
     "velocity-animate": "^1.2.3",
     "webpack": "^1.12.14",
