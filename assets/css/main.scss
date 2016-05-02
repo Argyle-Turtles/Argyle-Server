@@ -6,25 +6,28 @@
 @import '~bulma/bulma/components/components.sass';
 @import '~bulma/bulma/layout/layout.sass';
 
+@import 'font/edo.scss';
+
+.title {
+	font-family: 'edoregular';
+}
+
 // COLORS
+* {
+	box-sizing: border-box;
+}
 
 body {
 	text-align: center;
 	margin: 0px;
 }
-	// -webkit-transform: rotateY(180deg)
-  // transform: rotateY(180deg)
+
 .heh {
 	z-index: 1;
 }
 
-#page-one {
-	background-color: white;
-	z-index: -2;
-}
-
-#page-two {
-	background-color: gray;
+.invis {
+	opacity: 0;
 }
 
 .banner {
@@ -66,5 +69,5 @@ input {
     float:left;
     }
 
-
 @import './SongCard';
+@import './projector';

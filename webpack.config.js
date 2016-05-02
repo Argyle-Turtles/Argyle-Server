@@ -20,6 +20,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: extractCSS.extract(['css-loader', 'sass-loader']),
       },
+      { test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader?limit=100000' },
       {
         test: /\.js$/,
         include: [

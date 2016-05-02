@@ -15,15 +15,13 @@
 	src: url('../media/Lato-Thin.ttf') format('truetype');
 }
 
-#PageTitle {
-	font-family: 'Edo';
-	font-size: 200px; /* ????? */
-}
-
 #MenuLink {
 	font-family: 'Bebas Neue Book';
 	font-size: 28px;
 	color: white;
+	padding-left:40px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 a {
@@ -32,7 +30,7 @@ a {
 
 h1 {
 	font-family: 'Edo';
-	font-size: 50px; /* should be 85 */
+	font-size: 50px;
 }
 
 h2 {
@@ -45,21 +43,28 @@ p {
 	font-size: 14px;
 }
 
-table, th, td { /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
-   /* border: 1px solid black; */
+.button {
+	font-family: 'Bebas Neue Book';
+	font-size: 16px;
+	border: 1px solid white;
+	padding: 10px 50px 10px 50px;
+	margin-left: auto;
+	margin-right: auto;
+	background: none;
+	color: white;
+}
+
+table, th, td {
+   /*border: 1px solid black;*/
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
 
 #HomeArea, #SolutionArea, #ProblemArea, #WhatArea, #AboutArea { 
-	/* height: 100vh;
-	min-height: 800px; */
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 	display: table;
-    /* position: absolute;
-    height: 100%; */
 }
 
 #HomeContent, #SolutionContent, #ProblemContent, #WhatContent, #AboutContent { 
@@ -69,37 +74,29 @@ table, th, td { /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 #HomeInner, #SolutionInner, #ProblemInner, #WhatInner, #AboutInner { 
     margin-left: auto;
-    margin-right: auto; 
-    /* width: whatever width you want */
-    /*padding-top: 350px;
-    padding-bottom: 350px;
-    vertical-align:bottom;*/
+    margin-right: auto;
 }
 
 #HomeArea { 
 	background-color: #ffffff;
-	height: 1080px;
-	background-image: url('../media/tape_cut.png');
-	background-repeat: no-repeat;
-	background-position: bottom;
+	height: 100vh;
+	max-height: 1080px;
 }
 
 #SolutionArea {
 	background-color: #de302f;
-	height: 1080px;
+	height: 100vh;
+	max-height: 850px;
 	color: white;
-	text-align: left;
 }
 
 #WhatArea { 
 	background-color: #f0f0f0;
-	height: 850px;
+	height: 100vh;
+	max-height: 850px;
 }
 
-#ProblemArea { 
-	background-color: #de302f;
-	height: 1490px;
-}
+#ProblemArea {}
 
 #AboutArea { 
 	background-color: #f0f0f0;
@@ -114,6 +111,18 @@ td {
 	text-align: left;
 }
 
+.SolutionTable, .WhatTable, .AboutTable {
+	width: 80vw;
+	max-width: 1474px;
+}
+
+iframe { 
+    width: 50vw;
+    height: 28vw;
+    max-width: 800px;
+    max-height: 450px;
+}
+
 /* Pop-out Navigation -------------------------------------------------------------------- */
 /* Pop-out navigation CSS: https://codyhouse.co/gem/full-screen-pop-out-navigation/ */
 
@@ -121,7 +130,6 @@ td {
 	-webkit-transition: background-color 0.3s;
 	-moz-transition: background-color 0.3s;
 	transition: background-color 0.3s;
-	/* Force Hardware Acceleration in WebKit */
 	-webkit-transform: translate3d(0, 0, 0);
 	-moz-transform: translate3d(0, 0, 0);
 	-ms-transform: translate3d(0, 0, 0);
@@ -134,7 +142,6 @@ td {
 .cd-header.is-fixed {
 	position: fixed;
 	top: -80px;
-	/* background-color: ???; */
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s;
@@ -149,9 +156,6 @@ td {
 }
 
 .cd-primary-nav-trigger {
-	/* height: 40px;
-	width: 40px;
-	z-index: 2; */
 	float:right;
 	position: fixed;
 	right: 0;
@@ -168,8 +172,8 @@ td {
   width: 200px;
   background: rgba(0, 0, 0, 0.95);
   z-index: 1;
-  text-align: center;
-  padding: 80px 0; /* Top padding for nav items */
+  text-align: left;
+  padding-top: 80px;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   overflow: auto;

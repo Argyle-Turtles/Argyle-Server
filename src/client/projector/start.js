@@ -3,9 +3,13 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
+import { transition1, transition2, transition3 } from './animations';
+import rfid from '../rfid';
 
 // Local Components
 import BandInfo from './components/BandInfo';
+import Selection from './selection';
+import PageThree from './three';
 
 // VIEW MODEL
 const vm = {
@@ -13,25 +17,63 @@ const vm = {
     vm.bandName = prop('Red Hot Chili Peppers');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
+    vm.page = prop('ONE');
   },
 };
+
+const isPage = page => vm.page() === page;
+
+const trans = {
+  ONE: () =>
+    transition1()
+    .then(() => {
+      vm.page('TWO');
+      m.redraw();
+    }),
+  TWO: () =>
+    transition2()
+    .then(() => {
+      // vm.page('TWO');
+      m.redraw();
+    }),
+  THREE: () =>
+    transition3()
+    .then(() => {
+      console.log('ian');
+      // vm.page('THREE');
+      m.redraw();
+    }),
+};
+
+const currentPage = page => {
+  if (isPage('ONE')) {
+    return <BandInfo
+            bandName={vm.bandName()}
+            primaryGenre={vm.primaryGenre()}
+            subGenres={vm.subGenres()}/>;
+  }
+  else if (isPage('TWO')) {
+    return <div config={() => rfid.init(trans.THREE)}>
+        <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
+        <Selection />
+      </div>;
+  }
+  else if (isPage('THREE')) return <PageThree />;
+};
+
+const titleClass = () => 'band-name title is-1 pg1-title';
 
 // VIEW
 const view = () =>
   <html>
     <Head />
     <body>
-      <div id="page-one" className="hero is-fullheight">
-        <div className="hero-content heh">
-          <BandInfo
-            bandName={vm.bandName()}
-            primaryGenre={vm.primaryGenre()}
-            subGenres={vm.subGenres()}/>
-          <br />
-          <a className="button is-medium container" href ="/projector/two" config={m.route}>
+      <div id="projector is-fullheight">
+          <h1 className={titleClass()}>{vm.bandName()}</h1>
+          {currentPage(vm.page())}
+          <a className="button is-medium bottom-button" onclick={trans[vm.page()]}>
             Rock out!
           </a>
-        </div>
       </div>
     </body>
   </html>;
@@ -40,15 +82,7 @@ const view = () =>
 // top left coords 1320 100
 // bot right 240 876
 
-const moveCursor = ({ x, y }) => {
-  // const c = document.querySelector('#cursor');
-  // console.log(c);
-  // c.style.left = `${(x - 240) / 1080 * window.innerWidth}px`;
-  // c.style.top = `${(y - 100) / 776 * window.innerHeight - 5}px`;
-};
-
 const touchScreen = ({ x, y }) => {
-  moveCursor({ x, y });
   const clickSpot = document.elementFromPoint(
     window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
     (y - 100) / 776 * window.innerHeight);
@@ -57,9 +91,8 @@ const touchScreen = ({ x, y }) => {
 
 // CONTROLER
 const controller = () => {
-  leap.init(touchScreen, moveCursor);
+  leap.init(touchScreen, () => false);
   vm.init();
-  Spotify.getAuthorization();
 };
 
 // EXPORT

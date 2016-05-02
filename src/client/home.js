@@ -1,10 +1,10 @@
 import m from 'mithril';
-import { Head } from './components';
+import { Head, Spotify } from './components';
 
 const view = () =>
   <html>
     <Head />
-    <body>
+    <body config={Spotify.getAuthorization}>
       <a className="button is-medium" href ="/homepage">
         Homepage
       </a>
