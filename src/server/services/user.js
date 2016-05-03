@@ -75,15 +75,13 @@ export const getUserSongsByUsercode = usercode =>
  * @param {String} playlistURI - spotify playlist uri
  * @return {User}
  */
-export const setPlaylist = (usercode, playlistURI) => {
-  console.log(usercode);
-  return User.findOne({ usercode })
+export const setPlaylist = (usercode, playlistURI) =>
+  User.findOne({ usercode })
   .exec()
   .then(u => {
     u.playlist = playlistURI;
     return u.save();
   });
-};
 
 /**
  * Gets playlist using user rfid

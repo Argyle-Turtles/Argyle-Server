@@ -9,7 +9,7 @@ const init = newIO => {
   });
 };
 
-export const emitSongAdd = (playlist, uriList) =>
+export const emitSongAdd = ({ playlist }, uriList) =>
   io && io.emit('addSong', { playlist, uriList });
 
 export const emitPlaylistCreate = user =>

@@ -10,7 +10,10 @@ import { setPlaylist } from './RestRequests';
 const registerSpotify = () => Spotify.getAuthorization();
 
 const hookUpThemSweetSockets = socket => {
-  socket.on('addSong', data => Spotify.addSong(data.uris, data.playlist));
+  socket.on('addSong', data => {
+    console.log(data);
+    Spotify.addSong(data.uriList, data.playlist);
+  });
   socket.on('makePlaylist', ({ user }) =>
     Spotify.makePlaylist('mix-' + user)
     .then(({ id }) => setPlaylist(user, id)));
