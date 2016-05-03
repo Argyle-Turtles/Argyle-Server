@@ -1,0 +1,168 @@
+@import 'font/edo.scss';
+
+@font-face {
+	font-family: 'novaRegular';
+	src: url('font/ProximaNova-Regular.otf');
+}
+
+@font-face {
+	font-family: 'novaBold';
+	src: url('font/ProximaNova-Bold.otf');
+}
+
+@font-face {
+	font-family: 'novaBlack';
+	src: url('font/ProximaNova-Black.otf');
+}
+
+
+
+/*graph stuff*/
+
+.y.axis line {
+	stroke: lightgray;
+}
+
+
+.y.axis path {
+	display: none; 
+}
+
+.axis text {
+	fill: #FFFFFF;
+}
+
+
+
+/*main body content stuff */
+
+.content {
+	height: 490px;
+}
+
+.contentText{
+	margin-top: 106.5px;
+}
+
+.contentDesc{
+	font-family: 'novaRegular';
+	height: 52.5px;
+	font-size: 12.6pt;
+	color: #eeeeee;
+	margin-bottom: 50px;
+}
+
+.contentButton{
+	height: 125px;
+}
+
+
+
+/*banner stuff*/
+
+.banner{
+	background-size: 399px;
+	background-image: url("../../src/client/tablet/assets/stardust_@2X.png");
+	height: 250px;
+}
+
+.bannerTitle{
+	height: 75px;
+	font-family: 'edoregular';
+	font-size: 32pt;
+	color: #eeeeee;
+
+}
+
+.bannerHead {
+	font-size: 32pt;
+	color: #FFFFFF;
+	line-height: 75px;
+}
+
+.imgAsset{
+	margin-top: 56.5px;
+}
+
+
+
+/* button stuff */
+
+#endButton{
+	background-color: #7B7B7B;
+	border-color: #7B7B7B;
+}
+
+.backButton{
+	float: left;
+	font-size: 16pt;
+	color: #cccccc;
+	line-height: 75px;
+}
+
+#endKioskButton{
+	background-color: #7B7B7B;
+	border: none !important;
+	margin: 12.5px;
+}
+
+
+
+/* card stuff */
+
+.cards{
+	overflow-x: auto;
+	height: 690px;
+}
+
+::-webkit-scrollbar  {
+    display: none;
+}
+
+
+
+/* input stuff */
+
+input:focus {
+	outline: none;
+}
+
+input {
+	width: 500px;
+	margin: 7.5px;
+	color: #eeeeee;
+	text-align: center;
+	background: transparent;
+	border-top-color: transparent;
+	border-left-color: transparent;
+	border-right-color: transparent;
+}
+
+.contentInput div{
+	font-size: 18pt;
+}
+
+
+
+/* no idea stuff */
+
+.graphSpace{
+	height: 317px;
+}
+
+.rockJourney{
+	text-align: left;
+	margin-top: 37.5px;
+	margin-bottom: 25px;
+	font-size: 12pt;
+	color: #d8d8d8;
+}
+
+.endKiosk {
+	background: #272727;
+	/*
+	margin-top: 40px;
+	margin-left: 50px;
+	margin-right: 50px;
+	*/
+}	

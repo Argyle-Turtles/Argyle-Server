@@ -7,6 +7,7 @@ import {Head, Spotify} from '../components';
 
 import Graph from './components/graph';
 import EndCard from './components/EndCard';
+import PreviewCard from './components/PreviewCard';
 import { selectCard, deselectCard} from '../projector/animations';
 
 import d3 from 'd3';
@@ -87,36 +88,33 @@ const songData = [
 // VIEW MODEL
 const vm = {
   init: function(){
-    vm.songCards = m.prop(songData);
+    vm.songCards = m.prop(R.zip(songData, [true, false, false,false,false,false]));
     vm.circleRadius = m.prop([10,5,5,5,5,5]);
   },
 };
 
-const pickACard = id => () => {
-  [0, 1, 2,3,4,5].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+const select = function(i){
+  const arr = [false, false, false,false,false,false];
+  arr[i] = true;
+  vm.songCards(R.zip(songData, arr));
 };
 
-// VIEWS
-const createCard = (data, id) =>
-  <div id={`card-${id}`} className="song-card" onclick={pickACard(id)}>
+const selectedCard = data =>
+  <div className="column is-4">
     <EndCard
-      song={data}
-      cardId={id}
-      addSong={addSongToPlaylist}/>
+      song={data} />
   </div>;
 
-
-/*
 const unselectedCard = i =>
   <div className="column is-3" onclick={function(){
-   	select(i);
-   	vm.circleRadius([5,5,5,5,5,5]);
-   	vm.circleRadius()[i] = 10;
-   	console.log(i);
+    select(i);
+    vm.circleRadius([5,5,5,5,5,5]);
+    vm.circleRadius()[i] = 10;
+    console.log(i);
    }}>
     <PreviewCard />
   </div>;
-*/
+
 const view = () =>
 	<html className="endKiosk">
 		<Head />
@@ -136,21 +134,21 @@ const view = () =>
 												//increase the clicked circles radius by setting the size in the vm
 												vm.circleRadius()[d3.select(this).attr("class")] = 10;
 												//select the card that matches with the clicked circle 
-					 							pickACard(d3.select(this).attr("class")); 
+					 							select(d3.select(this).attr("class")); 
 					 							//draw the view again
 					 							m.redraw();
 					 						})}}>
           <div className="rockJourney"> Your Rock Journey </div>
 				</div>
 				<div className="cards">
-        			<div id="selection">
-                <div className="card-holder">
+        			<div className="hero-content">
+                <div className="columns container">
                   {
-                    vm.songCards().map(
-                    (card, i) => createCard(card, i))
+                      vm.songCards().map(
+                      ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
                   }
-                </div>
               </div>
+            </div>
         </div>
 				<input 
 					className="button is-medium container"

@@ -8,21 +8,29 @@ const view = () =>
 		<Head />
 		<body>
 			<div className='banner'>
-            	<div>Enter your code</div>
+            	<div className="bannerTitle">Enter your code</div>
+                <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
             </div>
             <div class="conent">
-            	<div>Enter the code from the sticker on your cassette in order to access your newly-created playlist!</div>
-            	<input
-            		type="text"
-                    placeholder="Code"
-                 />
-            	<br/>
-            	<input
-            		className="button is-medium container"
-                    id="endButton"
-            		type="button"
-            		onclick={function(){location.search = "/tablet/mix"}}
-            		value="Rock On!" />
+                <div className="contentText">
+                	<div className="contentDesc">Enter the code from the sticker on your cassette in order to access your newly-created playlist!</div>
+                    <div className="contentInput">
+                    	<input
+                    		type="text"
+                            placeholder="Code"
+                         />
+                    	<br/>
+                        <div>Confirmed!</div>
+                    </div>
+                    <div className="contentButton">
+                    	<input
+                    		className="button is-medium container"
+                            id="endButton"
+                    		type="button"
+                    		onclick={function(){location.search = "/tablet/mix"}}
+                    		value="Rock On!" />
+                    </div>
+                </div>
             </div>
         </body>
     </html>;
