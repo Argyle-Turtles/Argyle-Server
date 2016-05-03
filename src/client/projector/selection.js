@@ -93,8 +93,11 @@ const vm = {
 const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 
-  SongPreview.setAudioSource('https://p.scdn.co/mp3-preview/eab1dc25e61631b135a84bbc206d63604494e199');
-  SongPreview.playAudio();
+  Spotify.getSongPreview(songData[id].uri.split(':')[2])
+  .then(res => {
+    SongPreview.setAudioSource(res);
+    SongPreview.playAudio();
+  });
 };
 
 // VIEWS
