@@ -52,6 +52,12 @@ export const makePlaylist = name =>
     dataType: 'json',
   }));
 
+export const getSongPreview = uri =>
+  m.request({
+    url: `https://api.spotify.com/v1/tracks/${uri}`,
+    method: 'GET',
+  }).then(res => res.preview_url);
+
 // playlistId example 1LMIR46zW0b982mupRtH5W
 // songId example spotify:track:6FVYwnVrnAEIRnY3bHJb46
 export const addSong = (songIds, playlistId) =>
@@ -83,5 +89,6 @@ export default {
   removeSong,
   makePlaylist,
   getAuthorization,
+  getSongPreview,
   url,
 };
