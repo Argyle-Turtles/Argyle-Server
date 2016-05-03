@@ -15,7 +15,7 @@ const hookUpThemSweetSockets = socket => {
   socket.on('removeSong', data => Spotify.removeSong(data.uris, data.playlist));
 
   socket.on('makePlaylist', ({ user }) =>
-    Spotify.makePlaylist('mix-' + user)
+    Spotify.makePlaylist('Mixta-' + user)
     .then(({ id }) => setPlaylist(user, id)));
 };
 
