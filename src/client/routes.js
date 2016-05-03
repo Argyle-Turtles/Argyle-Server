@@ -1,6 +1,7 @@
 // pages
 import * as tab from './tablet';
 import projector from './projector';
+import socket from './socket/SocketListener';
 import home from './home';
 
 export default {
@@ -12,4 +13,5 @@ export default {
   '/tablet/four': tab.stageFour,
   '/tablet/five': tab.stageFive,
   '/projector/': projector.start,
+  '/socket/': socket,
 };
