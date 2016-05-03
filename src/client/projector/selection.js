@@ -3,7 +3,7 @@ import R from 'ramda';
 import Velocity from 'velocity-animate';
 import Promise from 'bluebird';
 
-import { Spotify } from '../components';
+import { Spotify, SongPreview } from '../components';
 import SongCard from './components/SongCard';
 import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
@@ -92,6 +92,9 @@ const vm = {
 
 const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+
+  SongPreview.setAudioSource('https://p.scdn.co/mp3-preview/eab1dc25e61631b135a84bbc206d63604494e199');
+  SongPreview.playAudio();
 };
 
 // VIEWS
@@ -105,6 +108,7 @@ const createCard = (data, id) =>
 
 const view = () =>
     <div id="selection" config={animateIn}>
+      <SongPreview />
       <div className="card-holder">
         {
           vm.songCards().map(
