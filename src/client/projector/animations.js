@@ -21,17 +21,22 @@ const hideNextButton = () =>
     },
     { duration: 500 });
 
-export const fadeToText = (id, newText) =>
-  Velocity(
-    document.querySelector(id),
-    { colorAlpha: 0 },
-    { duration: 600 })
-  .then(() => {
-    const textArea = document.querySelector(id);
-    textArea.innerHTML = newText;
+export const fadeToText = (id, newText) => {
+  if (document.querySelector(id).innerHTML !== newText) {
+    return Velocity(
+      document.querySelector(id),
+      { colorAlpha: 0 },
+      { duration: 600 })
+    .then(() => {
+      const textArea = document.querySelector(id);
+      textArea.innerHTML = newText;
 
-    return Velocity(textArea, { colorAlpha: 1 }, { delay: 100, duration: 600 });
-  });
+      return Velocity(textArea, { colorAlpha: 1 }, { delay: 100, duration: 600 });
+    });
+  }
+
+  else return Promise.resolve(false);
+};
 
 const changeCardSize = (size, time) => element =>
   Velocity(element, { width: size }, time);
@@ -53,6 +58,9 @@ export const deselectCard = id => () => {
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
 };
+
+export const fadeOutElement = id =>
+  Velocity(document.querySelector(id), { opacity: 0 }, 500);
 
 export const fadeCardOut = id =>
   Velocity(
@@ -130,4 +138,7 @@ export const transition4 = () =>
     fadeCardOut('artist-0'),
     fadeCardOut('artist-1'),
     fadeCardOut('artist-2'),
+    fadeOutElement('.bottom-button')
+      .then(() => document.querySelector('.bottom-button').style.display = 'none'),
+    fadeOutElement('.pg1-title'),
   ]);

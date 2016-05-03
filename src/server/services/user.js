@@ -51,6 +51,19 @@ export const addSongs = (rfid, songsToAdd) =>
   });
 
 /**
+ * Remove songs to from user's songlist
+ * @param {String} usercode
+ * @return {User}
+ */
+export const removeSongs = (usercode, songsToRemove) =>
+  User.findOne({ usercode })
+  .exec()
+  .then(u => {
+    u.songs = R.difference(u.songs, songsToRemove);
+    return u.save();
+  });
+
+/**
  * Gets songs using user rfid
  * @param {String} rfid - rfid number
  * @return {Songs}

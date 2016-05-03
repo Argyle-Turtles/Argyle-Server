@@ -4,10 +4,13 @@ import router from 'express-enrouten';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import socketIO from 'socket.io';
+import http from 'http';
 
 import routes from './src/server/routes';
 import config from './src/server/config';
 import db from './src/server/services/database';
+import SocketHandler from './src/server/SocketHandler';
 
 db(config.mongoURL);
 
@@ -30,6 +33,10 @@ server.get('/', (req, res) =>
 
 server.get('/homepage', (req, res) =>
   res.sendFile(path.join(__dirname + '/homepage/index.html')));
+
+const socketHTTP = http.createServer(server).listen('3001');
+const io = socketIO(socketHTTP, { origins: '*:*' });
+SocketHandler.init(io);
 
 // Start server
 server.set('port', port)

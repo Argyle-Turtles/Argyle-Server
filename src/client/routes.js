@@ -7,6 +7,8 @@ import one from './tablet/one';
 import two from './tablet/two';
 import three from './tablet/three';
 import four from './tablet/four';
+import socket from './socket/SocketListener';
+import home from './home';
 
 export default {
   '/tablet/': code,
@@ -16,4 +18,5 @@ export default {
   '/tablet/three': three,
   '/tablet/four': four,
   '/projector/': projector.start,
+  '/socket/': socket,
 };

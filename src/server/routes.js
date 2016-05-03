@@ -38,5 +38,9 @@ export default {
       path: '/user/playlist', method: 'POST', handler: user.playlist.POST, // :D
     },
 
+    {
+      path: '/user/remove', method: 'POST', handler: user.remove.POST, // :D
+    },
+
   ],
 };

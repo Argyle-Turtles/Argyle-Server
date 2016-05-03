@@ -45,7 +45,7 @@ const trans = {
   FOUR: () =>
     transition4()
     .then(() => {
-      // m.redraw();
+      window.setTimeout(() => window.location.reload(), 2000);
     }),
 
   ZERO: () =>
