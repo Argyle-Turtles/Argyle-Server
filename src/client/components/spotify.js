@@ -39,15 +39,6 @@ const headers = (accessToken, xhr) => {
 export const getAuthorization = () =>
   Promise.resolve(isNil(authCode()) ? fuckSpotify() : authCode());
 
-export const getPlaylist = playlistId =>
-  getAuthorization()
-  .then(accessToken =>
-    m.request({
-      url: `https://api.spotify.com/v1/users/argyleturtles/playlists/${playlistId}/tracks`,
-      config: curry(headers)(accessToken),
-      method: 'GET',
-    }));
-
 export const makePlaylist = name =>
   getAuthorization()
   .then(accessToken => m.request({
@@ -75,9 +66,21 @@ export const addSong = (songIds, playlistId) =>
     dataType: 'json',
   }));
 
+export const removeSong = (songIds, playlistId) =>
+  getAuthorization()
+  .then(accessToken => m.request({
+    url: `https://api.spotify.com/v1/users/argyleturtles/playlists/${playlistId}/tracks`,
+    config: curry(headers)(accessToken),
+    method: 'DELETE',
+    data: {
+      tracks: songIds.map(uri => ({ uri })),
+    },
+    dataType: 'json',
+  }));
+
 export default {
   addSong,
-  getPlaylist,
+  removeSong,
   makePlaylist,
   getAuthorization,
   url,

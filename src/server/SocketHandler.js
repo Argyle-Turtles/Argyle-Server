@@ -15,8 +15,8 @@ export const emitSongAdd = ({ playlist }, uriList) =>
 export const emitPlaylistCreate = user =>
   io && io.emit('makePlaylist', { user });
 
-export const emitSongRemove = (playlist, uri) =>
-  io && io.emit('songRemove', { playlist, uri });
+export const emitSongRemove = ({ playlist }, uris) =>
+  io && io.emit('removeSong', { playlist, uris });
 
 export default {
   init,
