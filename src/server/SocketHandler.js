@@ -10,10 +10,10 @@ const init = newIO => {
 };
 
 export const emitSongAdd = (playlist, uriList) =>
-  io && io.emit('addSongs', { playlist, uriList });
+  io && io.emit('addSong', { playlist, uriList });
 
 export const emitPlaylistCreate = user =>
-  io && io.emit('playlistCreate', { user });
+  io && io.emit('makePlaylist', { user });
 
 export const emitSongRemove = (playlist, uri) =>
   io && io.emit('songRemove', { playlist, uri });
