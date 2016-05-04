@@ -5,7 +5,7 @@ import Promise from 'bluebird';
 import io from 'socket.io-client';
 
 import { Head, Spotify } from '../components';
-import { setPlaylist } from './RestRequests';
+import { createUser, setPlaylist } from './RestRequests';
 
 const registerSpotify = () => Spotify.getAuthorization();
 
@@ -21,13 +21,22 @@ const hookUpThemSweetSockets = socket => {
 
 // VIEW MODEL
 
+const createUserFromInput = () =>
+  createUser(
+    document.querySelector('#usercode-input').value,
+    document.querySelector('#rfid-input').value);
+
 // VIEWS
 
 const view = () =>
   <html>
     <Head />
     <body>
-      <div config={registerSpotify}></div>
+      <div className="container" config={registerSpotify}>
+        <input id="usercode-input" className="input" type="text" placeholder="user code"></input>
+        <input id="rfid-input" className="input" type="text" placeholder="rfid code"></input>
+        <button className="button" onclick={createUserFromInput}>Create User</button>
+      </div>
     </body>
   </html>;
 

@@ -28,3 +28,16 @@ export const removeSong = (user, uris) =>
     },
     dataType: 'json',
   });
+
+export const createUser = (usercode, rfid) =>
+  m.request({
+    config,
+    serialize,
+    method: 'POST',
+    url: 'http://localhost:3000/user/create',
+    data: {
+      usercode,
+      rfid,
+    },
+    dataType: 'json',
+  });
