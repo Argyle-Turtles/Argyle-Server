@@ -22,7 +22,7 @@ const createUserFromInput = () => {
   const usercodeInput = document.querySelector('#usercode-input');
   const rfidInput = document.querySelector('#rfid-input');
 
-  return createUser(usercodeInput.value, rfidInput.value)
+  return createUser(usercodeInput.value.toUpperCase(), rfidInput.value.toUpperCase())
   .then(() => {
     usercodeInput.value = '';
     rfidInput.value = '';
