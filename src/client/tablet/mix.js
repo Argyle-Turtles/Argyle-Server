@@ -3,7 +3,9 @@ import R from 'ramda';
 import Velocity from 'velocity-animate';
 import Promise from 'bluebird';
 
-import {Head, Spotify} from '../components';
+import {Head, Spotify, SongPreview} from '../components';
+
+import {removeSong} from '../socket/RestRequests';
 
 import Graph from './components/graph';
 import EndCard from './components/EndCard';
@@ -22,8 +24,9 @@ const songData = [
     year: '2014',
     length: '6:33',
     description: 'This is some smooth funkalucious stuff right here',
-    uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
+    uri: '41kg2RvdwBuIv0OPpvBS4v',
     img: 'http://placehold.it/433x433',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
     artist: 'Peter',
     genre: "Alternative, maybe",
   },
@@ -33,7 +36,8 @@ const songData = [
     year: '2014',
     length: '6:43',
     description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
-    uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
+    uri: '4CYENH0iPFuWXpWsrstBW3',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
@@ -44,7 +48,32 @@ const songData = [
     year: '2014',
     length: '5:44',
     description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    uri: '4CYENH0iPFuWXpWsrstBW3',
+    img: 'http://placehold.it/433x433',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
+    artist: 'Peter',
+    genre: "Alternative, maybe",
+  },
+   {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: '4CYENH0iPFuWXpWsrstBW3',
+    img: 'http://placehold.it/433x433',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
+    artist: 'Peter',
+    genre: "Alternative, maybe",
+  },
+   {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: '4CYENH0iPFuWXpWsrstBW3',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
@@ -55,29 +84,8 @@ const songData = [
     year: '2014',
     length: '5:44',
     description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'http://placehold.it/433x433',
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-   {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'http://placehold.it/433x433',
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-   {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    uri: '4CYENH0iPFuWXpWsrstBW3',
+    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
@@ -124,7 +132,7 @@ const view = () =>
         className="backButton"
         onclick={function(){location.search = "/tablet/mix"}}>
         Back </div>
-        <div className="bannerHead"> Mixy Tape</div>
+        <div className="bannerTitle"> Mixy Tape</div>
       </div>
 			<div className = "content">
 				<div className='graphSpace' config={function(){Graph.init(".graphSpace",vm.circleRadius()); 
@@ -150,6 +158,7 @@ const view = () =>
               </div>
             </div>
         </div>
+        <SongPreview />
 				<input 
 					className="button is-medium container"
 					type="button"

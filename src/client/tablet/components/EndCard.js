@@ -1,5 +1,6 @@
 import m from 'mithril';
-import { Spotify } from '../../components';
+import { Spotify, SongPreview } from '../../components';
+import {removeSong} from '../../socket/RestRequests';
 import Velocity from 'velocity-animate';
 
 const vm = {
@@ -44,10 +45,10 @@ const artist = (artist, genre) =>
   </div>
 
 
-const foot = uri =>
+const foot = remove =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item"
-      onclick={() => Spotify.addSong([uri])}>Add</a>
+      onclick={() => removeSong("ZZZZ",[remove])}>Remove Song</a>
   </footer>;
 
 const img = url =>
@@ -71,8 +72,18 @@ const front = song =>
     {img(song.img)}
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
+      <input 
+          className="button is-medium container"
+          type="button"
+                onclick={function(){Spotify.getSongPreview(song.uri).then(function(resp){
+                  SongPreview.setAudioSource(resp);
+                  SongPreview.playAudio();
+                  console.log(resp);
+                  });
+              }}
+                value="preview" />
     </div>
-    {foot(song.uri)}
+    {foot(song.remove)}
   </div>;
 
 

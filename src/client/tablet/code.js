@@ -18,6 +18,7 @@ const view = () =>
                     	<input
                     		type="text"
                             placeholder="Code"
+                            maxlength="4"
                          />
                     	<br/>
                         <div>Confirmed!</div>
