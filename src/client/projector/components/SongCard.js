@@ -2,6 +2,8 @@ import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
 
+import { SongPreview } from '../../components'
+
 const vm = {
   init: () => {
     vm.flipped = m.prop([false, false, false]);

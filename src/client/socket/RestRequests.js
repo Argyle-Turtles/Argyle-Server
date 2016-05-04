@@ -28,3 +28,29 @@ export const removeSong = (userCode, songs) =>
     },
     dataType: 'json',
   });
+
+export const createUser = (usercode, rfid) =>
+  m.request({
+    config,
+    serialize,
+    method: 'POST',
+    url: 'http://localhost:3000/user/create',
+    data: {
+      usercode,
+      rfid,
+    },
+    dataType: 'json',
+  });
+
+export const addSongToUser = (rfid, songs) =>
+  m.request({
+    config,
+    serialize,
+    method: 'POST',
+    url: 'http://localhost:3000/user/add',
+    data: {
+      rfid,
+      songs,
+    },
+    dataType: 'json',
+  });

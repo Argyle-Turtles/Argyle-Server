@@ -1,11 +1,8 @@
 import m from 'mithril';
-import R from 'ramda';
-import Velocity from 'velocity-animate';
-import Promise from 'bluebird';
 import io from 'socket.io-client';
 
 import { Head, Spotify } from '../components';
-import { setPlaylist } from './RestRequests';
+import { createUser, setPlaylist } from './RestRequests';
 
 const registerSpotify = () => Spotify.getAuthorization();
 
@@ -15,11 +12,22 @@ const hookUpThemSweetSockets = socket => {
   socket.on('removeSong', data => Spotify.removeSong(data.uris, data.playlist));
 
   socket.on('makePlaylist', ({ user }) =>
-    Spotify.makePlaylist('mix-' + user)
+    Spotify.makePlaylist('Mixta-' + user)
     .then(({ id }) => setPlaylist(user, id)));
 };
 
 // VIEW MODEL
+
+const createUserFromInput = () => {
+  const usercodeInput = document.querySelector('#usercode-input');
+  const rfidInput = document.querySelector('#rfid-input');
+
+  return createUser(usercodeInput.value, rfidInput.value)
+  .then(() => {
+    usercodeInput.value = '';
+    rfidInput.value = '';
+  });
+};
 
 // VIEWS
 
@@ -27,7 +35,11 @@ const view = () =>
   <html>
     <Head />
     <body>
-      <div config={registerSpotify}></div>
+      <div className="container" config={registerSpotify}>
+        <input id="usercode-input" className="input" type="text" placeholder="user code"></input>
+        <input id="rfid-input" className="input" type="text" placeholder="rfid code"></input>
+        <button className="button" onclick={createUserFromInput}>Create User</button>
+      </div>
     </body>
   </html>;
 
