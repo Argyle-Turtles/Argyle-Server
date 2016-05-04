@@ -16,15 +16,15 @@ export const setPlaylist = (user, uri) =>
     dataType: 'json',
   });
 
-export const removeSong = (userCode, songs) =>
+export const removeSong = (usercode, songs) =>
   m.request({
     config,
     serialize,
     method: 'POST',
     url: 'http://localhost:3000/user/remove',
     data: {
-      userCode: userCode,
-      songs: songs,
+      usercode,
+      songs,
     },
     dataType: 'json',
   });

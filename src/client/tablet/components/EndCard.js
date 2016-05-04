@@ -48,7 +48,7 @@ const artist = (artist, genre) =>
 const foot = remove =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item"
-      onclick={() => removeSong("ZZZZ",[remove])}>Remove Song</a>
+      onclick={() => removeSong("TREY",["spotify:track:5uMTA9SIe0sE4dnHHSHaYz"])}>Remove Song</a>
   </footer>;
 
 const img = url =>
