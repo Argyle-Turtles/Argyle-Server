@@ -41,3 +41,16 @@ export const createUser = (usercode, rfid) =>
     },
     dataType: 'json',
   });
+
+export const addSongToUser = (rfid, songs) =>
+  m.request({
+    config,
+    serialize,
+    method: 'POST',
+    url: 'http://localhost:3000/user/add',
+    data: {
+      rfid,
+      songs,
+    },
+    dataType: 'json',
+  });

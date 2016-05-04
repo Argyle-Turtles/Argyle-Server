@@ -1,7 +1,4 @@
 import m from 'mithril';
-import R from 'ramda';
-import Velocity from 'velocity-animate';
-import Promise from 'bluebird';
 import io from 'socket.io-client';
 
 import { Head, Spotify } from '../components';

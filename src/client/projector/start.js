@@ -5,6 +5,7 @@ import leap from '../leap';
 import { Head, Cursor, Spotify } from '../components';
 import { transition1, transition2, transition3, transition4 } from './animations';
 import rfid from '../rfid';
+import { addSongToUser } from '../socket/RestRequests';
 
 // Local Components
 import BandInfo from './components/BandInfo';
@@ -33,7 +34,10 @@ const trans = {
 
   TWO: () =>
     transition2()
-    .then(() => m.redraw()),
+    .then(() => {
+      vm.page('THREE');
+      m.redraw();
+    }),
 
   THREE: () =>
     transition3()
@@ -55,6 +59,14 @@ const trans = {
     }),
 };
 
+const readRfid = () =>
+  rfid.init(code => {
+    if (isPage('THREE')) {
+      addSongToUser(code, Selection.selectedSongs())
+      .then(() => trans.THREE());
+    }
+  });
+
 const currentPage = () => {
   if (isPage('ONE')) {
     return <BandInfo
@@ -64,7 +76,7 @@ const currentPage = () => {
   }
 
   else if (isPage('TWO') || isPage('THREE')) {
-    return <div config={() => rfid.init(trans.THREE)}>
+    return <div config={readRfid}>
         <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
         <Selection />
       </div>;

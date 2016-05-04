@@ -1,13 +1,14 @@
 import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
-import Promise from 'bluebird';
 
 import { Spotify, SongPreview } from '../components';
 import SongCard from './components/SongCard';
 import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
 const addedSongs = [null, null, null];
+
+const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
 
@@ -129,4 +130,5 @@ export default {
   view,
   controller,
   animateCardAdd,
+  selectedSongs,
 };
