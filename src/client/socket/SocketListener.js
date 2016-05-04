@@ -36,8 +36,8 @@ const view = () =>
     <Head />
     <body>
       <div className="container" config={registerSpotify}>
-        <input id="usercode-input" className="input" type="text" placeholder="user code"></input>
-        <input id="rfid-input" className="input" type="text" placeholder="rfid code"></input>
+        <input id="usercode-input" className="input is-uppercase" type="text" placeholder="user code"></input>
+        <input id="rfid-input" className="input is-uppercase" type="text" placeholder="rfid code"></input>
         <button className="button" onclick={createUserFromInput}>Create User</button>
       </div>
     </body>
