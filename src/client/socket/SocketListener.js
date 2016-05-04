@@ -21,10 +21,16 @@ const hookUpThemSweetSockets = socket => {
 
 // VIEW MODEL
 
-const createUserFromInput = () =>
-  createUser(
-    document.querySelector('#usercode-input').value,
-    document.querySelector('#rfid-input').value);
+const createUserFromInput = () => {
+  const usercodeInput = document.querySelector('#usercode-input');
+  const rfidInput = document.querySelector('#rfid-input');
+
+  return createUser(usercodeInput.value, rfidInput.value)
+  .then(() => {
+    usercodeInput.value = '';
+    rfidInput.value = '';
+  });
+};
 
 // VIEWS
 
