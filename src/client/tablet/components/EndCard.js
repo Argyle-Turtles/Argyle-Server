@@ -45,10 +45,10 @@ const artist = (artist, genre) =>
   </div>
 
 
-const foot = remove =>
+const foot = (remove) =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item"
-      onclick={() => removeSong("TREY",["spotify:track:5uMTA9SIe0sE4dnHHSHaYz"])}>Remove Song</a>
+      onclick={() => removeSong(m.route.param("usercode"),[remove])}>Remove Song</a>
   </footer>;
 
 const img = url =>
@@ -64,7 +64,7 @@ const songTitle = (name, album) =>
     <h3 className="subtitle is-6">{album}</h3>
   </div>;
 
-const front = song =>
+const front = (song) =>
   <div className="card">
     <div className="flip-button" onclick={triggerFlip}>
       flip
@@ -87,7 +87,7 @@ const front = song =>
   </div>;
 
 
-const back = song =>
+const back = (song) =>
   <div className="card">
     <div className="flip-button" onclick={triggerFlip}>
       flip
@@ -102,7 +102,7 @@ const back = song =>
       {mid(song.year, song.length)}
       {desc(song.description)}
     </div>
-    {foot(song.uri)}
+    {foot(song.remove)}
   </div>;
 
 const view = (_, { song }) =>

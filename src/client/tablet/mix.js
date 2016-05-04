@@ -5,7 +5,8 @@ import Promise from 'bluebird';
 
 import {Head, Spotify, SongPreview} from '../components';
 
-import {removeSong} from '../socket/RestRequests';
+import {getUserSongsByUsercode} from '../socket/RestRequests';
+import {getDataFromURIS} from '../songData';
 
 import Graph from './components/graph';
 import EndCard from './components/EndCard';
@@ -14,8 +15,6 @@ import { selectCard, deselectCard} from '../projector/animations';
 
 import d3 from 'd3';
 
-//change to delete song at some point 
-const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
 
 const songData = [
   {
@@ -110,7 +109,8 @@ const select = function(i){
 const selectedCard = data =>
   <div className="column is-4">
     <EndCard
-      song={data} />
+      song={data}
+    />
   </div>;
 
 const unselectedCard = i =>
@@ -162,7 +162,10 @@ const view = () =>
 				<input 
 					className="button is-medium container"
 					type="button"
-            		onclick={function(){location.search = '/tablet/one'}}
+            		onclick={function(){/*location.search = '/tablet/one'*/ getUserSongsByUsercode(m.route.param("usercode"))
+                .then(function(resp){
+                  getDataFromURIS(resp);
+                })}}
             		value="Finalize" />
             </div>
         </body>

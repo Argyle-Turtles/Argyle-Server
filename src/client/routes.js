@@ -12,7 +12,7 @@ import home from './home';
 
 export default {
   '/tablet/': code,
-  '/tablet/mix':mix,
+  '/tablet/mix/:usercode':mix,
   '/tablet/one': one,
   '/tablet/two': two,
   '/tablet/three': three,

@@ -3,6 +3,8 @@ import m, { prop } from 'mithril';
 
 import {Head} from '../components';
 
+let fourDigetCode = "";
+
 const view = () =>
 	<html className="endKiosk">
 		<Head />
@@ -16,6 +18,7 @@ const view = () =>
                 	<div className="contentDesc">Enter the code from the sticker on your cassette in order to access your newly-created playlist!</div>
                     <div className="contentInput">
                     	<input
+                            id="userCode"
                     		type="text"
                             placeholder="Code"
                             maxlength="4"
@@ -28,7 +31,11 @@ const view = () =>
                     		className="button is-medium container"
                             id="endButton"
                     		type="button"
-                    		onclick={function(){location.search = "/tablet/mix"}}
+                    		onclick={function(){
+                                fourDigetCode = document.getElementById("userCode").value;
+                                location.search = "/tablet/mix/"+fourDigetCode+"";
+                            }}
+
                     		value="Rock On!" />
                     </div>
                 </div>
@@ -37,6 +44,6 @@ const view = () =>
     </html>;
 
 export default {
-  view
+  view,
 };
       
