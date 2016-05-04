@@ -3,6 +3,12 @@ import m from 'mithril';
 const config = xhr => xhr.setRequestHeader('Content-type', 'application/json');
 const serialize = data => JSON.stringify(data);
 
+export const getUserSongsByUsercode = usercode =>
+  m.request({
+    method: 'GET',
+    url: `http://localhost:3000/user/songs/usercode/${usercode}`,
+  });
+
 export const setPlaylist = (user, uri) =>
   m.request({
     config,
