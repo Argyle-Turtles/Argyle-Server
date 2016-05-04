@@ -1,13 +1,12 @@
 //imports
 import m from 'mithril';
 import {Head, Spotify} from '../components';
-import {init as rfid2} from '../rfid';
-
 //vars
 //songs
 //need to add song albums to each song
 var id ="";
 var flag = true;
+var selectedSongs = [];
 
 const songs = [
   {
@@ -17,8 +16,237 @@ const songs = [
     year:'2005',
     length:'3:49',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
     img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    selected: false,
+  },
+  {
+    album:'Plans',
+    name:'Soul Meets Body',
+    artist:'Death Cab for Cutie',
+    year:'2005',
+    length:'3:49',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
     selected: false,
   }
 
@@ -31,23 +259,60 @@ export const pageOne = {
   view: () =>
     <html>
     <Head />
+
       <body>
-    <div style='margin-top:100px;margin-left:90px;'>
+    }
+    <div style='margin-top:100px;margin-left:150px;'>
       <div class="card">
+            <audio id = "myAudio">
+        <source src="https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014" />
+        Your browser does not support the audio element.
+        </audio>
           <img src={songs[0].img} />
-          <h3>{songs[0].name}</h3><p>{songs[0].artist}</p>
+          <button onclick = {audio}>preview</button>
+          <h3>{songs[0].name}</h3><p>{songs[0].album}</p>
+          <p>{songs[0].artist}<br />Rock</p>
           <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(0)}>
             Add Song</a></footer>
-        </div>         
-    </div>     
-    <a className="button is-medium container" onclick = "test" href ="/soundStation/two" config={m.route}>
+        </div>    
+
+          <div class="card">
+            <audio id = "myAudio">
+        <source src="https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014" />
+        Your browser does not support the audio element.
+        </audio>
+          <img src={songs[0].img} />
+          <button onclick = {audio}>preview</button>
+          <h3>{songs[0].name}</h3><p>{songs[0].album}</p>
+          <p>{songs[0].artist}<br />Rock</p>
+          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(0)}>
+            Add Song</a></footer>
+        </div>  
+
+          <div class="card">
+            <audio id = "myAudio">
+        <source src="https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014" />
+        Your browser does not support the audio element.
+        </audio>
+          <img src={songs[0].img} />
+          <button onclick = {audio}>preview</button>
+          <h3>{songs[0].name}</h3><p>{songs[0].album}</p>
+          <p>{songs[0].artist}<br />Rock</p>
+          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(0)}>
+            Add Song</a></footer>
+        </div>  
+
+        
+
+      </div>     
+    
+          </body>
+      <a id = "check" className="button is-medium container" href ="/soundStation/two" config={m.route}>
             Add Songs to Playlist!
           </a>
-            <button onclick={spotifyEverything}>Get Authorized </button>
+            
             <button onclick={addSong}>Add Songs</button>
       
-          </body>
-    
     </html>,
 }
 
@@ -58,10 +323,9 @@ export const pageTwo = {
    
     <body>
     <h2>Scan Casette</h2>
+    
     <button onclick={spotifyEverything}>Check songs </button>
-   
     </body>
-
   </html>,
 
 }
@@ -80,10 +344,25 @@ export const pageThree = {
 }
 
 function addSong(){
-  Spotify.addSong(songs[0].uri, '293wuSMQarlUG8rzM5RpAe');
+  addSongsToSpotify('07616121');
+  addSongsToServer('07616121');
 }
 
+function audio(){
+  var x = document.getElementById('myAudio')
+  x.pause();
+  x.play();
+  console.log('hello from audio');
 
+}
+
+function selected(){
+  for (var z = 0; z < songs.length; z++){
+    if (songs[z].selected == true){
+        selectedSongs.push(songs[z].uri);
+    }
+  }
+}
 
 
 function cardSelect(cardnum){
@@ -105,7 +384,7 @@ const addSongsToServer = id =>
     url: '/user/add',
     data: {
       rfid: id,
-      songs: vm.songs(),
+      songs: songs[0].uri,
     },
     serialize: data => JSON.stringify(data),
     config: xhr => {
@@ -121,11 +400,14 @@ const addSongsToSpotify = id =>
   .then(res => console.log(res));
 
 
-window.onkeydown = function (event){   
+window.onkeydown = function (event){
+    
     if (flag ==true && id.length <10){
       id += String.fromCharCode(event.keyCode);
         if (id.length == 10){
-          console.log(id);
+          selected();
+          console.log(id)
+          console.log(selectedSongs);
 
         }
      }

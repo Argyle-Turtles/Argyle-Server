@@ -17,7 +17,7 @@ export default {
   '/projector/': projector.start, 
   '/soundStation/': station.pageOne,
   '/soundStation/two': station.pageTwo,
-  '/soundStation/three': station.three,
+  '/soundStation/three': station.pageThree,
 
 }
 
