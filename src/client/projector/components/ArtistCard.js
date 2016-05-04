@@ -2,13 +2,10 @@ import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
 
-import { SongPreview } from '../../components'
-
 const vm = {
   init: () => {
     vm.flipped = m.prop([false, false, false]);
     vm.selected = m.prop(false);
-    vm.added = m.prop(false);
   },
 };
 
@@ -27,27 +24,6 @@ const handleFlip = id => () => {
 };
 
 // View Helpers
-const mid = (year, length) =>
-  <div className="columns is-text-left">
-    <div className="column is-half">
-      <hr />
-      <p className="subtitle is-6">Released</p>
-      <p className="title is-4">{year}</p>
-    </div>
-    <div className="column is-half">
-      <hr />
-      <p className="subtitle is-6">Length</p>
-      <p className="title is-4">{length}</p>
-    </div>
-  </div>;
-
-const desc = text => <div className="is-text-left"><p>{text}</p></div>;
-
-const foot = (uri, id, addSong) =>
-  <footer className="card-footer song-card-button">
-    <a class="card-footer-item song-card-button-link"
-      onclick={() => addSong(id, uri)}>Add</a>
-  </footer>;
 
 const img = url =>
   <div className="card-image">
@@ -56,49 +32,43 @@ const img = url =>
     </figure>
   </div>;
 
-const songTitle = (name, album) =>
+const artistInfo = (name, genre) =>
   <div className="is-text-left">
     <h1 className="title is-4">{name}</h1>
-    <h3 className="subtitle is-6">{album}</h3>
+    <h3 className="subtitle is-6">{genre}</h3>
   </div>;
 
-const front = (song, id, addSong) =>
+const front = (artist, id) =>
   <div id={`front-${id}`} className="card card-width">
     <div className="flip-button" onclick={triggerFlip(id)}>
       flip
     </div>
-    {img(song.img)}
+    {img(artist.img)}
     <div className="card-content song-card-name">
-      {songTitle(song.name, song.album)}
+      {artistInfo(artist.name, artist.genre)}
     </div>
-    {foot(song.uri, id, addSong)}
   </div>;
 
-const back = (song, id, addSong) =>
+const back = (artist, id) =>
   <div id={`back-${id}`} className="card card-width">
     <div className="flip-button" onclick={triggerFlip(id)}>
       flip
     </div>
     <div className="card-content song-card-name">
-      {songTitle(song.name, song.album)}
+      {artistInfo(artist.name, artist.genre)}
     </div>
-    <div className="card-content song-card-info">
-      {mid(song.year, song.length)}
-      {desc(song.description)}
-    </div>
-    {foot(song.uri, id, addSong)}
   </div>;
 
-const view = (_, { song, addSong, cardId }) =>
+const view = (_, { artist, cardId }) =>
   <div className="flip-container">
     <div id={`flip-box-${cardId}`}
       className="flipper card-width"
       config={handleFlip(cardId)}>
       <div className="face front">
-        {front(song, cardId, addSong)}
+        {front(artist, cardId)}
       </div>
       <div className="face back">
-        {back(song, cardId, addSong)}
+        {back(artist, cardId)}
       </div>
     </div>
   </div>;

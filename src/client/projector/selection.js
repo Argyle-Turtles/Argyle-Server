@@ -1,13 +1,14 @@
 import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
-import Promise from 'bluebird';
 
-import { Spotify } from '../components';
+import { Spotify, SongPreview } from '../components';
 import SongCard from './components/SongCard';
 import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
 const addedSongs = [null, null, null];
+
+const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
 
@@ -92,6 +93,12 @@ const vm = {
 
 const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+
+  Spotify.getSongPreview(songData[id].uri.split(':')[2])
+  .then(res => {
+    SongPreview.setAudioSource(res);
+    SongPreview.playAudio();
+  });
 };
 
 // VIEWS
@@ -105,6 +112,7 @@ const createCard = (data, id) =>
 
 const view = () =>
     <div id="selection" config={animateIn}>
+      <SongPreview />
       <div className="card-holder">
         {
           vm.songCards().map(
@@ -122,4 +130,5 @@ export default {
   view,
   controller,
   animateCardAdd,
+  selectedSongs,
 };

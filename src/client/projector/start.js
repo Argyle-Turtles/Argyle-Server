@@ -3,13 +3,14 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
-import { transition1, transition2, transition3 } from './animations';
+import { transition1, transition2, transition3, transition4 } from './animations';
 import rfid from '../rfid';
+import { addSongToUser } from '../socket/RestRequests';
 
 // Local Components
 import BandInfo from './components/BandInfo';
 import Selection from './selection';
-import PageThree from './three';
+import Suggestion from './suggestions';
 
 // VIEW MODEL
 const vm = {
@@ -30,35 +31,58 @@ const trans = {
       vm.page('TWO');
       m.redraw();
     }),
+
   TWO: () =>
     transition2()
     .then(() => {
-      // vm.page('TWO');
+      vm.page('THREE');
       m.redraw();
     }),
+
   THREE: () =>
     transition3()
     .then(() => {
-      console.log('ian');
-      // vm.page('THREE');
+      vm.page('FOUR');
+      m.redraw();
+    }),
+
+  FOUR: () =>
+    transition4()
+    .then(() => {
+      window.setTimeout(() => window.location.reload(), 2000);
+    }),
+
+  ZERO: () =>
+    transition4()
+    .then(() => {
       m.redraw();
     }),
 };
 
-const currentPage = page => {
+const readRfid = () =>
+  rfid.init(code => {
+    if (isPage('THREE')) {
+      addSongToUser(code, Selection.selectedSongs())
+      .then(() => trans.THREE());
+    }
+  });
+
+const currentPage = () => {
   if (isPage('ONE')) {
     return <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
             subGenres={vm.subGenres()}/>;
   }
-  else if (isPage('TWO')) {
-    return <div config={() => rfid.init(trans.THREE)}>
+
+  else if (isPage('TWO') || isPage('THREE')) {
+    return <div config={readRfid}>
         <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
         <Selection />
       </div>;
   }
-  else if (isPage('THREE')) return <PageThree />;
+
+  else return <Suggestion />;
 };
 
 const titleClass = () => 'band-name title is-1 pg1-title';

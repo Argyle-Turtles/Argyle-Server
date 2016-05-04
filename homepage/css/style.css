@@ -41,6 +41,7 @@ h2 {
 p {
 	font-family: 'Lato Thin';
 	font-size: 14px;
+	line-height: 130%;
 }
 
 .button {
@@ -160,8 +161,8 @@ iframe {
 	position: fixed;
 	right: 0;
 	top: 0;
-	margin-top: 80px;
-    margin-right: 80px;
+	margin-top: 50px;
+    margin-right: 50px;
 }
 
 .cd-primary-nav {

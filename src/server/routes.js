@@ -1,4 +1,5 @@
 import user from './controllers/user';
+import SendToSpotify from './controllers/SendToSpotify';
 
 export default {
   routes: [
@@ -36,6 +37,14 @@ export default {
 
     {
       path: '/user/playlist', method: 'POST', handler: user.playlist.POST, // :D
+    },
+
+    {
+      path: '/user/remove', method: 'POST', handler: user.remove.POST, // :D
+    },
+
+    {
+      path: '/mix/:usercode', method: 'GET', handler: SendToSpotify.GET,
     },
 
   ],
