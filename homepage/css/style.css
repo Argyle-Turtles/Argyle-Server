@@ -55,10 +55,6 @@ p {
 	color: white;
 }
 
-table, th, td {
-   /*border: 1px solid black;*/
-}
-
 /* Positioning and Sizing ---------------------------------------------------------------- */
 
 #HomeArea, #SolutionArea, #ProblemArea, #WhatArea, #AboutArea { 
