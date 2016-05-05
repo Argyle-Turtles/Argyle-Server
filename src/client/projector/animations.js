@@ -8,7 +8,7 @@ const animateTitle = () =>
   Velocity.animate(
     document.querySelector('.band-name'),
     {
-      fontSize: '30px',
+      fontSize: '60px',
       translateY: -180,
     },
     { duration: 500 });

@@ -47,7 +47,8 @@ const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 const foot = (uri, id, addSong) =>
   <footer className="card-footer song-card-button">
     <a class="card-footer-item song-card-button-link"
-      onclick={() => addSong(id, uri)}>Add</a>
+      onclick={() => addSong(id, uri)}>
+      <img className="card-add-icon" src="assets/img/add_icon.svg" /> ADD</a>
   </footer>;
 
 const img = url =>
@@ -66,7 +67,7 @@ const songTitle = (name, album) =>
 const front = (song, id, addSong) =>
   <div id={`front-${id}`} className="card card-width">
     <div className="flip-button" onclick={triggerFlip(id)}>
-      flip
+      <img className="flip-button-arrow" src="assets/img/flip_arrow.svg" />
     </div>
     {img(song.img)}
     <div className="card-content song-card-name">
@@ -78,7 +79,7 @@ const front = (song, id, addSong) =>
 const back = (song, id, addSong) =>
   <div id={`back-${id}`} className="card card-width">
     <div className="flip-button" onclick={triggerFlip(id)}>
-      flip
+      <img className="flip-button-arrow" src="assets/img/flip_arrow.svg" />
     </div>
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}

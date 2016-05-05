@@ -1,5 +1,11 @@
+@import 'font/proxima_nova.scss';
+
+$family-primary: 'proxima_nova_rgbold';
+$rock-red: #ef2222;
+
 @import '~bulma/bulma/utilities/utilities.sass';
 @import '~bulma/bulma/config/variables.sass';
+
 @import '~bulma/bulma/config/generated-variables.sass';
 @import '~bulma/bulma/base/base.sass';
 @import '~bulma/bulma/elements/elements.sass';
@@ -7,7 +13,6 @@
 @import '~bulma/bulma/layout/layout.sass';
 
 @import 'font/edo.scss';
-@import 'font/proxima_nova.scss';
 
 // COLORS
 * {
@@ -17,10 +22,6 @@
 body {
 	text-align: center;
 	margin: 0px;
-}
-
-.heh {
-	z-index: 1;
 }
 
 .invis {
@@ -39,10 +40,6 @@ div {
 
 #cursor {
 	position: absolute;
-}
-
-.pageOne {
-	position: relative;
 }
 
 .station-card{

@@ -53,6 +53,19 @@
 .song-card-button {
   min-height: 60px; // should be 87
   max-height: 60px;
+  border-top: 1px solid $rock-red;
+  background-color: white;
+
+  .song-card-button-link {
+    font-family: proxima_nova_rgbold;
+    font-size: 20px;
+    color: $rock-red;
+  }
+
+  .card-add-icon {
+    width: 7.5%;
+    margin-right: 2%;
+  }
 }
 
 // smaller card is 60% of large card
@@ -66,8 +79,17 @@
   top: 0px;
   right: 0px;
   z-index: 1;
+  background: url(../img/flip_arrow_bg.svg);
+  background-size: 100% 90%;
+  background-repeat: no-repeat;
+  background-position: 0px -10px;
   // margin-left: 260px;
-  min-width: 40px;
-  max-width: 40px;
-  height: 30px;
+  min-width: 20%;
+  max-width: 20%;
+  height: 15%;
+  .flip-button-arrow {
+    width: 55%;
+    margin-left: 15%;
+    margin-top: 10%;
+  }
 }
