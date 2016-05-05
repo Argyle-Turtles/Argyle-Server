@@ -1,4 +1,5 @@
 #projector {
+	transform: rotateY(180deg);
 	position: relative;
   margin-top: 50px;
   margin-bottom: 70px;
@@ -7,6 +8,9 @@
 
 .pg1-title {
   padding-top: 230px;
+	font-size: 100px;
+	font-family: 'edoregular';
+	color: white;
 }
 
 .band-history {
@@ -16,7 +20,18 @@
 .bottom-button {
   position: absolute;
   bottom: 70px;
-  margin: 0 auto;
+	left: calc(50% - 230px);
+	background-image: url('../img/button_bg.png');
+	height: 113px;
+	width: 462px;
+	text-align: center;
+	color: black;
+	font-size: 30px;
+	padding-top: 30px;
+}
+
+.bottom-button-arrow {
+	width: 10%;
 }
 
 #selection {
@@ -53,6 +68,10 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.is-text-white {
+	color: white;
 }
 
 @media (min-aspect-ratio: 16/9) {

@@ -61,7 +61,7 @@ const songData = [
     length: '6:33',
     description: 'This is some smooth funkalucious stuff right here',
     uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
   {
     album: 'We Like it Here',
@@ -70,7 +70,7 @@ const songData = [
     length: '6:43',
     description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
   {
     album: 'We Like it Here',
@@ -79,7 +79,7 @@ const songData = [
     length: '5:44',
     description: 'Bring it home with some fucktastic sounds',
     uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
 ];
 
