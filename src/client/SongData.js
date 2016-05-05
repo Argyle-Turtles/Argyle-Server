@@ -11,6 +11,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: 'Alternative, maybe',
+    decade: 1
   },
   {
     album: 'We Like it Here',
@@ -22,6 +23,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: 'Alternative, maybe',
+    decade: 4
   },
   {
     album: 'We Like it Here',
@@ -33,6 +35,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: 'Alternative, maybe',
+    decade: 8
   },
 ];
 
