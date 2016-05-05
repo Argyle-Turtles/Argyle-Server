@@ -47,93 +47,9 @@ export const myMix = {
 
 };
 
-export const stageTwo = {
-	view: function(){
-		return m("html",[
-							m('head', [
-								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
-							]),
-              m("body",[
-                m(".stageTwo",[
-                	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/"}},"Back"),
-                		m("div","My Mixtape")
-                	]),
-                	m(".content",[
-                		m("div","Congrats!"),
-                		m("div","We have saved your Mixtape to a spotify playlist..."),
-                		m("button",{onclick:function(e){location.search = "/tablet/three"}},"Next")
-                	]),
-                ]),
-              ]),
-            ]);
-	}
+
+
+export default {
+  //code
 };
 
-export const stageThree = {
-	view: function(){
-		return m("html",[
-							m('head', [
-								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
-							]),
-              m("body",[
-                m(".stageThree",[
-                	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/two"}},"Back"),
-                		m("div","My Mixtape")
-                	]),
-                	m(".content",[
-                		m("div","Keep Your sticker!"),
-                		m("div","Remove the sticker with your code...."),
-                		m("button",{onclick:function(e){location.search = "/tablet/four"}},"Next")
-                	]),
-                ]),
-              ]),
-            ]);
-	}
-};
-
-export const stageFour = {
-	view: function(){
-		return m("html",[
-							m('head', [
-								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
-							]),
-              m("body",[
-                m(".stageFour",[
-                	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.hash = "/tablet/three"}},"Back"),
-                		m("div","My Mixtape")
-                	]),
-                	m(".content",[
-                		m("div","Return the tape"),
-                		m("div","Drop off the mixtape as you exit...."),
-                		m("button",{onclick:function(e){location.search = "/tablet/five"}},"Next")
-                	]),
-                ]),
-              ]),
-            ]);
-	}
-};
-
-export const stageFive= {
-	view: function(){
-		return m("html",[
-							m('head', [
-								m(`link[href='./build/css/main.css'][rel=stylesheet]`),
-							]),
-              m("body",[
-                m(".stageFive",[
-                	m(".banner",[
-                		m("button[class=back]",{onclick:function(e){location.search = "/tablet/four"}},"Back"),
-                		m("div","My Mixtape")
-                	]),
-                	m(".content",[
-                		m("div","Enjoy your mix"),
-                		m("div","Follow the sticker instructions to add the playlist...")
-                	]),
-                ]),
-              ]),
-            ]);
-	}
-};

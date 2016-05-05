@@ -1,30 +1,20 @@
 import m from 'mithril';
-import R from 'ramda';
+import { Spotify, SongPreview } from '../../components';
+import {removeSong} from '../../socket/RestRequests';
 import Velocity from 'velocity-animate';
 
-import { SongPreview } from '../../components'
-
 const vm = {
-  init: () => {
-    vm.flipped = m.prop([false, false, false]);
-    vm.selected = m.prop(false);
-    vm.added = m.prop(false);
-  },
+  init: () => vm.flipped = m.prop(false),
 };
 
-const triggerFlip = id => () => {
-  const flippedArray = vm.flipped();
-  flippedArray[id] = !flippedArray[id];
-  vm.flipped(flippedArray);
-};
+const triggerFlip = () => vm.flipped(!vm.flipped());
 
-const handleFlip = id => () => {
+const handleFlip = () =>
   Velocity(
-    document.querySelector(`#flip-box-${id}`),
-    { rotateY: vm.flipped()[id] ? '180deg' : '0deg' },
+    document.querySelector('.flipper'),
+    { rotateY: vm.flipped() ? '180deg' : '0deg' },
     800
   );
-};
 
 // View Helpers
 const mid = (year, length) =>
@@ -55,10 +45,10 @@ const artist = (artist, genre) =>
   </div>
 
 
-const foot = (uri, id, addSong) =>
+const foot = (remove) =>
   <footer className="card-footer song-card-button">
-    <a class="card-footer-item song-card-button-link"
-      onclick={() => addSong(id, uri)}>Add</a>
+    <a class="card-footer-item"
+      onclick={() => removeSong(m.route.param("usercode"),[remove])}>Remove Song</a>
   </footer>;
 
 const img = url =>
@@ -74,44 +64,54 @@ const songTitle = (name, album) =>
     <h3 className="subtitle is-6">{album}</h3>
   </div>;
 
-const front = (song, id, addSong) =>
-  <div id={`front-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip(id)}>
+const front = (song) =>
+  <div className="card">
+    <div className="flip-button" onclick={triggerFlip}>
       flip
     </div>
     {img(song.img)}
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
+      <input
+          className="button is-medium container"
+          type="button"
+                onclick={function(){Spotify.getSongPreview(song.uri.split(':')[2]).then(function(resp){
+                  SongPreview.setAudioSource(resp);
+                  SongPreview.playAudio();
+                  });
+              }}
+                value="preview" />
     </div>
-    {foot(song.uri, id, addSong)}
+    {foot(song.uri)}
   </div>;
 
-const back = (song, end, id, addSong) =>
-  <div id={`back-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip(id)}>
+
+const back = (song) =>
+  <div className="card">
+    <div className="flip-button" onclick={triggerFlip}>
       flip
     </div>
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
     </div>
-     end ? {artist(song.artist, song.genre)} : ""
+    {
+      artist(song.artist, song.genre)
+    }
     <div className="card-content song-card-info">
       {mid(song.year, song.length)}
       {desc(song.description)}
     </div>
-    {foot(song.uri, id, addSong)}
+    {foot(song.uri)}
   </div>;
 
-const view = (_, { song, addSong, cardId }) =>
+const view = (_, { song }) =>
   <div className="flip-container">
-    <div id={`flip-box-${cardId}`}
-      className="flipper card-width"
-      config={handleFlip(cardId)}>
+    <div className="flipper" config={handleFlip}>
       <div className="face front">
-        {front(song, cardId, addSong)}
+        {front(song)}
       </div>
       <div className="face back">
-        {back(song, cardId, addSong)}
+        {back(song)}
       </div>
     </div>
   </div>;

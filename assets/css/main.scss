@@ -30,16 +30,6 @@ body {
 	opacity: 0;
 }
 
-.banner {
-	background-color: gray;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.content {
-	padding-top: 15px;
-	padding-bottom: 15px;
-}
 
 div {
 	padding-bottom: inherit;
@@ -48,10 +38,6 @@ div {
 
 .button {
 	max-width: 20%;
-}
-
-input {
-	margin: 15px;
 }
 
 #cursor {
@@ -75,3 +61,4 @@ input {
 
 @import './SongCard';
 @import './projector';
+@import './peter';

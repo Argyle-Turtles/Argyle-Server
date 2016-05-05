@@ -24,6 +24,7 @@ const authCode = () => {
 
   if (isNil(match)) return null;
 
+
   urlParams[decode(match[1])] = decode(match[2]);
   return urlParams.access_token;
 };
