@@ -11,8 +11,8 @@
 }
 
 @font-face {
-	font-family: 'Lato Thin';
-	src: url('../media/Lato-Thin.ttf') format('truetype');
+	font-family: 'Arial';
+	src: url('../media/Arial.ttf') format('truetype');
 }
 
 #MenuLink {
@@ -30,7 +30,8 @@ a {
 
 h1 {
 	font-family: 'Edo';
-	font-size: 50px;
+	font-size: 65px;
+	letter-spacing: 2px;
 }
 
 h2 {
@@ -38,10 +39,16 @@ h2 {
 	font-size: 28px;
 }
 
+h1 {
+	font-family: 'Edo';
+	font-size: 50px;
+	letter-spacing: 2px;
+}
+
 p {
-	font-family: 'Lato Thin';
-	font-size: 14px;
-	line-height: 130%;
+	font-family: 'Arial';
+	font-size: 15px;
+	line-height: 180%;
 }
 
 .button {
@@ -53,6 +60,7 @@ p {
 	margin-right: auto;
 	background: none;
 	color: white;
+	letter-spacing: 2px;
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
