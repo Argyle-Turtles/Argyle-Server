@@ -1,8 +1,7 @@
 // pages
-import * as tab from './tablet';
 import projector from './projector';
 
-import station from  './soundStation';
+import station from './soundStation';
 import code from './tablet/code';
 import mix from './tablet/mix';
 import one from './tablet/one';

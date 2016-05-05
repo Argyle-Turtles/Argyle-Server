@@ -92,6 +92,11 @@ const view = () =>
   <html>
     <Head />
     <body>
+    <div className="fullscreen-bg">
+      <video loop muted autoplay className="fullscreen-bg__video">
+          <source src="assets/videos/big_buck_bunny.mp4" type="video/mp4" />
+      </video>
+    </div>
       <div id="projector is-fullheight">
           <h1 className={titleClass()}>{vm.bandName()}</h1>
           {currentPage(vm.page())}

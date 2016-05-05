@@ -43,17 +43,6 @@ const mid = (year, length) =>
 
 const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 
-const artist = (artist, genre) =>
-  <div className="card-content song-card-artist">
-    <hr/>
-    <div className="artist">
-      {artist}
-    </div>
-    <div className="genre">
-      {genre}
-    </div>
-  </div>
-
 
 const foot = (uri, id, addSong) =>
   <footer className="card-footer song-card-button">
@@ -86,7 +75,7 @@ const front = (song, id, addSong) =>
     {foot(song.uri, id, addSong)}
   </div>;
 
-const back = (song, end, id, addSong) =>
+const back = (song, id, addSong) =>
   <div id={`back-${id}`} className="card card-width">
     <div className="flip-button" onclick={triggerFlip(id)}>
       flip
@@ -94,7 +83,6 @@ const back = (song, end, id, addSong) =>
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
     </div>
-     end ? {artist(song.artist, song.genre)} : ""
     <div className="card-content song-card-info">
       {mid(song.year, song.length)}
       {desc(song.description)}
