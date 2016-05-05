@@ -44,7 +44,14 @@ const changeCardSize = (size, time) => element =>
 export const selectCard = id => () => {
   const changeSize = changeCardSize('400px', 500);
 
-  changeSize(document.querySelector(`#card-${id}`));
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    {
+      width: '400px',
+      translateY: -50,
+    },
+    500
+  );
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
@@ -53,7 +60,14 @@ export const selectCard = id => () => {
 export const deselectCard = id => () => {
   const changeSize = changeCardSize('300px', 500);
 
-  changeSize(document.querySelector(`#card-${id}`));
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    {
+      width: '300px',
+      translateY: 0,
+    },
+    500
+  );
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
