@@ -44,6 +44,10 @@ div {
 	position: absolute;
 }
 
+.is-uppercase {
+	text-transform: uppercase;
+}
+
 @import './SongCard';
 @import './projector';
 @import './peter';
