@@ -11,6 +11,7 @@ const addedSongs = [null, null, null];
 const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
+const removeFromPlaylist = (id) => addedSongs[id] = null;
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -93,12 +94,6 @@ const vm = {
 
 const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
-
-  Spotify.getSongPreview(songData[id].uri.split(':')[2])
-  .then(res => {
-    SongPreview.setAudioSource(res);
-    SongPreview.playAudio();
-  });
 };
 
 // VIEWS
@@ -107,7 +102,10 @@ const createCard = (data, id) =>
     <SongCard
       song={data}
       cardId={id}
-      addSong={addSongToPlaylist}/>
+      selectThis={selectCard}
+      addSong={addSongToPlaylist}
+      removeSong={removeFromPlaylist}
+      preview={SongPreview}/>
   </div>;
 
 const view = () =>
