@@ -69,5 +69,9 @@ input {
     float:left;
     }
 
+.is-uppercase {
+	text-transform: uppercase;
+}
+
 @import './SongCard';
 @import './projector';
