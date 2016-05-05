@@ -26,6 +26,7 @@ const readKey = (next, key) => {
 export const init = next => {
   id = '';
   window.onkeypress = R.compose(R.curry(readKey)(next), parseKey);
+  console.log('hello');
 };
 
 export default {
