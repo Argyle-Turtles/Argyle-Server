@@ -101,7 +101,7 @@ const view = () =>
           <h1 className={titleClass()}>{vm.bandName()}</h1>
           {currentPage(vm.page())}
           <a className="bottom-button" onclick={trans[vm.page()]}>
-            Rock out <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+            ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
           </a>
       </div>
     </body>
