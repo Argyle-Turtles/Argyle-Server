@@ -1,17 +1,14 @@
 .flip-container {
   perspective: 1000;
   backface-visibility: hidden;
-  background-color: white;
 
   .flipper {
     transform-style: preserve-3d;
     position: relative;
-    background-color: white;
 
     .face {
       backface-visibility: hidden;
       position: absolute;
-      background-color: white;
       top: 0;
       left: 0;
     }

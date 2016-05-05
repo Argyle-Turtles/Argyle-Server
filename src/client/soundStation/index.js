@@ -1,13 +1,16 @@
 //imports
 import m from 'mithril';
+import R from 'ramda'
+
 import {Head, Spotify} from '../components';
 import { addSongToUser } from '../socket/RestRequests';
-//vars
-//songs
-//need to add song albums to each song
-var id ="";
-var flag = true;
-var selectedSongs = [];
+import RFID from '../rfid';
+// vars
+// songs
+// need to add song albums to each song
+let id = '';
+const flag = true;
+const selectedSongs = [];
 
 
 const songs = [
@@ -240,123 +243,135 @@ const songs = [
     selected: false,
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
-    description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
+    album: 'Plans',
+    name: 'Soul Meets Body',
+    artist: 'Death Cab for Cutie',
+    year: '2005',
+    length: '3:49',
+    description: 'zoopa zoopa pizza peroggi pasta penne',
+    uri: 'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
+    img: 'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
     preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
     selected: false,
   }
 
 ];
 
-//views
+// views
 
-//View 1 - Track List
+// View 1 - Track List
 export const pageOne = {
   view: () =>
     <html>
     <Head />
 
       <body>
-      <a id = "check" className="button is-medium container" href ="/soundStation/two" config={m.route}>
+      <a id = "check"
+      className="button is-medium container"
+      href ="/soundStation/two" config={m.route}>
             Add Songs to Playlist!
           </a>
-    <div style='margin-top:100px;margin-left:150px;'>
-      <div class="card">
+    <div style="margin-top:100px;margin-left:150px;">
+      <div class="card station-card">
           <img src={songs[0].img} />
           <h3>{songs[0].name}</h3><p>{songs[0].album}</p>
           <p>{songs[0].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(0)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(0)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-         <div class="card">
+         <div class="card station-card">
           <img src={songs[1].img} />
           <h3>{songs[1].name}</h3><p>{songs[1].album}</p>
           <p>{songs[1].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(1)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(1)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-         <div class="card">
+         <div class="card station-card">
           <img src={songs[2].img} />
           <h3>{songs[2].name}</h3><p>{songs[2].album}</p>
           <p>{songs[2].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(2)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(2)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-         <div class="card">
+         <div class="card station-card">
           <img src={songs[3].img} />
           <h3>{songs[3].name}</h3><p>{songs[3].album}</p>
           <p>{songs[3].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(3)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(3)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[4].img} />
           <h3>{songs[4].name}</h3><p>{songs[4].album}</p>
           <p>{songs[4].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(4)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(4)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[5].img} />
           <h3>{songs[5].name}</h3><p>{songs[5].album}</p>
           <p>{songs[5].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(5)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(5)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[6].img} />
           <h3>{songs[6].name}</h3><p>{songs[6].album}</p>
           <p>{songs[6].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(6)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(6)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[7].img} />
           <h3>{songs[7].name}</h3><p>{songs[7].album}</p>
           <p>{songs[7].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(7)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(7)}>
             Add Song</a></footer>
-        </div> 
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[8].img} />
           <h3>{songs[8].name}</h3><p>{songs[8].album}</p>
           <p>{songs[8].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(8)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(8)}>
             Add Song</a></footer>
-        </div>  
+        </div>
 
-           <div class="card">
+           <div class="card station-card">
           <img src={songs[9].img} />
           <h3>{songs[9].name}</h3><p>{songs[9].album}</p>
           <p>{songs[9].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button"><a class="card-footer-item" onclick = {() => cardSelect(9)}>
+          <footer className="card-footer song-card-button">
+          <a class="card-footer-item" onclick = {() => cardSelect(9)}>
             Add Song</a></footer>
-        </div>  
- 
+        </div>
 
 
-        
 
-      </div>     
-    
+
+
+      </div>
+
           </body>
-      
-        
-      
+
+
+
     </html>,
 }
 
@@ -364,15 +379,17 @@ export const pageTwo = {
   view: () =>
   <html>
     <Head />
-   
     <body>
-    <h2>Scan Casette</h2>
-    
-   
+    <h2
+    config={
+      RFID.init((idNum) =>
+        addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs))))
+    }>
+    Scan Casette</h2>
     </body>
   </html>,
 
-}
+};
 
 export const pageThree = {
   view: () =>
@@ -383,14 +400,9 @@ export const pageThree = {
       <p>Please head toward the end kiosk.</p>
       </body>
 
-    
-    </html>,
-}
 
-function addSong(){
-  addSongsToSpotify('07616121');
-  addSongsToServer('07616121');
-}
+    </html>,
+};
 
 function audio(){
   var x = document.getElementById('myAudio')
@@ -400,63 +412,16 @@ function audio(){
 
 }
 
-function selected(){
-  for (var z = 0; z < songs.length; z++){
-    if (songs[z].selected == true){
-        selectedSongs.push(songs[z].uri);
-    }
-  }
-}
 
-
-function cardSelect(cardnum){
+function cardSelect(cardnum) {
   var x = cardnum;
   songs[x].selected = !(songs[x].selected);
   console.log(songs[x].name+ ", " + songs[x].selected);
 }
-//spotify:user:argyleturtles:playlist:293wuSMQarlUG8rzM5RpAe
-
-
-const addSongsToServer = id =>
-  m.request({
-    method: 'POST',
-    url: '/user/add',
-    data: {
-      rfid: id,
-      songs: songs[0].uri,
-    },
-    serialize: data => JSON.stringify(data),
-    config: xhr => {
-      xhr.setRequestHeader('Content-Type', 'application/json');
-    },
-  });
-
-const addSongsToSpotify = id =>
-  m.request({
-    method: 'GET',
-    url: '/user/playlist/rfid/' + id,
-  })
-  .then(res => console.log(res));
-
-
-window.onkeydown = function (event){
-    
-    if (flag ==true && id.length <10){
-      id += String.fromCharCode(event.keyCode);
-        if (id.length == 10){
-          selected();
-          console.log(id)
-          console.log(selectedSongs);
-          addSongToUser(id, selectedSongs);
-
-        }
-     }
-  }  
 
 
 export default {
   pageOne,
   pageTwo,
   pageThree,
-
-}
+};
