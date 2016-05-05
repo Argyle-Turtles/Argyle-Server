@@ -72,18 +72,17 @@ const front = (song) =>
     {img(song.img)}
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
-      <input 
+      <input
           className="button is-medium container"
           type="button"
-                onclick={function(){Spotify.getSongPreview(song.uri).then(function(resp){
+                onclick={function(){Spotify.getSongPreview(song.uri.split(':')[2]).then(function(resp){
                   SongPreview.setAudioSource(resp);
                   SongPreview.playAudio();
-                  console.log(resp);
                   });
               }}
                 value="preview" />
     </div>
-    {foot(song.remove)}
+    {foot(song.uri)}
   </div>;
 
 
@@ -96,13 +95,13 @@ const back = (song) =>
       {songTitle(song.name, song.album)}
     </div>
     {
-    	artist(song.artist,song.genre)
+      artist(song.artist, song.genre)
     }
     <div className="card-content song-card-info">
       {mid(song.year, song.length)}
       {desc(song.description)}
     </div>
-    {foot(song.remove)}
+    {foot(song.uri)}
   </div>;
 
 const view = (_, { song }) =>

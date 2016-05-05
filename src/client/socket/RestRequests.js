@@ -22,9 +22,8 @@ export const setPlaylist = (user, uri) =>
     dataType: 'json',
   });
 
-export const removeSong = (usercode, songs) => {
-  console.log(songs);
-  return m.request({
+export const removeSong = (usercode, songs) =>
+  m.request({
     config,
     serialize,
     method: 'POST',
@@ -34,7 +33,7 @@ export const removeSong = (usercode, songs) => {
       songs,
     },
     dataType: 'json',
-  });};
+  });
 
 export const createUser = (usercode, rfid) =>
   m.request({
