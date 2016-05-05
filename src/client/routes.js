@@ -15,7 +15,6 @@ export default {
   '/tablet/three': tab.stageThree,
   '/tablet/four': tab.stageFour,
   '/tablet/five': tab.stageFive,
-<<<<<<< HEAD
   '/projector/': projector.start, 
     '/socket/': socket,
   '/soundStation/': station.pageOne,
