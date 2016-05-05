@@ -15,87 +15,11 @@ import { selectCard, deselectCard} from '../projector/animations';
 
 import d3 from 'd3';
 
-const songData = [
-  {
-    album: 'We Like it Here',
-    name: 'Shofukan',
-    year: '2014',
-    length: '6:33',
-    description: 'This is some smooth funkalucious stuff right here',
-    uri: '41kg2RvdwBuIv0OPpvBS4v',
-    img: 'http://placehold.it/433x433',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-  {
-    album: 'We Like it Here',
-    name: 'What About Me?',
-    year: '2014',
-    length: '6:43',
-    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
-    uri: '4CYENH0iPFuWXpWsrstBW3',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    img: 'http://placehold.it/433x433',
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-  {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: '4CYENH0iPFuWXpWsrstBW3',
-    img: 'http://placehold.it/433x433',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-   {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: '4CYENH0iPFuWXpWsrstBW3',
-    img: 'http://placehold.it/433x433',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-   {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: '4CYENH0iPFuWXpWsrstBW3',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    img: 'http://placehold.it/433x433',
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-   {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: '4CYENH0iPFuWXpWsrstBW3',
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
-    img: 'http://placehold.it/433x433',
-    artist: 'Peter',
-    genre: "Alternative, maybe",
-  },
-
-];
-
 // VIEW MODEL
 const vm = {
-  init: function(){
+  init: () => {
     vm.songCards = m.prop([]);
-    vm.circleRadius = m.prop([10,5,5,5,5,5]);
+    vm.circleRadius = m.prop([10, 5, 5, 5, 5, 5]);
     vm.songDataArray = [];
     vm.needsSongs = m.prop(true);
   },
@@ -115,11 +39,11 @@ const selectedCard = data =>
   </div>;
 
 const unselectedCard = i =>
-  <div className="column is-3" onclick={function(){
+  <div className="column is-3" onclick={() => {
     select(i);
-    vm.circleRadius([5,5,5,5,5,5]);
+    vm.circleRadius([5, 5, 5, 5, 5, 5]);
     vm.circleRadius()[i] = 10;
-   }}>
+  }}>
     <PreviewCard />
   </div>;
 
@@ -160,8 +84,8 @@ const view = () =>
           <div className="rockJourney"> Your Rock Journey </div>
 				</div>
 				<div className="cards">
-        			<div className="hero-content">
-                <div className="columns container">
+          <div className="hero-content">
+            <div className="columns container">
                   {
                       vm.songCards().map(
                       ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
@@ -173,7 +97,7 @@ const view = () =>
 				<input
 					className="button is-medium container"
 					type="button"
-        	value="Finalize" />
+          value="Finalize" />
           </div>
       </body>
     </html>;

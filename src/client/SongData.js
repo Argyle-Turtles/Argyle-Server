@@ -11,7 +11,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
+    remove: "spotify:track:5v0Q1mWIWd5XYtto97VUZy",
   },
   {
     album: 'We Like it Here',
@@ -23,7 +23,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
+    remove: "spotify:track:4YpXSKVrp8jhI7EAPV1xpF",
   },
   {
     album: 'We Like it Here',
@@ -35,7 +35,7 @@ const allData = [
     img: 'http://placehold.it/433x433',
     artist: 'Peter',
     genre: "Alternative, maybe",
-    remove: "spotify:track:41kg2RvdwBuIv0OPpvBS4v",
+    remove: "spotify:track:7DsEr8IEmhZYgAaHHwELwa",
   },
 ];
 
