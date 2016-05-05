@@ -166,7 +166,7 @@ const view = () =>
             getUserSongsByUsercode(m.route.param('usercode'))
             .then(resp => {
               const currentData = getDataFromURIS(resp);
-              const zipArray = R.concat(true, R.repeat(false, currentData.length - 1));
+              const zipArray = R.concat([true], R.repeat(false, currentData.length - 1));
               vm.songCards(R.zip(currentData, zipArray));
             })
           }
