@@ -13,6 +13,11 @@
       left: 0;
     }
 
+    .face2{
+      backface-visibility: hidden;
+
+    }
+
     .front {
       z-index: 2;
       transform: rotateY(0deg);
@@ -31,6 +36,13 @@
   width: 300px;
   display: inline-block;
 }
+
+.song-card2 {
+  margin:50px;
+  width: 300px;
+  display: inline-block;
+}
+
 
 .card-width {
   width: 300px;

@@ -2,7 +2,8 @@
 import m from 'mithril';
 import R from 'ramda'
 
-import {Head, Spotify} from '../components';
+import {Head, Spotify, SongPreview} from '../components';
+import SongCard from './components/songCard';
 import { addSongToUser } from '../socket/RestRequests';
 import RFID from '../rfid';
 // vars
@@ -14,6 +15,7 @@ const selectedSongs = [];
 
 
 const songs = [
+
   {
     album:'Plans',
     name:'Soul Meets Body',
@@ -23,8 +25,8 @@ const songs = [
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
     img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+     selected: false,
+    genre:'Alternative'
   },
   {
     album:'How To Dismantle An Atomic Bomb',
@@ -34,9 +36,9 @@ const songs = [
     length:'3:15',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:57ZXcBtCZXSg9TVV5xRdnR',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/d7391bc4350dda1f10cbb49da66664749e325fdf',
-    selected: false,
+    img:'https://i.scdn.co/image/1ba80e91c966d08ba4340b4e9f21c55b064a1e21',
+     selected: false,
+    genre:'Rock'
   },
   {
     album:'Aftermath',
@@ -47,8 +49,8 @@ const songs = [
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:63T7DJ1AFDD6Bn8VzG6JE8',
     img:'https://i.scdn.co/image/c09585dd1713b35f8e47393d05ced6b9bcd03607',
-    preview: 'https://p.scdn.co/mp3-preview/d7391bc4350dda1f10cbb49da66664749e325fdf',
-    selected: false,
+     selected: false,
+    genre: 'Rock'
   },
   {
     album:'Led Zeppelin IV',
@@ -58,9 +60,9 @@ const songs = [
     length:'7:58',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:51pQ7vY7WXzxskwloaeqyj',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    img:'https://i.scdn.co/image/c89be3d95870abb652c16deef6e3d3e5174710ff',
+     selected: false,
+    genre: 'Rock',
   },
   {
     album:'The Wall',
@@ -70,21 +72,9 @@ const songs = [
     length:'3:59',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:4gMgiXfqyzZLMhsksGmbQV',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/92210b01fcc6efa80008663c158baf79cf0d7b5f',
-    selected: false,
-  },
-  {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
-    description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    img:'https://i.scdn.co/image/464f49ec36104a5939ea76cf1597a5311d91f602',
+     selected: false,
+    genre: 'Rock'
   },
   {
     album:'Paranoid',
@@ -94,9 +84,9 @@ const songs = [
     length:'5:55',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:3IOQZRcEkplCXg6LofKqE9',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/83facf894aaa71be09e596b7e727609fc9bd4eb7',
-    selected: false,
+    img:'https://i.scdn.co/image/851538088475961344e79ae1022d1a0bd0bf53f5',
+     selected: false,
+    genre: 'Metal'
   },
   {
     album:'Metallica',
@@ -106,9 +96,9 @@ const songs = [
     length:'3:49',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:1hKdDCpiI9mqz1jVHRKG0E',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    img:'https://i.scdn.co/image/400dee6165a81c49b665d18637e3954213679ee8 ',
+     selected: false,
+    genre: 'Metal'
   },
   {
     album:'Number of the Beast',
@@ -118,9 +108,9 @@ const songs = [
     length:'3:49',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:44AxeBXrK9LQlGjXyT2oZQ',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/9372d716c78d22555cb3bcaacd0f7801a37ae60e',
-    selected: false,
+    img:'https://i.scdn.co/image/84747e43820bec289c0d75a3ae2af776f1897900',
+     selected: false,
+    genre: 'Metal'
   },
   {
     album:'99 Luftballons',
@@ -130,9 +120,9 @@ const songs = [
     length:'3:53',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:6HA97v4wEGQ5TUClRM0XLc',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/c711d77627eec81e5abbff3a8322741efd45657a',
-    selected: false,
+    img:'https://i.scdn.co/image/7db0e29a743c07c28aba88babc47a460c70fcea5',
+   selected: false,
+    genre: 'Pop'
   },
   {
     album:'Thriller',
@@ -142,9 +132,9 @@ const songs = [
     length:'5:58',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:2LlQb7Uoj1kKyGhlkBf9aC',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/e87c95de42eecbed85b08021e3125833ed31ae98',
-    selected: false,
+    img:'https://i.scdn.co/image/6d1d714f4dcb306d3b3533fea400362974060d2d',
+     selected: false,
+    genre: 'Pop'
   },
   {
     album:'Solid Gold Hits',
@@ -154,110 +144,133 @@ const songs = [
     length:'3:30',
     description:'zoopa zoopa pizza peroggi pasta penne',
     uri:'spotify:track:7uDir35ufndq1NBOpoL3Ba',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/4028bd1a323312f14b39cbb355a703e1fe8b1e39',
+    img:'https://i.scdn.co/image/c7c2d21c4152741210c2eede503a3dceab35b05c',
     selected: false,
+    genre: 'Hip-Hop'
   },
-  {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
+    {
+    album:'Raising Hell',
+    name:"It's Tricky",
+    artist:'Run D.M.C',
     year:'2005',
-    length:'3:49',
+    length:'3:30',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    uri:'spotify:track:1zAfj2rXxddGb8Dhnwxue8',
+    img:'https://i.scdn.co/image/e1a16b17492b091182a76b3cdb32b69232cdea09',
+     selected: false,
+    genre: 'Hip-Hop'
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
+    album:'Nevermind',
+    name:"Come As Your Are",
+    artist:'Nirvana',
+    year:'1991',
+    length:'3:39',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    uri:'spotify:track:4P5KoWXOxwuobLmHXLMobV',
+    img:'https://i.scdn.co/image/864bd75b46a575917d795b7a484f7f1fe43d23e9 ',
+     selected: false,
+    genre: 'Alternative'
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
+    album:'King of Electric Blues',
+    name:"Muddy Waters",
+    artist:'Mannish Boy',
+    year:'1997',
+    length:'5:21',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
+    uri:'spotify:track:58PSYdY0GFg0LFb2PxYk4T',
+    img:'https://i.scdn.co/image/058c42d38cc9f1b86a9bffb3b512cc986f6952a1',
+     selected: false,
+    genre: 'Blues'
+  },
+   {
+    album:'The Graduate',
+    name:"The Sound of Silence",
+    artist:'Simon & Garfunkel',
+    year:'1968',
+    length:'3:05',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:58PSYdY0GFg0LFb2PxYk4T',
+    img:'https://i.scdn.co/image/753d9208d21d332eea5673102a15266c2f08a884',
     selected: false,
+    genre: 'Folk'
+  },
+   {
+    album:'The Best of Don McLean',
+    name:"American Pie",
+    artist:'Don McLean',
+    year:'1989',
+    length:'8:36',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:2QgWuCtBpNIpl5trmKCxRf',
+    img:'https://i.scdn.co/image/5abe5e81fb9858849116e1678d6e595c4ca68c34',
+     selected: false,
+    genre: 'Folk'
+  },
+   {
+    album:"The Times They Are A'Changing",
+    name:"The Times They Are A'Changing",
+    artist:'Bob Dylan',
+    year:'1964',
+    length:'3:12',
+    description:'zoopa zoopa pizza peroggi pasta penne',
+    uri:'spotify:track:52vA3CYKZqZVdQnzRrdZt6',
+    img:'https://i.scdn.co/image/0934c1a0019dd7783d514249680180b39c94100d',
+     selected: false,
+    genre: 'Folk'
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
+    album:"The Man Who Invented Soul",
+    name:"Wonderful World",
+    artist:'Sam Cooke',
+    year:'2000',
+    length:'2:06',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    uri:'spotify:track:5SKXlfKfhNUyJ3GkpI0ELJ',
+    img:'https://i.scdn.co/image/0400f51d1c2ff1ace99d28c12d8258e73d330b18',
+     selected: false,
+    genre: 'R&B/Soul'
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
+    album:"Love Songs",
+    name:"At Last",
+    artist:'Etta James',
+    year:'2006',
+    length:'3:00',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    uri:'spotify:track:1nd9moIZkGvWoHtReFqkRY',
+    img:'https://i.scdn.co/image/afe423c99a46d1ed470f3d41bc5850e1288ca771',
+     selected: false,
+    genre: 'R&B/Soul'
   },
   {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
+    album:"Ray Charles",
+    name:"I've Got A Woman",
+    artist:'Ray Charles',
+    year:'2003',
+    length:'2:51',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
+    uri:'spotify:track:2xar08Fq5xra2KKZs5Bw9j',
+    img:'https://i.scdn.co/image/2ad60ab4f04de877f48ca7ae8e62618d38f0e51e',
+     selected: false,
+    genre:'R&B/Soul'
   },
-  {
-    album:'Plans',
-    name:'Soul Meets Body',
-    artist:'Death Cab for Cutie',
-    year:'2005',
-    length:'3:49',
-    description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
-  },
-  {
-    album: 'Plans',
-    name: 'Soul Meets Body',
-    artist: 'Death Cab for Cutie',
-    year: '2005',
-    length: '3:49',
-    description: 'zoopa zoopa pizza peroggi pasta penne',
-    uri: 'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
-    img: 'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-    preview: 'https://p.scdn.co/mp3-preview/261925f8f05e875cc0545c723a4f77b08757d014',
-    selected: false,
-  }
-
+  
 ];
 
+const addSongToPlaylist = (id) =>
+ cardSelect(id);
+
 // views
+const createCard = (data, id) =>
+  <div id={`card-${id}`} className="song-card2">
+    <SongCard
+      song={data}
+      cardId={id}
+      addSong={addSongToPlaylist}/>
+  </div>;
+
 
 // View 1 - Track List
 export const pageOne = {
@@ -266,105 +279,19 @@ export const pageOne = {
     <Head />
 
       <body>
-      <a id = "check"
-      className="button is-medium container"
+      <h1>Mixta Soundstation</h1>
+      <a id = "check"    
       href ="/soundStation/two" config={m.route}>
-            Add Songs to Playlist!
+           Continue
           </a>
-    <div style="margin-top:100px;margin-left:150px;">
-      <div class="card station-card">
-          <img src={songs[0].img} />
-          <h3>{songs[0].name}</h3><p>{songs[0].album}</p>
-          <p>{songs[0].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(0)}>
-            Add Song</a></footer>
-        </div>
+      <div style="margin-top:100px;margin-right:150px;margin-left:150px;">
 
-         <div class="card station-card">
-          <img src={songs[1].img} />
-          <h3>{songs[1].name}</h3><p>{songs[1].album}</p>
-          <p>{songs[1].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(1)}>
-            Add Song</a></footer>
-        </div>
-
-         <div class="card station-card">
-          <img src={songs[2].img} />
-          <h3>{songs[2].name}</h3><p>{songs[2].album}</p>
-          <p>{songs[2].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(2)}>
-            Add Song</a></footer>
-        </div>
-
-         <div class="card station-card">
-          <img src={songs[3].img} />
-          <h3>{songs[3].name}</h3><p>{songs[3].album}</p>
-          <p>{songs[3].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(3)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[4].img} />
-          <h3>{songs[4].name}</h3><p>{songs[4].album}</p>
-          <p>{songs[4].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(4)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[5].img} />
-          <h3>{songs[5].name}</h3><p>{songs[5].album}</p>
-          <p>{songs[5].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(5)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[6].img} />
-          <h3>{songs[6].name}</h3><p>{songs[6].album}</p>
-          <p>{songs[6].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(6)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[7].img} />
-          <h3>{songs[7].name}</h3><p>{songs[7].album}</p>
-          <p>{songs[7].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(7)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[8].img} />
-          <h3>{songs[8].name}</h3><p>{songs[8].album}</p>
-          <p>{songs[8].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(8)}>
-            Add Song</a></footer>
-        </div>
-
-           <div class="card station-card">
-          <img src={songs[9].img} />
-          <h3>{songs[9].name}</h3><p>{songs[9].album}</p>
-          <p>{songs[9].artist}<br />Rock</p>
-          <footer className="card-footer song-card-button">
-          <a class="card-footer-item" onclick = {() => cardSelect(9)}>
-            Add Song</a></footer>
-        </div>
-
-
-
-
+      <div className="card-holder" style = "float:right">
+        {
+          songs.map(
+          (card, i) => createCard(card, i))
+        }
+      </div>
 
       </div>
 
@@ -384,6 +311,7 @@ export const pageTwo = {
     config={
       RFID.init((idNum) =>
         addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs))))
+        .then(moveOver)
     }>
     Scan Casette</h2>
     </body>
@@ -404,12 +332,8 @@ export const pageThree = {
     </html>,
 };
 
-function audio(){
-  var x = document.getElementById('myAudio')
-  x.pause();
-  x.play();
-  console.log('hello from audio');
-
+function moveOver(){
+  location.search="/soundStation/three";
 }
 
 
