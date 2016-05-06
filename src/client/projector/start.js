@@ -15,7 +15,7 @@ import Suggestion from './suggestions';
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.bandName = prop('Elvis Presley');
+    vm.bandName = prop('RED HOT CHILI PEPPERS');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
     vm.page = prop('ONE');
@@ -106,7 +106,7 @@ const view = () =>
     <body>
       <div className="fullscreen-bg">
         <video loop muted autoplay className="fullscreen-bg__video">
-            <source src="assets/video/elvis.mp4" type="video/mp4" />
+            <source src="assets/video/concert_crowd.mp4" type="video/mp4" />
         </video>
       </div>
       <div id="projector is-fullheight">
