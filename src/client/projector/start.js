@@ -1,5 +1,6 @@
 import m, { prop } from 'mithril';
 import leap from '../leap';
+import R from 'ramda';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
@@ -37,6 +38,10 @@ const trans = {
     .then(() => {
       vm.page('THREE');
       m.redraw();
+      console.log(Selection.selectedSongs())
+      if (Selection.selectedSongs().length <= 0) {
+        trans.THREE();
+      }
     }),
 
   THREE: () =>
@@ -116,7 +121,7 @@ const view = () =>
         <h1 className={titleClass()}>{vm.bandName()}</h1>
         {currentPage(vm.page())}
         <a className="bottom-button" onclick={trans[vm.page()]}>
-          ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+          <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
         </a>
       </div>
     </body>
