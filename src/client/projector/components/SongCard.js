@@ -1,8 +1,5 @@
 import m from 'mithril';
-import R from 'ramda';
 import Velocity from 'velocity-animate';
-
-import { Spotify } from '../../components';
 
 const vm = {
   init: () => {

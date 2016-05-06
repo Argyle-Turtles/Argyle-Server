@@ -83,7 +83,7 @@ const animateIn = () => {
 
 const animateCardAdd = () => {
   R.map(button => Velocity(button, 'fadeOut', 500),
-    document.querySelectorAll('.song-card-button'));
+    document.querySelectorAll('.song-card-button, .flip-button'));
 
   vm.scanMode = true;
 
@@ -95,7 +95,7 @@ const animateCardAdd = () => {
 
 const reverseAnimateCardAdd = () => {
   R.map(button => Velocity(button, 'fadeIn', 500),
-    document.querySelectorAll('.song-card-button'));
+    document.querySelectorAll('.song-card-button, .flip-button'));
 
   vm.scanMode = false;
 
