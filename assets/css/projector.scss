@@ -1,10 +1,14 @@
 #projector {
 	transform: rotateY(180deg);
 	font-family: 'proxima_nova_rgbold';
-	position: relative;
-  margin-top: 50px;
-  margin-bottom: 70px;
-  box-model: border-box;
+}
+
+.flip-180 {
+	// perspective: 10;
+	// transform-style: preserve-3d;
+	// -webkit-transform: rotateY(180deg);
+	// transform: rotateY(180deg);
+	// filter: FlipH;
 }
 
 #back-button {
@@ -53,6 +57,7 @@
 }
 
 .bottom-button {
+	transform: rotateY(180deg);
 	font-family: proxima_nova_rgbold;
   position: absolute;
   bottom: 70px;
@@ -89,6 +94,7 @@
 
 // Video stuff
 .fullscreen-bg {
+	transform: rotateY(180deg);
   position: fixed;
   top: 0;
   right: 0;
