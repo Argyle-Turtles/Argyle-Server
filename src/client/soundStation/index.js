@@ -11,7 +11,6 @@ import RFID from '../rfid';
 // need to add song albums to each song
 let id = '';
 const flag = true;
-const selectedSongs = [];
 
 
 const songs = [
@@ -275,16 +274,15 @@ const createCard = (data, id) =>
 // View 1 - Track List
 export const pageOne = {
   view: () =>
-    <html>
+    <html style = "background-color:#222;">
     <Head />
-
-      <body>
-      <h1>Mixta Soundstation</h1>
+      <body style = "background-color:black;">
+      <h1 className='band-name'>Mixta Soundstation</h1>
       <a id = "check"    
       href ="/soundStation/two" config={m.route}>
            Continue
           </a>
-      <div style="margin-top:100px;margin-right:150px;margin-left:150px;">
+      <div style="margin-top:100px;margin-right:150px;margin-left:150px; background-color:black;">
 
       <div className="card-holder" style = "float:right">
         {
@@ -304,14 +302,16 @@ export const pageOne = {
 
 export const pageTwo = {
   view: () =>
-  <html>
+  <html style = "background-color:#222">
     <Head />
     <body>
     <h2
+    className="pg1-title"
     config={
       RFID.init((idNum) =>
-        addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs))))
-        .then(moveOver)
+        addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))   
+        )
+      
     }>
     Scan Casette</h2>
     </body>
@@ -321,11 +321,10 @@ export const pageTwo = {
 
 export const pageThree = {
   view: () =>
-    <html>
+    <html style = "background-color:#222">
     <Head />
       <body>
-      <h1>Songs have been added to playlist!</h1>
-      <p>Please head toward the end kiosk.</p>
+      <h1 className = "pg1-title">Rock On!</h1>
       </body>
 
 

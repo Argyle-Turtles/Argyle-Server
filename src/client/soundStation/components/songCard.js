@@ -16,6 +16,7 @@ const triggerFlip = id => () => {
   const flippedArray = vm.flipped();
   flippedArray[id] = !flippedArray[id];
   vm.flipped(flippedArray);
+  console.log(flippedArray[id]);
 };
 
 
