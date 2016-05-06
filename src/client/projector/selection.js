@@ -133,7 +133,7 @@ const createCard = (data, id) =>
 const view = () =>
     <div id="selection" config={animateIn}>
       <SongPreview />
-      <div className="card-holder">
+      <div className="card-holder selection-holder">
         {
           vm.songCards().map(
           (card, i) => createCard(card, i))
