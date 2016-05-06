@@ -3,20 +3,20 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Mixta</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-2.1.1.js"></script>
-	<script src="js/main.js"></script>
+	<link rel="stylesheet" href="/homepage/css/reset.css">
+	<link rel="stylesheet" href="/homepage/css/style.css">
+	<script src="/homepage/js/jquery-2.1.1.js"></script>
+	<script src="/homepage/js/main.js"></script>
 
 	<script>
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
- 		location.replace("http://mixta.herokuapp.com/homepage/mobile.html");
+ 		location.replace("/mobile");
 	}
-	
+
 	$(document).ready(function() {
 		$("li a").click(function(e) {
 			e.preventDefault();
-		
+
         	if($(this).attr('id') == 'HomeMenu') {
         		$('html, body').animate({scrollTop: $(document.getElementById("HomeArea")).offset().top}, 1000);
         	}
@@ -37,11 +37,11 @@
 	</script>
 </head>
 <body>
-	<img src="media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
-	
+	<img src="/homepage/media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
+
 	<nav>
 		<ul class="cd-primary-nav">
-			<li><img src="media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
+			<li><img src="/homepage/media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
 			<br>
 			<br>
 			<li><a href="#" id="HomeMenu"><div id="MenuLink">Mixta</div></a></li>
@@ -51,15 +51,15 @@
 			<li><a href="#" id="AboutMenu"><div id="MenuLink">The Team</div></a></li>
 		</ul>
 	</nav>
-	
+
 	<div id="HomeArea">
-		<div id="HomeContent" style="background-image:url('media/home_bg.png'); background-position: bottom;">
+		<div id="HomeContent" style="background-image:url('/homepage/media/home_bg.png'); background-position: bottom;">
 			<div id="HomeInner">
-				<img src="media/home_text.png" alt="Mixta" style="width:100vh; height:77vh; max-width:721px; max-height:556px; margin-left:auto; margin-right:auto;">
+				<img src="/homepage/media/home_text.png" alt="Mixta" style="width:100vh; height:77vh; max-width:721px; max-height:556px; margin-left:auto; margin-right:auto;">
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="SolutionArea">
 		<div id="SolutionContent">
 			<div id="SolutionInner">
@@ -72,23 +72,23 @@
 					<tr>
 					<td>
 						<!-- <iframe src="https://www.youtube.com/embed/4U4oItOeeL4" frameborder="0" allowfullscreen></iframe> -->
-						<img src="media/video_placeholder.png" alt="Video Coming Soon" style="width:50vw; height:28vw; max-width:800px; max-height:450px;">
+						<img src="/homepage/media/video_placeholder.png" alt="Video Coming Soon" style="width:50vw; height:28vw; max-width:800px; max-height:450px;">
 					</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="WhatArea">
 		<div id="WhatContent">
 			<div id="WhatInner">
 				<h1>3 Pillars</h1>
 				<table class="WhatTable" border="0" style="margin-left:auto; margin-right:auto; text-align:left; margin-top:144px;">
 					<tr style="text-align:center;">
-					<td><img src="media/connections.png" alt="Connections" style="width:45px; height:75px;"></td>
-					<td><img src="media/tour.png" alt="Tour" style="width:75px; height:75px;"></td>
-					<td><img src="media/takeaway.png" alt="Take Away" style="width:78px; height:75px;"></td>
+					<td><img src="/homepage/media/connections.png" alt="Connections" style="width:45px; height:75px;"></td>
+					<td><img src="/homepage/media/tour.png" alt="Tour" style="width:75px; height:75px;"></td>
+					<td><img src="/homepage/media/takeaway.png" alt="Take Away" style="width:78px; height:75px;"></td>
 					</tr>
 					<tr style="text-align:center;">
 					<td style="padding-top:40px;"><h2>Connections</h2></td>
@@ -104,7 +104,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="ProblemArea">
 		<div id="ProblemContent">
 			<div id="ProblemInner">
@@ -122,12 +122,12 @@
 						<br>
 						<br>
 						<br>
-						<a href="media/mixta_doc.pdf" target="_blank" class="button">View Deck</a>
+						<a href="/homepage/media/mixta_doc.pdf" target="_blank" class="button">View Deck</a>
 					</td>
-					<td style="line-height:0;"><img src="media/rock1.jpg" alt="Concert Audience" style="width:50vw; height:30vw;"></td>
+					<td style="line-height:0;"><img src="/homepage/media/rock1.jpg" alt="Concert Audience" style="width:50vw; height:30vw;"></td>
 					</tr>
 					<tr>
-					<td style="line-height:0;"><img src="media/rock2.jpg" alt="Concert Stage" style="width:50vw; height:30vw;"></td>
+					<td style="line-height:0;"><img src="/homepage/media/rock2.jpg" alt="Concert Stage" style="width:50vw; height:30vw;"></td>
 					<td style="background-color: #ffffff;">
 						<h1><span style="color:#b82928">/</span> We Overcame</h1>
 						<h2 style="padding-top:40px;">Design Challenges</h2>
@@ -143,7 +143,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="AboutArea">
 		<div id="AboutContent">
 			<div id="AboutInner">
@@ -169,7 +169,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/anthony.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/anthony.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -183,7 +183,7 @@
 								<td>
 								<table style="margin: 0 40px 0 40px;">
 									<tr>
-									<td style="background-image: url('media/hailey.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/hailey.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -197,7 +197,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/melissa.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/melissa.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -219,7 +219,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/nathan.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/nathan.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -233,7 +233,7 @@
 								<td>
 								<table style="margin: 40px 40px 40px 40px;">
 									<tr>
-									<td style="background-image: url('media/tim.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/tim.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -247,7 +247,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/aaron.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/aaron.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -269,7 +269,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/joe.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/joe.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -283,7 +283,7 @@
 								<td>
 								<table style="margin: 0 40px 0 40px;">
 									<tr>
-									<td style="background-image: url('media/peter.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/peter.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -297,7 +297,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/trey.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/trey.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -319,6 +319,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

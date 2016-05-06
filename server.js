@@ -25,16 +25,19 @@ server.use(cookieParser('peter'))
 
 server.use(router(routes));
 
-server.use(express.static('build'));
+server.use('**/build', express.static(path.resolve(`${__dirname}/build`)));
 server.use(express.static(__dirname));
 
 server.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname + '/homepage/index.html')));
+
+server.get('/mobile', (req, res) =>
+  res.sendFile(path.join(__dirname + '/homepage/mobile.html')));
+
+server.get('/app', (req, res) =>
   res.sendFile(path.join(__dirname + '/index.html')));
 
 server.use('**/assets', express.static(path.resolve(`${__dirname}/assets`)));
-
-server.get('/homepage', (req, res) =>
-  res.sendFile(path.join(__dirname + '/homepage/index.html')));
 
 const socketHTTP = http.createServer(server).listen('3001');
 const io = socketIO(socketHTTP, { origins: '*:*' });
