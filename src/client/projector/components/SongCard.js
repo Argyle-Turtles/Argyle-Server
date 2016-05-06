@@ -135,7 +135,7 @@ const back = (song, id, addSong, removeSong) =>
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album)}
     </div>
-    <div className="card-content song-card-info">
+    <div id={`info-${id}`} className="card-content song-card-info">
       {mid(song.year, song.length)}
       {desc(song.description)}
     </div>

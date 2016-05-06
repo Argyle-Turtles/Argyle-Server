@@ -10,6 +10,15 @@ const animate = () =>
     },
     { duration: 500 });
 
+const reverseAnimate = () =>
+  Velocity.animate(
+    document.querySelector('#grrr'),
+    {
+      opacity: [1, 0],
+      translateY: [0, -20],
+    },
+    { duration: 500 });
+
 // COMPONENTS
 const view = (ctrl, args) =>
   <div id="grrr" className="band-info">
@@ -43,4 +52,5 @@ const view = (ctrl, args) =>
 export default {
   view,
   animate,
+  reverseAnimate,
 };

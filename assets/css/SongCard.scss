@@ -1,3 +1,7 @@
+.card {
+  font-family: proxima_nova_rgbold;
+}
+
 .flip-container {
   perspective: 1000;
   backface-visibility: hidden;
@@ -116,8 +120,8 @@
 
 // smaller card is 60% of large card
 .song-card-info {
-  min-height: 100%; // should be 429
-  max-height: 100%;
+  height: 300px; // should be 429
+  // max-height: 400%;
 }
 
 .flip-button {

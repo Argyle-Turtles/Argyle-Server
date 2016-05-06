@@ -1,10 +1,23 @@
 #projector {
 	transform: rotateY(180deg);
-	font-family: proxima_nova_rgbold;
+	font-family: 'proxima_nova_rgbold';
 	position: relative;
   margin-top: 50px;
   margin-bottom: 70px;
   box-model: border-box;
+}
+
+#back-button {
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	font-family: 'proxima_nova_rgbold';
+	font-size: 30px;
+	color: white;
+	z-index: 50;
+	.back-button-arrow {
+		width: 30%;
+	}
 }
 
 .pg1-title {
@@ -95,6 +108,12 @@
 
 .is-text-white {
 	color: white;
+}
+
+.mixtape-prompt {
+	color: white;
+	font-family: 'edoregular';
+	font-size: 100px;
 }
 
 @media (min-aspect-ratio: 16/9) {

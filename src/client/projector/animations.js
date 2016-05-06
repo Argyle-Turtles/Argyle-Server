@@ -13,11 +13,28 @@ const animateTitle = () =>
     },
     { duration: 500 });
 
+const reverseTitle = () =>
+  Velocity.animate(
+    document.querySelector('.band-name'),
+    {
+      fontSize: '100px',
+      translateY: 0,
+    },
+    { duration: 500 });
+
 const hideNextButton = () =>
   Velocity.animate(
     document.querySelector('.bottom-button'),
     {
       opacity: 0,
+    },
+    { duration: 500 });
+
+const showNextButton = () =>
+  Velocity.animate(
+    document.querySelector('.bottom-button'),
+    {
+      opacity: 1,
     },
     { duration: 500 });
 
@@ -56,6 +73,7 @@ export const selectCard = id => () => {
     const ctrl = document.querySelector(`#preview-control-${id}`);
     if (ctrl) ctrl.style.display = 'block';
   });
+  Velocity(document.querySelector(`#info-${id}`), { height: '400px' }, 500);
 
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
@@ -78,6 +96,7 @@ export const deselectCard = id => () => {
     if (ctrl) ctrl.style.display = 'none';
   });
 
+  Velocity(document.querySelector(`#info-${id}`), { height: '300px' }, 500);
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
@@ -144,7 +163,28 @@ export const transition1 = () =>
   Promise.all([
     BandInfo.animate(),
     animateTitle(),
+    Velocity(document.querySelector('#back-button'), { opacity: 1 }, 200),
   ]);
+
+export const frontPageIn = () =>
+  Promise.all([
+    BandInfo.reverseAnimate(),
+    reverseTitle(),
+    Velocity(document.querySelector('#back-button'), { opacity: 0 }, 200),
+  ]);
+
+export const reversePageTwo = () =>
+  Promise.all([
+    Promise.resolve('test'),
+  ]);
+
+export const reversePageThree = () =>
+  Promise.all([
+    Selection.reverseAnimateCardAdd(),
+    showNextButton(),
+    Velocity(document.querySelector('#rfid-feedback'), { opacity: 0 }, 500),
+  ]);
+
 
 export const transition2 = () =>
   Promise.all([

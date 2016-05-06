@@ -43,15 +43,27 @@ const animateIn = () => {
 };
 
 const animateCardAdd = () => {
-  R.map(button => Velocity(button, 'slideUp', 500),
+  R.map(button => Velocity(button, 'fadeOut', 500),
     document.querySelectorAll('.song-card-button'));
 
   addedSongs.map((song, index) => {
     deselectCard(index)();
     return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
   });
+};
 
+const reverseAnimateCardAdd = () => {
+  R.map(button => Velocity(button, 'fadeIn', 500),
+    document.querySelectorAll('.song-card-button'));
 
+  addedSongs.map((song, index) => {
+    deselectCard(index)();
+    document.querySelector(`#card-${index}`).style.display = 'inline-block';
+    Velocity(
+      document.querySelector(`#card-${index}`),
+      { opacity: 1, translateY: -20 },
+      500);
+  });
 };
 
 const songData = [
@@ -69,7 +81,7 @@ const songData = [
     name: 'What About Me?',
     year: '2014',
     length: '6:43',
-    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
+    description: 'Trey loves this funkadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
     img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
@@ -131,5 +143,6 @@ export default {
   view,
   controller,
   animateCardAdd,
+  reverseAnimateCardAdd,
   selectedSongs,
 };

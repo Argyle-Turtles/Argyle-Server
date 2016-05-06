@@ -3,7 +3,7 @@ import leap from '../leap';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
-import { transition1, transition2, transition3, transition4 } from './animations';
+import { transition1, transition2, transition3, transition4, reversePageTwo, frontPageIn, reversePageThree } from './animations';
 import rfid from '../rfid';
 import { addSongToUser } from '../socket/RestRequests';
 
@@ -51,12 +51,24 @@ const trans = {
     .then(() => {
       window.setTimeout(() => window.location.reload(), 2000);
     }),
+};
 
-  ZERO: () =>
-    transition4()
+const backTrans = {
+  ONE: () => console.log(':P'), // not this one
+  TWO: () =>
+    reversePageTwo()
     .then(() => {
+      vm.page('ONE');
+      m.redraw();
+    })
+    .then(frontPageIn),
+  THREE: () =>
+    reversePageThree()
+    .then(() => {
+      vm.page('TWO');
       m.redraw();
     }),
+  FOUR: () => console.log(':P'), // not this one
 };
 
 const readRfid = () =>
@@ -77,7 +89,7 @@ const currentPage = () => {
 
   else if (isPage('TWO') || isPage('THREE')) {
     return <div config={readRfid}>
-        <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
+        <h1 id="rfid-feedback" className="mixtape-prompt invis">SCAN YOUR MIXTAPE!</h1>
         <Selection />
       </div>;
   }
@@ -92,17 +104,20 @@ const view = () =>
   <html>
     <Head />
     <body>
-    <div className="fullscreen-bg">
-      <video loop muted autoplay className="fullscreen-bg__video">
-          <source src="assets/video/elvis.mp4" type="video/mp4" />
-      </video>
-    </div>
+      <div className="fullscreen-bg">
+        <video loop muted autoplay className="fullscreen-bg__video">
+            <source src="assets/video/elvis.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div id="projector is-fullheight">
-          <h1 className={titleClass()}>{vm.bandName()}</h1>
-          {currentPage(vm.page())}
-          <a className="bottom-button" onclick={trans[vm.page()]}>
-            ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
-          </a>
+        <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
+          <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
+        </div>
+        <h1 className={titleClass()}>{vm.bandName()}</h1>
+        {currentPage(vm.page())}
+        <a className="bottom-button" onclick={trans[vm.page()]}>
+          ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+        </a>
       </div>
     </body>
   </html>;
