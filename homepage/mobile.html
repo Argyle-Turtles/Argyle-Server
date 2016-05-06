@@ -9,6 +9,12 @@
 	<script src="/homepage/js/main.js"></script>
 
 	<script>
+	function getCode() {
+		if(document.getElementById("codeInput").value != "") {
+			window.location.href="http://mixta.herokuapp.com/" + document.getElementById("codeInput").value;
+		}
+	}
+	
 	$(document).ready(function() {
 		$("li a").click(function(e) {
 			e.preventDefault();
@@ -29,13 +35,18 @@
         		$('html, body').animate({scrollTop: $(document.getElementById("AboutArea")).offset().top}, 1000);
         	}
     	});
+    	
+    	$('.codeInput').keypress(function(key) {
+			if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90)) {
+				return false;
+			}
+		});
 	});
 	</script>
 </head>
 <body>
 
 	<img src="/homepage/media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
-
 	<nav>
 		<ul class="cd-primary-nav">
 			<li><img src="/homepage/media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
@@ -70,6 +81,17 @@
 					<td>
 						<!-- <iframe src="https://www.youtube.com/embed/4U4oItOeeL4" frameborder="0" allowfullscreen></iframe> -->
 						<img src="/homepage/media/video_placeholder.png" alt="Video Coming Soon" style="width:50vw; height:28vw; max-width:800px; max-height:450px;">
+					</td>
+					</tr>
+					<tr>
+					<td>
+						<p style="padding-top:40px;"> Enter your 4-digit code below to... <p>
+					</td>
+					</tr>
+					<tr>
+					<td>
+						<input type="text" id="codeInput" class="codeInput" placeholder="Code" maxlength="4" style="text-transform:uppercase; vertical-align:bottom; margin-bottom: 2px;">
+						<button onclick="getCode()" style="cursor:pointer; margin-top:40px; margin-left:40px;">Go</button>
 					</td>
 					</tr>
 				</table>

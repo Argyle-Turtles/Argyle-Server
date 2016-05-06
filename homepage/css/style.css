@@ -51,7 +51,7 @@ p {
 	line-height: 180%;
 }
 
-.button {
+.button, button {
 	font-family: 'Bebas Neue Book';
 	font-size: 16px;
 	border: 1px solid white;
@@ -61,6 +61,14 @@ p {
 	background: none;
 	color: white;
 	letter-spacing: 2px;
+}
+
+input {
+	font-family: 'Arial';
+	height: 32px;
+	width: 120px;
+	text-align: center;
+	font-size: 20px;
 }
 
 /* Positioning and Sizing ---------------------------------------------------------------- */
