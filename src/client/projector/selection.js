@@ -11,6 +11,7 @@ const addedSongs = [null, null, null];
 const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
+const removeFromPlaylist = (id) => addedSongs[id] = null;
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -61,7 +62,7 @@ const songData = [
     length: '6:33',
     description: 'This is some smooth funkalucious stuff right here',
     uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
   {
     album: 'We Like it Here',
@@ -70,7 +71,7 @@ const songData = [
     length: '6:43',
     description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
   {
     album: 'We Like it Here',
@@ -79,7 +80,7 @@ const songData = [
     length: '5:44',
     description: 'Bring it home with some fucktastic sounds',
     uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
   },
 ];
 
@@ -95,10 +96,7 @@ const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 
   Spotify.getSongPreview(songData[id].uri.split(':')[2])
-  .then(res => {
-    SongPreview.setAudioSource(res);
-    SongPreview.playAudio();
-  });
+  .then(track => SongPreview.setAudioSource(track));
 };
 
 // VIEWS
@@ -107,7 +105,10 @@ const createCard = (data, id) =>
     <SongCard
       song={data}
       cardId={id}
-      addSong={addSongToPlaylist}/>
+      selectThis={selectCard}
+      addSong={addSongToPlaylist}
+      removeSong={removeFromPlaylist}
+      preview={SongPreview}/>
   </div>;
 
 const view = () =>

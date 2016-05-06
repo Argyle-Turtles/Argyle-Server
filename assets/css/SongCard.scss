@@ -58,28 +58,84 @@
 }
 
 .song-card-name {
-  min-height: 102px; // should be 147 ratio is .693
-  max-height: 102px;
+  min-height: 34%; // should be 147 ratio is .693
+  max-height: 34%;
 }
 
 .song-card-button {
-  min-height: 60px; // should be 87
-  max-height: 60px;
+  min-height: 20%; // should be 87
+  max-height: 20%;
+  border-top: 1px solid $rock-red;
+  background-color: white;
+
+  .song-card-button-link {
+    font-family: proxima_nova_rgbold;
+    font-size: 20px;
+    color: $rock-red;
+  }
+
+  .remove-button {
+    color: $mixta-grey;
+  }
+
+  .card-add-icon, .card-remove-icon {
+    width: 7.5%;
+    margin-right: 2%;
+  }
+}
+
+.preview-control {
+  display: none;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  top: 28%;
+  left: 25%;
+  z-index: 10;
+  &:active {
+    opacity: 1;
+  }
+  .preview-control-play {
+    width: 26%;
+    position: absolute;
+    margin-top: 7%;
+    left: 16%;
+  }
+  .preview-control-pause {
+    width: 22%;
+    position: absolute;
+    margin-top: 8%;
+    left: 15%;
+  }
+  .preview-control-dot {
+    width: 50%;
+    position: absolute;
+    left: 0px;
+  }
 }
 
 // smaller card is 60% of large card
 .song-card-info {
-  min-height: 300px; // should be 429
-  max-height: 300px;
+  min-height: 100%; // should be 429
+  max-height: 100%;
 }
 
 .flip-button {
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
   z-index: 1;
+  background: url(../img/flip_arrow_bg.svg);
+  background-size: 100% 90%;
+  background-repeat: no-repeat;
+  background-position: 0px -10px;
   // margin-left: 260px;
-  min-width: 40px;
-  max-width: 40px;
-  height: 30px;
+  min-width: 20%;
+  max-width: 20%;
+  height: 15%;
+  .flip-button-arrow {
+    width: 55%;
+    margin-left: 15%;
+    margin-top: 10%;
+  }
 }

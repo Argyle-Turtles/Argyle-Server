@@ -37,19 +37,26 @@
 /*main body content stuff */
 
 .content {
-	/*height: 490px;*/
+	height: 490px;
+	margin-top: 160px;
 }
 
 .contentText{
-	margin-top: 106.5px;
+	margin-top: 186.5px;
 }
 
 .contentDesc{
 	font-family: 'novaRegular';
-	height: 52.5px;
-	font-size: 12.6pt;
+	font-size: 26pt;
 	color: #eeeeee;
 	margin-bottom: 50px;
+	margin-left: 15x;
+	margin-right: 15px;
+}
+
+#black{
+	font-family: 'novaBlack';
+	margin-bottom: 32px;
 }
 
 .contentInput{
@@ -58,6 +65,12 @@
 
 .contentButton{
 	height: 125px;
+	margin-top: 233px;
+}
+
+.contentCodeButton{
+	height: 125px;
+	margin-top: 183px;
 }
 
 
@@ -67,7 +80,9 @@
 .banner{
 	background-size: 399px;
 	background-image: url("../../src/client/tablet/assets/stardust_@2X.png");
-	height: 250px;
+	height: 392px;
+	margin-left: -25px;
+	margin-right: -25px;
 }
 
 .bannerTitle{
@@ -79,6 +94,10 @@
 
 }
 
+.bannerText{
+	padding-top: 20px;
+}
+
 .bannerHead {
 	font-size: 32pt;
 	color: #FFFFFF;
@@ -86,7 +105,7 @@
 }
 
 .imgAsset{
-	margin-top: 56.5px;
+	margin-top: 198.5px;
 }
 
 
@@ -94,9 +113,18 @@
 /* button stuff */
 
 #endButton{
-	background-color: #7B7B7B;
-	border-color: #7B7B7B;
+	font-family: 'novaBold';
+	font-size: 18pt;
+	color: #202020;
+	background-size: 231px 52.5px;
+	background-repeat: no-repeat;
+	background-image: url("../../src/client/tablet/assets/button_bg.png");
+	width: 235px;
+	height: 55px;
+	margin: 0px auto;
+	line-height: 52.5px;
 }
+
 
 .backButton{
 	float: left;
@@ -104,6 +132,15 @@
 	font-size: 18pt;
 	color: #cccccc;
 	line-height: 75px;
+	position: absolute;
+	margin-left: 20px;
+}
+
+.backArrow{
+	margin-right: 7.5px;
+	color: blue;
+  	fill: currentColor;
+  	padding-top: 15%;
 }
 
 #endKioskButton{
@@ -133,7 +170,7 @@ input:focus {
 	outline: none;
 }
 
-input {
+.codeInput {
 	font-family: 'edoRegular';
 	font-size: 96pt;
 	width: 500px;
@@ -144,6 +181,8 @@ input {
 	border-top-color: transparent;
 	border-left-color: transparent;
 	border-right-color: transparent;
+	border-width: 5px;
+	letter-spacing: 20px;
 }
 
 .contentInput div{
@@ -177,9 +216,18 @@ input {
 
 .endKiosk {
 	background: #272727;
-	/*
-	margin-top: 40px;
-	margin-left: 50px;
-	margin-right: 50px;
-	*/
+	margin-left: 25px;
+	margin-right: 25px;
 }	
+
+.circles {
+	margin-bottom: 36px;
+}
+
+.lowOpacity{
+	opacity: .25;
+}
+
+.firstButton {
+	opacity: .25;
+}

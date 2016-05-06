@@ -8,7 +8,7 @@ const allData = [
     length: '6:33',
     description: 'This is some smooth funkalucious stuff right here',
     uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
     artist: 'Peter',
     genre: 'Alternative, maybe',
     decade: 1
@@ -20,10 +20,10 @@ const allData = [
     length: '6:43',
     description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
     uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
     artist: 'Peter',
     genre: 'Alternative, maybe',
-    decade: 4
+    decade: 4,
   },
   {
     album: 'We Like it Here',
@@ -32,10 +32,10 @@ const allData = [
     length: '5:44',
     description: 'Bring it home with some funktastic sounds',
     uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'http://placehold.it/433x433',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
     artist: 'Peter',
     genre: 'Alternative, maybe',
-    decade: 8
+    decade: 8,
   },
     {
     album:'Plans',
@@ -155,7 +155,8 @@ const allData = [
     uri:'spotify:track:2LlQb7Uoj1kKyGhlkBf9aC',
     img:'https://i.scdn.co/image/6d1d714f4dcb306d3b3533fea400362974060d2d',
     decade: '',
-    genre: 'Pop'
+
+    genre: 'Pop',
   },
   {
     album:'Solid Gold Hits',
@@ -216,7 +217,6 @@ const allData = [
     img:'https://i.scdn.co/image/753d9208d21d332eea5673102a15266c2f08a884',
     decade: '',
     genre: 'Folk'
-  },
    {
     album:'The Best of Don McLean',
     name:"American Pie",

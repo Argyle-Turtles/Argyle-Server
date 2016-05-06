@@ -15,7 +15,7 @@ import Suggestion from './suggestions';
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.bandName = prop('Red Hot Chili Peppers');
+    vm.bandName = prop('Elvis Presley');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
     vm.page = prop('ONE');
@@ -85,18 +85,23 @@ const currentPage = () => {
   else return <Suggestion />;
 };
 
-const titleClass = () => 'band-name title is-1 pg1-title';
+const titleClass = () => 'band-name pg1-title';
 
 // VIEW
 const view = () =>
   <html>
     <Head />
     <body>
+    <div className="fullscreen-bg">
+      <video loop muted autoplay className="fullscreen-bg__video">
+          <source src="assets/video/elvis.mp4" type="video/mp4" />
+      </video>
+    </div>
       <div id="projector is-fullheight">
           <h1 className={titleClass()}>{vm.bandName()}</h1>
           {currentPage(vm.page())}
-          <a className="button is-medium bottom-button" onclick={trans[vm.page()]}>
-            Rock out!
+          <a className="bottom-button" onclick={trans[vm.page()]}>
+            ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
           </a>
       </div>
     </body>

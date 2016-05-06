@@ -8,7 +8,7 @@ const animateTitle = () =>
   Velocity.animate(
     document.querySelector('.band-name'),
     {
-      fontSize: '30px',
+      fontSize: '60px',
       translateY: -180,
     },
     { duration: 500 });
@@ -44,7 +44,19 @@ const changeCardSize = (size, time) => element =>
 export const selectCard = id => () => {
   const changeSize = changeCardSize('400px', 500);
 
-  changeSize(document.querySelector(`#card-${id}`));
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    {
+      width: '400px',
+      translateY: -50,
+    },
+    500
+  )
+  .then(() => {
+    const ctrl = document.querySelector(`#preview-control-${id}`);
+    if (ctrl) ctrl.style.display = 'block';
+  });
+
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
@@ -53,7 +65,19 @@ export const selectCard = id => () => {
 export const deselectCard = id => () => {
   const changeSize = changeCardSize('300px', 500);
 
-  changeSize(document.querySelector(`#card-${id}`));
+  Velocity(
+    document.querySelector(`#card-${id}`),
+    {
+      width: '300px',
+      translateY: 0,
+    },
+    500
+  )
+  .then(() => {
+    const ctrl = document.querySelector(`#preview-control-${id}`);
+    if (ctrl) ctrl.style.display = 'none';
+  });
+
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));

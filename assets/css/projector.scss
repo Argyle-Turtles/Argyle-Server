@@ -1,4 +1,6 @@
 #projector {
+	transform: rotateY(180deg);
+	font-family: proxima_nova_rgbold;
 	position: relative;
   margin-top: 50px;
   margin-bottom: 70px;
@@ -7,16 +9,52 @@
 
 .pg1-title {
   padding-top: 230px;
+	font-size: 100px;
+	font-family: 'edoregular';
+	color: white;
 }
 
 .band-history {
   margin-top: 90px;
 }
 
+.band-info {
+	margin-top: 90px;
+	font-family: 'proxima_nova_rgbold';
+	.main-genre {
+		font-size: 40px;
+		color: $rock-red;
+	}
+	.sub-genre {
+		font-size: 20px;
+		color: white;
+		margin-top: 40px;
+	}
+
+	.band-history {
+		p {
+			font-size: 20px;
+			color: white;
+		}
+	}
+}
+
 .bottom-button {
+	font-family: proxima_nova_rgbold;
   position: absolute;
   bottom: 70px;
-  margin: 0 auto;
+	left: calc(50% - 230px);
+	background-image: url('../img/button_bg.png');
+	height: 113px;
+	width: 462px;
+	text-align: center;
+	color: black;
+	font-size: 35px;
+	padding-top: 30px;
+}
+
+.bottom-button-arrow {
+	width: 10%;
 }
 
 #selection {
@@ -34,4 +72,41 @@
   margin-right: 23px;
   width: 300px;
   display: inline-block;
+}
+
+// Video stuff
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.is-text-white {
+	color: white;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 300%;
+    left: -100%;
+  }
 }
