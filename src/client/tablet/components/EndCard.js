@@ -4,7 +4,10 @@ import {removeSong} from '../../socket/RestRequests';
 import Velocity from 'velocity-animate';
 
 const vm = {
-  init: () => vm.flipped = m.prop(false),
+  init: () => {
+  	vm.flipped = m.prop(false);
+  	vm.playing = false;
+  },
 };
 
 const triggerFlip = () => vm.flipped(!vm.flipped());
@@ -34,15 +37,18 @@ const mid = (year, length) =>
 const desc = text => <div className="is-text-left"><p>{text}</p></div>;
 
 const artist = (artist, genre) =>
-  <div className="card-content song-card-artist">
-    <hr/>
-    <div className="artist">
-      {artist}
-    </div>
-    <div className="genre">
-      {genre}
-    </div>
-  </div>
+  <div className="song-card-artist">
+    <div className="is-text-left">
+    	<h2 className="title is-5">{artist}</h2>
+    	<h3 className="subtitle is-6">{genre}</h3>
+  	</div>
+  </div>;
+
+  const songTitle = (name, album) =>
+  <div className="is-text-left">
+    <h1 className="title is-5">{name}</h1>
+    <h3 className="subtitle is-6">{album}</h3>
+  </div>;
 
 
 const foot = (remove) =>
@@ -51,43 +57,56 @@ const foot = (remove) =>
       onclick={() => removeSong(m.route.param("usercode"),[remove])}>Remove Song</a>
   </footer>;
 
-const img = url =>
-  <div className="card-image">
-    <figure className="image is-square">
-      <img src={url} />
-    </figure>
-  </div>;
+  const img = (url,uri) =>
+  	<div className="end-card-image">
+  		<img src={url} />
+  		{
+  			vm.playing ?
+		  		<div className="pauseSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
+		            SongPreview.pauseAudio();
+		            vm.playing = false;
+		            
+		            });
+		         }}>
+			  		<img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
+			      	<img id="endImg" className="pauseButton" src="./assets/img/pause.svg"/>
+			     </div>
+		    : 
 
-const songTitle = (name, album) =>
-  <div className="is-text-left">
-    <h1 className="title is-4">{name}</h1>
-    <h3 className="subtitle is-6">{album}</h3>
-  </div>;
+			     <div className="playSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
+		            SongPreview.setAudioSource(resp);
+		            SongPreview.playAudio();
+		            vm.playing = true;
+		            });
+		         }}>
+			  		<img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
+			      	<img id="endImg" className="playButton" src="./assets/img/play.svg"/>
+			     </div> 
+	    }
+	    <div onclick={triggerFlip}>
+	    	<img id="endImg" className="arrowBg" src="./assets/img/flip_arrow_bg.svg"/>
+			<img id="endImg" className="arrowButton" src="./assets/img/flip_arrow.svg"/>
+		</div>
+  	</div>
+
 
 const front = (song) =>
-  <div className="card">
-    <div className="flip-button" onclick={triggerFlip}>
-      flip
-    </div>
-    {img(song.img)}
-    <div className="card-content song-card-name">
+  <div className="end-card">
+    {img(song.img,song.uri)}
+    <div className="card-content end-card-name">
       {songTitle(song.name, song.album)}
-      <input
-          className="button is-medium container"
-          type="button"
-                onclick={function(){Spotify.getSongPreview(song.uri.split(':')[2]).then(function(resp){
-                  SongPreview.setAudioSource(resp);
-                  SongPreview.playAudio();
-                  });
-              }}
-                value="preview" />
+      <hr/>
+      {
+      artist(song.artist, song.genre)
+      }
+     
     </div>
     {foot(song.uri)}
   </div>;
 
 
 const back = (song) =>
-  <div className="card">
+  <div className="end-card">
     <div className="flip-button" onclick={triggerFlip}>
       flip
     </div>

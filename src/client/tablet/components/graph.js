@@ -46,7 +46,13 @@ let i = -1;
 
 	//The data for our line
   // y = 1 = 10s
-  //y = 8 = 30s
+  // 2 = 00s 
+  // 3 = 90s 
+  //4 = 80s 
+  // 5 = 70s 
+  // 6 = 60s 
+  //7 = 50s
+  //y = 8 = 40s
  const data = [ { "x": 1,   "y": 5},  { "x": 2,  "y": 2},
                   { "x": 3,  "y": 1}, { "x": 4,  "y": 4},
                   { "x": 5,  "y": 5},  { "x": 6, "y": 6}];
@@ -64,7 +70,6 @@ const yAxisGroup = svgContainer.append("g").attr("class"," y axis").attr("transf
 
 //move the y axis tick marks 
 yAxisGroup.selectAll(".tick line").attr("transform", "translate(-30,10)");
-
 
 const pathContainers = svgContainer.selectAll('g.line').data(graphData);
 
