@@ -1,5 +1,4 @@
 import m, { prop } from 'mithril';
-import Promise from 'bluebird';
 
 import {Head, Spotify} from '../../components';
 
