@@ -10,11 +10,20 @@ const animate = () =>
     },
     { duration: 500 });
 
+const reverseAnimate = () =>
+  Velocity.animate(
+    document.querySelector('#grrr'),
+    {
+      opacity: [1, 0],
+      translateY: [0, -20],
+    },
+    { duration: 500 });
+
 // COMPONENTS
 const view = (ctrl, args) =>
   <div id="grrr" className="band-info">
     <div className="genre container">
-      <h3 className="main-genre title is-3">{args.primaryGenre}</h3>
+      <h3 className="main-genre">{args.primaryGenre}</h3>
       <div className="sub-genres">
        {map(genre =>
           <span className="sub-genre column is-3 is-text-center">{genre}</span>,
@@ -43,4 +52,5 @@ const view = (ctrl, args) =>
 export default {
   view,
   animate,
+  reverseAnimate,
 };

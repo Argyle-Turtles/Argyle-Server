@@ -44,17 +44,17 @@ const animateIn = () =>
 
 const artistData = [
   {
-    artist: 'Elvis Presley',
+    name: 'Elvis Presley',
     genre: 'Rock',
     img: 'http://placehold.it/433x433',
   },
   {
-    artist: 'Elvis Presley',
+    name: 'Elvis Presley',
     genre: 'Rock',
     img: 'http://placehold.it/433x433',
   },
   {
-    artist: 'Elvis Presley',
+    name: 'Elvis Presley',
     genre: 'Rock',
     img: 'http://placehold.it/433x433',
   },

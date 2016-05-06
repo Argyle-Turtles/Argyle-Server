@@ -13,7 +13,11 @@ const playAudio = () => {
 const pauseAudio = () => document.querySelector('#preview-audio').pause();
 
 /** Sets audio source */
-const setAudioSource = newUrl => document.querySelector('#preview-audio').src = newUrl;
+const setAudioSource = newUrl => {
+  if (newUrl !== document.querySelector('#preview-audio').src) {
+    document.querySelector('#preview-audio').src = newUrl;
+  }
+};
 
 const view = () => <audio id="preview-audio" src="https://p.scdn.co/mp3-preview/934da7155ec15deb326635d69d050543ecbee2b4"></audio>;
 

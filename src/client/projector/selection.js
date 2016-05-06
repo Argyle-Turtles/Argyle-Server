@@ -11,6 +11,46 @@ const addedSongs = [null, null, null];
 const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
 
 const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
+const removeFromPlaylist = (id) => addedSongs[id] = null;
+
+const songData = [
+  {
+    album: 'One Hot Minute',
+    name: 'Aeroplane',
+    year: '1995',
+    length: '4:45',
+    description: "Despite its dark lyrical themes, Aeroplane is one of the more accessible and upbeat songs on One Hot Minute, with a funk slap bass line and child choral vocals from Flea's (bassist) daughter and her classmates.",
+    uri: 'spotify:track:0VLdJcQUsqHBBwqPp4CIKJ',
+    img: 'https://i.scdn.co/image/010e335a53b768865080a6ea39b0a979d2e54b24',
+  },
+  {
+    album: 'Stadium Arcadium',
+    name: 'Snow (Hey Oh)',
+    year: '2006',
+    length: '5:35',
+    description: 'Trey loves this funkadelic stuff, he tells his grandma about it every sunday',
+    uri: 'spotify:track:2aibwv5hGXSgw7Yru8IYTO',
+    img: 'https://i.scdn.co/image/60257f94086dfdcaa9730d3959aab66e1ce89f7d',
+  },
+  {
+    album: 'Californication',
+    name: 'Californication',
+    year: '1999',
+    length: '5:30',
+    description: 'Bring it home with some fucktastic sounds',
+    uri: 'spotify:track:34KTEhpPjq6IAgQg2yzJAL',
+    img: 'https://i.scdn.co/image/260c7a6da14bb13a4cc9e75bf5b549fb87fa22a9',
+  },
+];
+
+// VIEW MODEL
+const vm = {
+  init: () => {
+    vm.songCards = m.prop(songData);
+    vm.firstRender = m.prop(true);
+    vm.scanMode = false;
+  },
+};
 
 const animateIn = () => {
   const time = vm.firstRender() ? 1 : 0;
@@ -42,63 +82,40 @@ const animateIn = () => {
 };
 
 const animateCardAdd = () => {
-  R.map(button => Velocity(button, 'slideUp', 500),
-    document.querySelectorAll('.song-card-button'));
+  R.map(button => Velocity(button, 'fadeOut', 500),
+    document.querySelectorAll('.song-card-button, .flip-button'));
+
+  vm.scanMode = true;
 
   addedSongs.map((song, index) => {
     deselectCard(index)();
     return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
   });
-
-
 };
 
-const songData = [
-  {
-    album: 'We Like it Here',
-    name: 'Shofukan',
-    year: '2014',
-    length: '6:33',
-    description: 'This is some smooth funkalucious stuff right here',
-    uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
-    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
-  },
-  {
-    album: 'We Like it Here',
-    name: 'What About Me?',
-    year: '2014',
-    length: '6:43',
-    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
-    uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
-    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
-  },
-  {
-    album: 'We Like it Here',
-    name: 'Tia Macaco',
-    year: '2014',
-    length: '5:44',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
-    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
-  },
-];
+const reverseAnimateCardAdd = () => {
+  R.map(button => Velocity(button, 'fadeIn', 500),
+    document.querySelectorAll('.song-card-button, .flip-button'));
 
-// VIEW MODEL
-const vm = {
-  init: () => {
-    vm.songCards = m.prop(songData);
-    vm.firstRender = m.prop(true);
-  },
+  vm.scanMode = false;
+
+  addedSongs.map((song, index) => {
+    deselectCard(index)();
+    document.querySelector(`#card-${index}`).style.display = 'inline-block';
+    Velocity(
+      document.querySelector(`#card-${index}`),
+      { opacity: 1, translateY: -20 },
+      500);
+  });
 };
 
 const pickACard = id => () => {
-  [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+  if (!vm.scanMode) {
+    [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 
-  Spotify.getSongPreview(songData[id].uri.split(':')[2])
-  .then(res => {
-    SongPreview.setAudioSource(res);
-    SongPreview.playAudio();
-  });
+    Spotify.getSongPreview(songData[id].uri.split(':')[2])
+    .then(track => SongPreview.setAudioSource(track));
+  }
 };
 
 // VIEWS
@@ -107,13 +124,16 @@ const createCard = (data, id) =>
     <SongCard
       song={data}
       cardId={id}
-      addSong={addSongToPlaylist}/>
+      selectThis={selectCard}
+      addSong={addSongToPlaylist}
+      removeSong={removeFromPlaylist}
+      preview={SongPreview}/>
   </div>;
 
 const view = () =>
     <div id="selection" config={animateIn}>
       <SongPreview />
-      <div className="card-holder">
+      <div className="card-holder selection-holder">
         {
           vm.songCards().map(
           (card, i) => createCard(card, i))
@@ -130,5 +150,6 @@ export default {
   view,
   controller,
   animateCardAdd,
+  reverseAnimateCardAdd,
   selectedSongs,
 };

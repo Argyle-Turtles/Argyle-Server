@@ -1,12 +1,6 @@
 import m from 'mithril';
 import { isNil, curry } from 'ramda';
 import Promise from 'bluebird';
-/*
-Almost all api requests need an authorization token
-Get the token by directing the page to this link -> https://accounts.spotify.com:/authorize?client_id=b5dc615d0bcc47109e0ea1c5725f1cb8&response_type=token&
-                                                       redirect_uri=http://localhost:3000/?/tablet/&scope=playlist-modify-private playlist-modify-public&show_
-                                                       dialog=false
-*/
 
 const url = () => `https://accounts.spotify.com:/authorize?client_id=be7cab20471747848c74c18e4e845c08&response_type=token&redirect_uri=${window.location}&scope=playlist-modify-private playlist-modify-public&show_dialog=false`;
 
@@ -94,4 +88,3 @@ export default {
   url,
 
 };
-

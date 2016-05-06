@@ -1,9 +1,11 @@
 import m, { prop } from 'mithril';
 import leap from '../leap';
+import R from 'ramda';
+import Velocity from 'velocity-animate';
 
 // Shared components
 import { Head, Cursor, Spotify } from '../components';
-import { transition1, transition2, transition3, transition4 } from './animations';
+import { transition1, transition2, transition3, transition4, reversePageTwo, frontPageIn, reversePageThree } from './animations';
 import rfid from '../rfid';
 import { addSongToUser } from '../socket/RestRequests';
 
@@ -15,12 +17,15 @@ import Suggestion from './suggestions';
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.bandName = prop('Elvis Presley');
+    vm.bandName = prop('RED HOT CHILI PEPPERS');
     vm.primaryGenre = prop('Rock');
     vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
     vm.page = prop('ONE');
   },
 };
+
+const flipMain = () =>
+  Velocity(document.querySelector('.flip-180'), { rotateY: 180 }, 0);
 
 const isPage = page => vm.page() === page;
 
@@ -37,6 +42,10 @@ const trans = {
     .then(() => {
       vm.page('THREE');
       m.redraw();
+      console.log(Selection.selectedSongs())
+      if (Selection.selectedSongs().length <= 0) {
+        trans.THREE();
+      }
     }),
 
   THREE: () =>
@@ -51,12 +60,24 @@ const trans = {
     .then(() => {
       window.setTimeout(() => window.location.reload(), 2000);
     }),
+};
 
-  ZERO: () =>
-    transition4()
+const backTrans = {
+  ONE: () => console.log(':P'), // not this one
+  TWO: () =>
+    reversePageTwo()
     .then(() => {
+      vm.page('ONE');
+      m.redraw();
+    })
+    .then(frontPageIn),
+  THREE: () =>
+    reversePageThree()
+    .then(() => {
+      vm.page('TWO');
       m.redraw();
     }),
+  FOUR: () => console.log(':P'), // not this one
 };
 
 const readRfid = () =>
@@ -77,7 +98,7 @@ const currentPage = () => {
 
   else if (isPage('TWO') || isPage('THREE')) {
     return <div config={readRfid}>
-        <h1 id="rfid-feedback" className="title is-1 invis">Words Words Words</h1>
+        <h1 id="rfid-feedback" className="mixtape-prompt invis">SCAN YOUR MIXTAPE!</h1>
         <Selection />
       </div>;
   }
@@ -92,18 +113,21 @@ const view = () =>
   <html>
     <Head />
     <body>
-    <div className="fullscreen-bg">
-      <video loop muted autoplay className="fullscreen-bg__video">
-          <source src="assets/video/elvis.mp4" type="video/mp4" />
-      </video>
-    </div>
-      <div id="projector is-fullheight">
-          <h1 className={titleClass()}>{vm.bandName()}</h1>
-          {currentPage(vm.page())}
-          <a className="bottom-button" onclick={trans[vm.page()]}>
-            ROCK OUT <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
-          </a>
+      <div className="fullscreen-bg">
+        <video loop muted autoplay className="fullscreen-bg__video">
+            <source src="assets/video/concert_crowd.mp4" type="video/mp4" />
+        </video>
       </div>
+      <div id="projector">
+        <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
+          <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
+        </div>
+        <h1 className={titleClass()}>{vm.bandName()}</h1>
+        {currentPage(vm.page())}
+      </div>
+      <a className="bottom-button" onclick={trans[vm.page()]}>
+        <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+      </a>
     </body>
   </html>;
 

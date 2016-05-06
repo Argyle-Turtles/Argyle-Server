@@ -40,9 +40,6 @@ const artistInfo = (name, genre) =>
 
 const front = (artist, id) =>
   <div id={`front-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip(id)}>
-      flip
-    </div>
     {img(artist.img)}
     <div className="card-content song-card-name">
       {artistInfo(artist.name, artist.genre)}
@@ -51,9 +48,6 @@ const front = (artist, id) =>
 
 const back = (artist, id) =>
   <div id={`back-${id}`} className="card card-width">
-    <div className="flip-button" onclick={triggerFlip(id)}>
-      flip
-    </div>
     <div className="card-content song-card-name">
       {artistInfo(artist.name, artist.genre)}
     </div>

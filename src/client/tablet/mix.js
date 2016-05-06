@@ -6,7 +6,7 @@ import Promise from 'bluebird';
 import {Head, Spotify, SongPreview} from '../components';
 
 import {getUserSongsByUsercode} from '../socket/RestRequests';
-import {getDataFromURIS} from '../songData';
+import {getDataFromURIS} from '../SongData';
 
 import Graph from './components/graph';
 import EndCard from './components/EndCard';
@@ -49,7 +49,7 @@ const unselectedCard = i =>
     <PreviewCard />
   </div>;
 
-const getLuv = () => 
+const getLuv = () =>
   vm.needsSongs() && getUserSongsByUsercode(m.route.param('usercode'))
   .then(resp => {
     vm.songDataArray = getDataFromURIS(resp);
@@ -75,7 +75,7 @@ const view = () =>
         <div className="bannerText">
             <div className="backButton" onclick={function(){location.search = "/tablet/"}}>
               <img className="backArrow" src="../../src/client/tablet/assets/back_arrow_white.png" height="35" width="35"/>
-              Back 
+              Back
             </div>
           <div className="bannerTitle"> Mita-{m.route.param("usercode")}</div>
         </div>
