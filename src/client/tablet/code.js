@@ -10,7 +10,9 @@ const view = () =>
 		<Head />
 		<body>
 			<div className='banner'>
-            	<div className="bannerTitle">Enter your code</div>
+                <div className="bannerText">
+            	   <div className="bannerTitle">Enter your code</div>
+                </div>
                 <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
             </div>
             <div class="conent">
@@ -18,25 +20,44 @@ const view = () =>
                 	<div className="contentDesc">Enter the code from the sticker on your cassette in order to access your newly-created playlist!</div>
                     <div className="contentInput">
                     	<input
+                            className="codeInput"
                             id="userCode"
                     		type="text"
                             placeholder="Code"
                             maxlength="4"
                          />
                     	<br/>
-                        <div>Confirmed!</div>
                     </div>
-                    <div className="contentButton">
-                    	<input
-                    		className="button is-medium container"
+                    <div className="contentCodeButton"
+                        config={function () {
+                            document.getElementById("userCode").onkeypress = function(){
+                                fourDigetCode = document.getElementById("userCode").value;
+                                if(fourDigetCode.length >= 3){
+                                    document.querySelector(".firstButton").style.opacity = 1;
+                                }
+                                else{
+                                    document.querySelector(".firstButton").style.opacity = .25; 
+                                }
+                            }
+                        }}
+
+                    >
+                    	<div
                             id="endButton"
+                            className = "firstButton"
                     		type="button"
                     		onclick={function(){
                                 fourDigetCode = document.getElementById("userCode").value;
-                                location.search = "/tablet/mix/"+fourDigetCode+"";
+                                if(fourDigetCode.length == 4){
+                                    location.search = "/tablet/mix/"+fourDigetCode+"";
+                                }
+                                else{
+                                    alert('put in a code ya twat');
+                                }
                             }}
-
-                    		value="Rock On!" />
+                    	>
+                        <div>Rock On!</div>
+                        </div>
                     </div>
                 </div>
             </div>

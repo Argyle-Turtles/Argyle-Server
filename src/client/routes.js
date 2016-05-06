@@ -8,6 +8,7 @@ import one from './tablet/one';
 import two from './tablet/two';
 import three from './tablet/three';
 import four from './tablet/four';
+import five from './tablet/five';
 
 import socket from './socket/SocketListener';
 import home from './home';
@@ -17,10 +18,11 @@ export default {
   '/': home,
   '/tablet/': code,
   '/tablet/mix/:usercode': mix,
-  '/tablet/one': one,
-  '/tablet/two': two,
-  '/tablet/three': three,
-  '/tablet/four': four,
+  '/tablet/one/:usercode': one,
+  '/tablet/two/:usercode': two,
+  '/tablet/three/:usercode': three,
+  '/tablet/four/:usercode': four,
+  '/tablet/five/:usercode':five,
   '/projector/': projector.start,
   '/socket/': socket,
   '/soundStation/': station.pageOne,

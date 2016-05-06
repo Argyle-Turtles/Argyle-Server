@@ -15,10 +15,87 @@ import { selectCard, deselectCard} from '../projector/animations';
 
 import d3 from 'd3';
 
+const allData = [
+  {
+    album: 'We Like it Here',
+    name: 'Shofukan',
+    year: '2014',
+    length: '6:33',
+    description: 'This is some smooth funkalucious stuff right here',
+    uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 1
+  },
+  {
+    album: 'We Like it Here',
+    name: 'What About Me?',
+    year: '2014',
+    length: '6:43',
+    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
+    uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 4,
+  },
+  {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some funktastic sounds',
+    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 8,
+  },
+  {
+    album: 'We Like it Here',
+    name: 'Shofukan',
+    year: '2014',
+    length: '6:33',
+    description: 'This is some smooth funkalucious stuff right here',
+    uri: 'spotify:track:5v0Q1mWIWd5XYtto97VUZy',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 1
+  },
+  {
+    album: 'We Like it Here',
+    name: 'What About Me?',
+    year: '2014',
+    length: '6:43',
+    description: 'Trey loves this fuckadelic stuff, he tells his grandma about it every sunday',
+    uri: 'spotify:track:4YpXSKVrp8jhI7EAPV1xpF',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 4,
+  },
+  {
+    album: 'We Like it Here',
+    name: 'Tia Macaco',
+    year: '2014',
+    length: '5:44',
+    description: 'Bring it home with some funktastic sounds',
+    uri: 'spotify:track:7DsEr8IEmhZYgAaHHwELwa',
+    img: 'https://i.scdn.co/image/4055864422be38c33908e67c366b7c1608da7693',
+    artist: 'Peter',
+    genre: 'Alternative, maybe',
+    decade: 8,
+  },
+  ];
+
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.songCards = m.prop([]);
+    //vm.songCards = m.prop([]);
+    const arr = [true,false,false,false,false,false];
+    vm.songCards = m.prop(R.zip(allData,arr));
     vm.graphData = m.prop([]);
     vm.circleRadius = m.prop([]);
     vm.songDataArray = [];
@@ -27,9 +104,11 @@ const vm = {
 };
 
 const select = i => {
-  const arr = R.repeat(false, vm.songDataArray.length);
+ //const arr = R.repeat(false, vm.songDataArray.length);
+ const arr = [false,false,false,false,false,false];
   arr[i] = true;
-  vm.songCards(R.zip(vm.songDataArray, arr));
+  //vm.songCards(R.zip(vm.songDataArray, arr));
+  vm.songCards(R.zip(allData,arr));
 };
 
 const selectedCard = data =>
@@ -49,7 +128,7 @@ const unselectedCard = i =>
     <PreviewCard />
   </div>;
 
-const getLuv = () =>
+const getLuv = () => 
   vm.needsSongs() && getUserSongsByUsercode(m.route.param('usercode'))
   .then(resp => {
     vm.songDataArray = getDataFromURIS(resp);
@@ -69,12 +148,14 @@ const view = () =>
 	<html className="endKiosk">
 		<Head />
 		<body>
-			<div className="banner" config={getLuv}>
-        <div
-        className="backButton"
-        onclick={function(){location.search = "/tablet/mix"}}>
-        Back </div>
-        <div className="bannerTitle"> Mixy Tape</div>
+			<div className="banner" /*config={getLuv}*/>
+        <div className="bannerText">
+            <div className="backButton" onclick={function(){location.search = "/tablet/"}}>
+              <img className="backArrow" src="../../src/client/tablet/assets/back_arrow_white.png" height="35" width="35"/>
+              Back 
+            </div>
+          <div className="bannerTitle"> Mita-{m.route.param("usercode")}</div>
+        </div>
       </div>
 			<div className = "content">
 				<div className='graphSpace'
@@ -104,13 +185,12 @@ const view = () =>
             </div>
         </div>
         <SongPreview />
-				<input
-					className="button is-medium container"
-					type="button"
-          value="Finalize" />
+  				<div id="endButton" onclick={function(){location.search = "/tablet/one/"+m.route.param("usercode")+""}} type="button">
+            Finalize!!
           </div>
-      </body>
-    </html>;
+    </div>
+  </body>
+</html>;
 
 const controller = () => {
   vm.init();
