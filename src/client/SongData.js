@@ -217,6 +217,7 @@ const allData = [
     img:'https://i.scdn.co/image/753d9208d21d332eea5673102a15266c2f08a884',
     decade: '',
     genre: 'Folk'
+   },
    {
     album:'The Best of Don McLean',
     name:"American Pie",
