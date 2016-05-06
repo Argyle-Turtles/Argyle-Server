@@ -15,7 +15,7 @@
 	
 	function getCode() {
 		if(document.getElementById("codeInput").value != "") {
-			var win = window.open("http://mixta.rocks/mix/" + document.getElementById("codeInput").value, "_blank");
+			var win = window.open("http://mixta.rocks/mix/" + document.getElementById("codeInput").value.toUpperCase(), "_blank");
 			if(win) {
    				win.focus();
     		}
