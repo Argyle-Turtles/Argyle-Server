@@ -11,7 +11,10 @@
 	<script>
 	function getCode() {
 		if(document.getElementById("codeInput").value != "") {
-			window.location.href="http://mixta.herokuapp.com/" + document.getElementById("codeInput").value;
+			var win = window.open("http://mixta.rocks/mix/" + document.getElementById("codeInput").value, "_blank");
+			if(win) {
+   				win.focus();
+    		}
 		}
 	}
 	
@@ -85,7 +88,7 @@
 					</tr>
 					<tr>
 					<td>
-						<p style="padding-top:40px;"> Enter your 4-digit code below to... <p>
+						<p style="padding-top:40px;">Enter your 4-digit code from the Imagine RIT event to see your playlist.<p>
 					</td>
 					</tr>
 					<tr>
