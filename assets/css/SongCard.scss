@@ -73,11 +73,16 @@
 }
 
 .preview-control {
+  display: none;
+  opacity: 0.5;
   position: absolute;
   width: 100%;
   top: 28%;
   left: 25%;
   z-index: 10;
+  &:active {
+    opacity: 1;
+  }
   .preview-control-play {
     width: 26%;
     position: absolute;

@@ -51,7 +51,12 @@ export const selectCard = id => () => {
       translateY: -50,
     },
     500
-  );
+  )
+  .then(() => {
+    const ctrl = document.querySelector(`#preview-control-${id}`);
+    if (ctrl) ctrl.style.display = 'block';
+  });
+
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));
@@ -67,7 +72,12 @@ export const deselectCard = id => () => {
       translateY: 0,
     },
     500
-  );
+  )
+  .then(() => {
+    const ctrl = document.querySelector(`#preview-control-${id}`);
+    if (ctrl) ctrl.style.display = 'none';
+  });
+
   changeSize(document.querySelector(`#flip-box-${id}`));
   changeSize(document.querySelector(`#front-${id}`));
   changeSize(document.querySelector(`#back-${id}`));

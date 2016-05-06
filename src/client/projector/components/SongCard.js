@@ -75,7 +75,6 @@ const playPreview = (id, preview) => {
   const playingArray = vm.playing();
   playingArray[id] = true;
   vm.playing(playingArray);
-  console.log(':P');
 };
 
 const pausePreview = (id, preview) => {

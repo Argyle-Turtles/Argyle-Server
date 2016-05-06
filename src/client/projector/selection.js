@@ -94,6 +94,9 @@ const vm = {
 
 const pickACard = id => () => {
   [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
+
+  Spotify.getSongPreview(songData[id].uri.split(':')[2])
+  .then(track => SongPreview.setAudioSource(track));
 };
 
 // VIEWS
