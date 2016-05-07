@@ -34,17 +34,17 @@ const view = (ctrl, args) =>
       <div className="column is-2 is-text-left is-offset-3">
         <hr />
         <p>origin</p>
-        <p>Los Angeles, California</p>
+        <p>{args.origin}</p>
       </div>
       <div className="column is-2 is-text-left">
         <hr />
         <p>Heyday</p>
-        <p>1967-1987</p>
+        <p>{args.heyday}</p>
       </div>
       <div className="column is-2 is-text-left">
         <hr />
         <p>Inducted into the Hall</p>
-        <p>1987</p>
+        <p>{args.inducted}</p>
       </div>
     </div>
   </div>;

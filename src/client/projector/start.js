@@ -14,18 +14,39 @@ import BandInfo from './components/BandInfo';
 import Selection from './selection';
 import Suggestion from './suggestions';
 
-// VIEW MODEL
-const vm = {
-  init: () => {
-    vm.bandName = prop('RED HOT CHILI PEPPERS');
-    vm.primaryGenre = prop('Rock');
-    vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
-    vm.page = prop('ONE');
+const artists = {
+  peppers: {
+    name: 'RED HOT CHILI PEPPERS',
+    genre: 'Rock',
+    subGenres: ['Funk Rock', 'Alt Rock', 'Funk Metal'],
+    origin: 'Los Angeles, California',
+    heyday: '1967-1987',
+    inducted: '1987',
+  },
+  elvis: {
+    name: 'ELVIS PRESLEY',
+    genre: 'Rock',
+    subGenres: ['Funk Rock', 'Alt Rock', 'Funk Metal'],
+    origin: 'Nashville, California',
+    heyday: '1967-1987',
+    inducted: '1987',
   },
 };
 
-const flipMain = () =>
-  Velocity(document.querySelector('.flip-180'), { rotateY: 180 }, 0);
+// VIEW MODEL
+const vm = {
+  init: () => {
+    const pageArtist = artists[m.route.param('case')];
+    console.log(pageArtist);
+    vm.bandName = prop(pageArtist.name);
+    vm.primaryGenre = prop(pageArtist.genre);
+    vm.subGenres = prop(pageArtist.subGenres);
+    vm.origin = prop(pageArtist.origin);
+    vm.inducted = prop(pageArtist.inducted);
+    vm.heyday = prop(pageArtist.heyday);
+    vm.page = prop('ONE');
+  },
+};
 
 const isPage = page => vm.page() === page;
 
@@ -42,7 +63,6 @@ const trans = {
     .then(() => {
       vm.page('THREE');
       m.redraw();
-      console.log(Selection.selectedSongs())
       if (Selection.selectedSongs().length <= 0) {
         trans.THREE();
       }
@@ -63,7 +83,7 @@ const trans = {
 };
 
 const backTrans = {
-  ONE: () => console.log(':P'), // not this one
+  ONE: () => null, // not this one
   TWO: () =>
     reversePageTwo()
     .then(() => {
@@ -77,7 +97,7 @@ const backTrans = {
       vm.page('TWO');
       m.redraw();
     }),
-  FOUR: () => console.log(':P'), // not this one
+  FOUR: () => null, // not this one
 };
 
 const readRfid = () =>
@@ -93,7 +113,10 @@ const currentPage = () => {
     return <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
-            subGenres={vm.subGenres()}/>;
+            subGenres={vm.subGenres()}
+            origin={vm.origin()}
+            inducted={vm.inducted()}
+            heyday={vm.heyday()}/>;
   }
 
   else if (isPage('TWO') || isPage('THREE')) {
@@ -132,13 +155,17 @@ const view = () =>
   </html>;
 
 // SOME HACKY BULLSHIT
-// top left coords 1320 100
-// bot right 240 876
+
+// x: 66, y: -397 ---------- x: 1499, y: -327
+
+// ---------- y: 764
 
 const touchScreen = ({ x, y }) => {
   const clickSpot = document.elementFromPoint(
-    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
-    (y - 100) / 776 * window.innerHeight);
+    window.innerWidth - ((x - 66) / 1433 * window.innerWidth),
+    (y + 300) / 1091 * window.innerHeight);
+    console.log(clickSpot);
+    // console.log('click', `x: ${x}, y: ${y}`);
   return clickSpot && clickSpot.click();
 };
 

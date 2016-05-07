@@ -3,6 +3,8 @@ import Leap from 'leapjs';
 import { find, propEq, allPass } from 'ramda';
 
 const mmToPx = val => val * 3.779528;
+let limit = 0;
+let lastTime = 0;
 
 export const Screen = function (x, y, width, height) {
   this.x = x;
@@ -27,7 +29,8 @@ const halfHeight = 139.7;
 const halfWidth = 190.5;
 const below = 50.8;
 
-const breakPlane = finger => (finger.extended && finger.dipPosition[2] < -35);
+const breakPlane = finger =>(finger.extended && finger.dipPosition[2] < -50);
+
 const xBound = x => (Math.abs(x) < halfWidth);
 const yBound = y => (y - below < halfHeight * 2);
 
@@ -43,10 +46,19 @@ const isTouch = finger => allPass([breakPlane, inBounds])(finger);
 export const init = (touchHandler, moveHandler) => {
   try {
     Leap.loop({
-      hand: ({ fingers }) => {
-        console.log('gotcha!');
+      hand: ({ fingers, frame }) => {
         const f = getIndexFinger(fingers);
-        return isTouch(f) ? touchHandler(getScreenPos(f)) : moveHandler(getScreenPos(f));
+        if (isTouch(f) && limit <= 0) {
+          limit = 500000;
+          touchHandler(getScreenPos(f));
+        }
+        else {
+          // currentTime -= timestamp;
+          const dt = lastTime - frame.timestamp;
+          lastTime = frame.timestamp;
+          limit += dt;
+          moveHandler(getScreenPos(f));
+        }
       },
     });
   }
