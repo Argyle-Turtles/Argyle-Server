@@ -22,6 +22,7 @@ const artists = {
     origin: 'Los Angeles, California',
     heyday: '1967-1987',
     inducted: '1987',
+    video: 'assets/video/concert_crowd.mp4',
   },
   elvis: {
     name: 'ELVIS PRESLEY',
@@ -30,6 +31,7 @@ const artists = {
     origin: 'Nashville, California',
     heyday: '1967-1987',
     inducted: '1987',
+    video: 'assets/video/elvis.mp4',
   },
 };
 
@@ -37,7 +39,7 @@ const artists = {
 const vm = {
   init: () => {
     const pageArtist = artists[m.route.param('case')];
-    console.log(pageArtist);
+
     vm.bandName = prop(pageArtist.name);
     vm.primaryGenre = prop(pageArtist.genre);
     vm.subGenres = prop(pageArtist.subGenres);
@@ -138,7 +140,7 @@ const view = () =>
     <body>
       <div className="fullscreen-bg">
         <video loop muted autoplay className="fullscreen-bg__video">
-            <source src="assets/video/concert_crowd.mp4" type="video/mp4" />
+            <source src={artists[m.route.param('case')].video} type="video/mp4" />
         </video>
       </div>
       <div id="projector">
