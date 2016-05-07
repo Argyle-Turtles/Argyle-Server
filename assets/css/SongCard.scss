@@ -118,6 +118,36 @@
   }
 }
 
+
+.preview-control2 {
+  opacity: 0.3;
+  position: absolute;
+  width: 50%;
+  top: 68%;
+  left: 5%;
+  z-index: 10;
+  &:active {
+    opacity: 1;
+  }
+  .preview-control-play {
+    width: 26%;
+    position: absolute;
+    margin-top: 7%;
+    left: 16%;
+  }
+  .preview-control-pause {
+    width: 22%;
+    position: absolute;
+    margin-top: 8%;
+    left: 15%;
+  }
+  .preview-control-dot {
+    width: 50%;
+    position: absolute;
+    left: 0px;
+  }
+}
+
 // smaller card is 60% of large card
 .song-card-info {
   height: 300px; // should be 429

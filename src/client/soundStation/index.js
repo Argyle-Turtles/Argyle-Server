@@ -3,7 +3,7 @@ import m from 'mithril';
 import R from 'ramda'
 
 import {Head, Spotify, SongPreview} from '../components';
-import SongCard from './components/songCard';
+import SongCard from './components/songCard2';
 import { addSongToUser } from '../socket/RestRequests';
 import RFID from '../rfid';
 // vars
@@ -261,13 +261,24 @@ const songs = [
 const addSongToPlaylist = (id) =>
  cardSelect(id);
 
+
+const pickACard = id => () => {
+
+  
+    Spotify.getSongPreview(songs[id].uri.split(':')[2])
+    .then(track => SongPreview.setAudioSource(track));
+  
+};
 // views
 const createCard = (data, id) =>
-  <div id={`card-${id}`} className="song-card2">
+  <div id={`card-${id}`} className="song-card2" onclick={pickACard(id)}>
     <SongCard
       song={data}
       cardId={id}
-      addSong={addSongToPlaylist}/>
+      addSong={addSongToPlaylist}
+      removeSong={addSongToPlaylist}
+      preview={SongPreview}
+  />
   </div>;
 
 
@@ -283,7 +294,7 @@ export const pageOne = {
            Continue
           </a>
       <div style="margin-top:100px;margin-right:150px;margin-left:150px; background-color:black;">
-
+        <SongPreview />
       <div className="card-holder" style = "float:right">
         {
           songs.map(
@@ -311,9 +322,9 @@ export const pageTwo = {
       RFID.init((idNum) =>
         addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))   
         )
-      
     }>
     Scan Casette</h2>
+    <button onclick={check}>Check Songs</button>
     </body>
   </html>,
 
@@ -333,6 +344,10 @@ export const pageThree = {
 
 function moveOver(){
   location.search="/soundStation/three";
+}
+
+function check(){
+  console.log(songs[0].name);
 }
 
 
