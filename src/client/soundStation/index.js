@@ -320,12 +320,13 @@ export const pageTwo = {
     className="pg1-title"
     config={
       RFID.init((idNum) =>
-        addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))   
+        addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))
+          .then(moveOver)   
         )
     }>
     Scan Casette</h2>
-    <button onclick={check}>Check Songs</button>
-    </body>
+
+        </body>
   </html>,
 
 };
@@ -335,7 +336,8 @@ export const pageThree = {
     <html style = "background-color:#222">
     <Head />
       <body>
-      <h1 className = "pg1-title">Rock On!</h1>
+      <h1 id = "titl" className = "pg1-title">Rock On!</h1>
+        <a onclick={moveOver2}>Finish</a>
       </body>
 
 
@@ -344,6 +346,10 @@ export const pageThree = {
 
 function moveOver(){
   location.search="/soundStation/three";
+}
+
+function moveOver2(){
+  location.search="/soundStation/";
 }
 
 function check(){
@@ -356,6 +362,9 @@ function cardSelect(cardnum) {
   songs[x].selected = !(songs[x].selected);
   console.log(songs[x].name+ ", " + songs[x].selected);
 }
+
+
+
 
 
 export default {
