@@ -3,16 +3,25 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Mixta</title>
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
-	<script src="js/jquery-2.1.1.js"></script>
-	<script src="js/main.js"></script>
+	<link rel="stylesheet" href="/homepage/css/reset.css">
+	<link rel="stylesheet" href="/homepage/css/style.css">
+	<script src="/homepage/js/jquery-2.1.1.js"></script>
+	<script src="/homepage/js/main.js"></script>
 
 	<script>
+	function getCode() {
+		if(document.getElementById("codeInput").value != "") {
+			var win = window.open("http://mixta.rocks/mix/" + document.getElementById("codeInput").value.toUpperCase(), "_blank");
+			if(win) {
+   				win.focus();
+    		}
+		}
+	}
+	
 	$(document).ready(function() {
 		$("li a").click(function(e) {
 			e.preventDefault();
-		
+
         	if($(this).attr('id') == 'HomeMenu') {
         		$('html, body').animate({scrollTop: $(document.getElementById("HomeArea")).offset().top}, 1000);
         	}
@@ -29,16 +38,27 @@
         		$('html, body').animate({scrollTop: $(document.getElementById("AboutArea")).offset().top}, 1000);
         	}
     	});
+    	
+    	$('.codeInput').keypress(function(key) {
+			if((key.charCode < 97 || key.charCode > 122) && (key.charCode < 65 || key.charCode > 90)) {
+				return false;
+			}
+		});
+		
+		$(".codeInput").keyup(function (e) {
+    		if (e.keyCode == 13) {
+        		getCode();
+    		}
+		});	
 	});
 	</script>
 </head>
 <body>
 
-	<img src="media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
-	
+	<img src="/homepage/media/hamburger.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;">
 	<nav>
 		<ul class="cd-primary-nav">
-			<li><img src="media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
+			<li><img src="/homepage/media/hamburgerWhite.png" class="cd-primary-nav-trigger" alt="Menu Trigger" style="cursor:pointer;"></li>
 			<br>
 			<br>
 			<li><a href="#" id="HomeMenu"><div id="MenuLink">Mixta</div></a></li>
@@ -48,15 +68,15 @@
 			<li><a href="#" id="AboutMenu"><div id="MenuLink">The Team</div></a></li>
 		</ul>
 	</nav>
-	
+
 	<div id="HomeArea">
-		<div id="HomeContent" style="background-image:url('media/home_bg.png'); background-position: bottom;">
+		<div id="HomeContent" style="background-image:url('/homepage/media/home_bg.png'); background-position: bottom;">
 			<div id="HomeInner">
-				<img src="media/home_text.png" alt="Mixta" style="width:100vh; height:77vh; max-width:721px; max-height:556px; margin-left:auto; margin-right:auto;">
+				<img src="/homepage/media/home_text.png" alt="Mixta" style="width:100vh; height:77vh; max-width:721px; max-height:556px; margin-left:auto; margin-right:auto;">
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="SolutionArea">
 		<div id="SolutionContent">
 			<div id="SolutionInner">
@@ -69,23 +89,34 @@
 					<tr>
 					<td>
 						<!-- <iframe src="https://www.youtube.com/embed/4U4oItOeeL4" frameborder="0" allowfullscreen></iframe> -->
-						<img src="media/video_placeholder.png" alt="Video Coming Soon" style="width:50vw; height:28vw; max-width:800px; max-height:450px;">
+						<img src="/homepage/media/video_placeholder.png" alt="Video Coming Soon" style="width:50vw; height:28vw; max-width:800px; max-height:450px;">
+					</td>
+					</tr>
+					<tr>
+					<td>
+						<p style="padding-top:40px;">Enter your 4-digit code from the Imagine RIT event to see your playlist.<p>
+					</td>
+					</tr>
+					<tr>
+					<td>
+						<input type="text" id="codeInput" class="codeInput" placeholder="Code" maxlength="4" style="text-transform:uppercase; vertical-align:bottom; margin-bottom: 2px;">
+						<button onclick="getCode()" style="cursor:pointer; margin-top:40px; margin-left:40px;">Go</button>
 					</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="WhatArea">
 		<div id="WhatContent">
 			<div id="WhatInner">
 				<h3>3 Pillars</h3>
 				<table class="WhatTable" border="0" style="margin-left:auto; margin-right:auto; text-align:left; margin-top:144px;">
 					<tr style="text-align:center;">
-					<td><img src="media/connections.png" alt="Connections" style="width:45px; height:75px;"></td>
-					<td><img src="media/tour.png" alt="Tour" style="width:75px; height:75px;"></td>
-					<td><img src="media/takeaway.png" alt="Take Away" style="width:78px; height:75px;"></td>
+					<td><img src="/homepage/media/connections.png" alt="Connections" style="width:45px; height:75px;"></td>
+					<td><img src="/homepage/media/tour.png" alt="Tour" style="width:75px; height:75px;"></td>
+					<td><img src="/homepage/media/takeaway.png" alt="Take Away" style="width:78px; height:75px;"></td>
 					</tr>
 					<tr style="text-align:center;">
 					<td style="padding-top:40px;"><h2>Connections</h2></td>
@@ -101,13 +132,13 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="ProblemArea">
 		<div id="ProblemContent">
 			<div id="ProblemInner">
 				<table border="0" style="margin-left:auto; margin-right:auto;">
 					<tr>
-					<td style="background-color:#000000; background-image:url('media/rock1mobile.png'); background-position:center; color:white; width:100vw; padding-top:40px; padding-bottom:40px;">
+					<td style="background-color:#000000; background-image:url('/homepage/media/rock1mobile.png'); background-position:center; color:white; width:100vw; padding-top:40px; padding-bottom:40px;">
 						<h3><span style="color:#b82928">/</span> Our Mission</h3>
 						<h2 style="padding-top:40px;">Let's Break it down</h2>
 						<br>
@@ -119,11 +150,11 @@
 						<br>
 						<br>
 						<br>
-						<a href="media/mixta_doc.pdf" target="_blank" class="button">View Deck</a>
+						<a href="/homepage/media/mixta_doc.pdf" target="_blank" class="button">View Deck</a>
 					</td>
 					</tr>
 					<tr>
-					<td style="background-color: #ffffff; background-image:url('media/rock2mobile.png'); background-position:center; width:100vw; padding-top:40px; padding-bottom:40px;">
+					<td style="background-color: #ffffff; background-image:url('/homepage/media/rock2mobile.png'); background-position:center; width:100vw; padding-top:40px; padding-bottom:40px;">
 						<h3><span style="color:#b82928">/</span> We Overcame</h3>
 						<h2 style="padding-top:40px;">Design Challenges</h2>
 						<br>
@@ -138,7 +169,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<div id="AboutArea">
 		<div id="AboutContent">
 			<div id="AboutInner">
@@ -166,7 +197,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/anthony.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/anthony.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -180,7 +211,7 @@
 								<td>
 								<table style="margin: 0 40px 0 40px;">
 									<tr>
-									<td style="background-image: url('media/hailey.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/hailey.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -194,7 +225,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/melissa.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/melissa.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -216,7 +247,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/nathan.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/nathan.jpg'); width:260px; height:220px; background-size: 260px; background-position:top; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -230,7 +261,7 @@
 								<td>
 								<table style="margin: 40px 40px 40px 40px;">
 									<tr>
-									<td style="background-image: url('media/tim.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/tim.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -244,7 +275,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/aaron.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/aaron.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -266,7 +297,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/joe.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/joe.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -280,7 +311,7 @@
 								<td>
 								<table style="margin: 0 40px 0 40px;">
 									<tr>
-									<td style="background-image: url('media/peter.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/peter.jpg'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -294,7 +325,7 @@
 								<td>
 								<table>
 									<tr>
-									<td style="background-image: url('media/trey.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
+									<td style="background-image: url('/homepage/media/trey.png'); width:260px; height:220px; background-size: 260px; background-position:center; overflow:hidden;"></td>
 									</tr>
 									<tr>
 									<td style="background:#dfdede; width:260px; height:240px; vertical-align:top;">
@@ -316,6 +347,6 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 </html>

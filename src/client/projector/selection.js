@@ -83,7 +83,7 @@ const animateIn = () => {
 
 const animateCardAdd = () => {
   R.map(button => Velocity(button, 'fadeOut', 500),
-    document.querySelectorAll('.song-card-button'));
+    document.querySelectorAll('.song-card-button, .flip-button'));
 
   vm.scanMode = true;
 
@@ -95,7 +95,7 @@ const animateCardAdd = () => {
 
 const reverseAnimateCardAdd = () => {
   R.map(button => Velocity(button, 'fadeIn', 500),
-    document.querySelectorAll('.song-card-button'));
+    document.querySelectorAll('.song-card-button, .flip-button'));
 
   vm.scanMode = false;
 
@@ -133,7 +133,7 @@ const createCard = (data, id) =>
 const view = () =>
     <div id="selection" config={animateIn}>
       <SongPreview />
-      <div className="card-holder">
+      <div className="card-holder selection-holder">
         {
           vm.songCards().map(
           (card, i) => createCard(card, i))

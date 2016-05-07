@@ -6,7 +6,7 @@ const serialize = data => JSON.stringify(data);
 export const getUserSongsByUsercode = usercode =>
   m.request({
     method: 'GET',
-    url: `http://localhost:3000/user/songs/usercode/${usercode}`,
+    url: `/user/songs/usercode/${usercode}`,
   });
 
 export const setPlaylist = (user, uri) =>
@@ -14,7 +14,7 @@ export const setPlaylist = (user, uri) =>
     config,
     serialize,
     method: 'POST',
-    url: 'http://localhost:3000/user/playlist',
+    url: '/user/playlist',
     data: {
       usercode: user,
       playlistURI: uri,
@@ -27,7 +27,7 @@ export const removeSong = (usercode, songs) =>
     config,
     serialize,
     method: 'POST',
-    url: 'http://localhost:3000/user/remove',
+    url: '/user/remove',
     data: {
       usercode,
       songs,
@@ -40,7 +40,7 @@ export const createUser = (usercode, rfid) =>
     config,
     serialize,
     method: 'POST',
-    url: 'http://localhost:3000/user/create',
+    url: '/user/create',
     data: {
       usercode,
       rfid,
@@ -53,7 +53,7 @@ export const addSongToUser = (rfid, songs) =>
     config,
     serialize,
     method: 'POST',
-    url: 'http://localhost:3000/user/add',
+    url: '/user/add',
     data: {
       rfid,
       songs,

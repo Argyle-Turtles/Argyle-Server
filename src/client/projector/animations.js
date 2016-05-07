@@ -163,6 +163,7 @@ export const transition1 = () =>
   Promise.all([
     BandInfo.animate(),
     animateTitle(),
+    fadeToText('#next-button-text', 'NEXT'),
     Velocity(document.querySelector('#back-button'), { opacity: 1 }, 200),
   ]);
 
@@ -190,6 +191,8 @@ export const transition2 = () =>
   Promise.all([
     Selection.animateCardAdd(),
     hideNextButton(),
+    fadeToText('.bottom-button', 'FINISH'),
+    fadeOutElement('#back-button'),
   ]);
 
 export const transition3 = () =>

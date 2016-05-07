@@ -4,7 +4,7 @@ import { Head, Spotify } from './components';
 const view = () =>
   <html>
     <Head />
-    <body config={Spotify.getAuthorization}>
+    <body>
       <a className="button is-medium" href ="/homepage">
         Homepage
       </a>
