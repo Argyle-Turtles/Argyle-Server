@@ -50,8 +50,8 @@
 	font-size: 26pt;
 	color: #eeeeee;
 	margin-bottom: 50px;
-	margin-left: 15x;
-	margin-right: 15px;
+	margin-left: 35px;
+	margin-right: 35px;
 }
 
 #black{
@@ -78,8 +78,6 @@
 /*banner stuff*/
 
 .banner{
-	background-size: 399px;
-	background-image: url("../../src/client/tablet/assets/stardust_@2X.png");
 	height: 392px;
 	margin-left: -25px;
 	margin-right: -25px;
@@ -105,7 +103,7 @@
 }
 
 .imgAsset{
-	margin-top: 198.5px;
+	margin-top: 98.5px;
 }
 
 
@@ -238,4 +236,16 @@ input:focus {
 
 .firstButton {
 	opacity: .25;
+}
+
+/* image shit */
+
+.ppbg {
+  height: 25%;
+
+}
+
+.playButton{
+  height: 20%;
+  margin-top: 8.5px;
 }

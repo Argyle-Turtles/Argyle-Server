@@ -1,0 +1,78 @@
+
+
+.end-card-name {
+  min-height: 102px;
+  padding-bottom: 10px !important;
+}
+
+
+.ppbg {
+  height: 100px;
+  width: 100px;
+  left: 50%;
+  top: 50%;
+  margin-left: -50px;
+  margin-top: -50px;
+
+
+}
+
+.arrowBg{
+  height: 50px;
+  width: 50px; 
+  left: 100%;
+  margin-left: -50px;
+  top: 0%;
+  margin-top: -8px;
+
+}
+
+.arrowButton{
+  height: 30px;
+  width:30px; 
+  left: 100%;
+  margin-left: -35px;
+  top: 0%;
+  margin-top: -6px;
+}
+
+.playButton{
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -35px;
+  margin-top: -40px;
+}
+
+.pauseButton{
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+}
+
+/* container for images*/
+.end-card-image{
+  position: relative;
+  max-width: 300px;
+  max-height: 340px;
+}
+
+#endImg{
+  position:absolute;
+  
+}
+
+.end-card{
+ 
+  width: 216.5px;
+  background: white;
+}
+
+.end-card-title{
+  font-size: 12pt;
+}
+

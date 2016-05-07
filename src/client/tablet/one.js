@@ -4,14 +4,28 @@ import {Head} from '../components';
 
 import Circle from './components/circles';
 
+import Hammer from "hammerjs";
+
+import Velocity from 'velocity-animate';
+
+import funimations from './endAnimations';
+
 const vm = {
   init: () => {
     vm.circleFill = ["#eeeeee","transparent","transparent","transparent"];
   },
 };
 
+
 const view = () =>
-	<html className="endKiosk">
+	<html className="endKiosk" config={function(){
+        funimations.fadeIn();
+        const element = document.querySelector(".endKiosk");
+        const hammerTime = new Hammer(element).on("swipeleft", function(e){
+            funimations.fadeOut("two");
+            //location.search = "/tablet/two/"+m.route.param("usercode")+"";
+        });
+    }}>
 		<Head />
 		<body>
 			<div className="swipes">
@@ -23,7 +37,7 @@ const view = () =>
                         </div>
                         <div className="bannerTitle"> Mita-{m.route.param("usercode")}</div>
                     </div>
-                     <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
+                     <img className="imgAsset" src="../../../assets/img/1.png" width="325" height="275"></img>
             	</div>
             	<div class="conent">
                     <div className="contentText">
@@ -37,11 +51,7 @@ const view = () =>
                                 <div className="lowOpacity">
                                     <div
                                         id="endButton"
-                                        type="button"
-                                        onclick={function(){
-                                            location.search = "/tablet/two/"+m.route.param("usercode")+"";
-                                        }}
-                                    >
+                                        type="button">
                                         <div>Finish Tour</div>
                                     </div>
                                 </div>

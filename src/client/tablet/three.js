@@ -4,6 +4,8 @@ import {Head} from '../components';
 
 import Circle from './components/circles';
 
+import funimations from './endAnimations';
+
 const vm = {
   init: () => {
     vm.circleFill = ["transparent","transparent","#eeeeee","transparent"];
@@ -11,7 +13,18 @@ const vm = {
 };
 
 const view = () =>
-    <html className="endKiosk">
+    <html className="endKiosk"config={function(){
+        funimations.fadeIn();
+        const element = document.querySelector(".endKiosk");
+        const hammerTimeLeft = new Hammer(element).on("swipeleft", function(e){
+            //location.search = "/tablet/four/"+m.route.param("usercode")+"";
+            funimations.fadeOut("four");
+        });
+        const hammerTimeRight = new Hammer(element).on("swiperight", function(e){
+            //location.search = "/tablet/two/"+m.route.param("usercode")+"";
+            funimations.fadeOut("two");
+        });
+    }}>
         <Head />
         <body>
             <div className="swipes">
@@ -23,7 +36,7 @@ const view = () =>
                         </div>
                         <div className="bannerTitle"> Mita-{m.route.param("usercode")}</div>
                     </div>
-                     <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
+                     <img className="imgAsset" src="../../../assets/img/3.png" width="325" height="275"></img>
                 </div>
                 <div class="conent">
                     <div className="contentText">
