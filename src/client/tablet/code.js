@@ -29,6 +29,8 @@ const view = () =>
                     		type="text"
                             placeholder="Code"
                             maxlength="4"
+                            onkeydown = "if (event.keyCode == 13)
+                            document.getElementById('endButton').click()" 
                          />
                     	<br/>
                     </div>
