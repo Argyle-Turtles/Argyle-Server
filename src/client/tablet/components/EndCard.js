@@ -56,7 +56,8 @@ const addButton = (uri, id, addSong) =>
 
 const removeButton = (songToRemove) =>
   <a class="card-footer-item song-card-button-link remove-button"
-    onclick={() => removeSong(m.route.param("usercode"),[songToRemove])}>
+    onclick={function(){ removeSong(m.route.param("usercode"),[songToRemove]);
+      location.reload();}}>
     <img className="card-remove-icon" src="assets/img/remove_icon.svg" /> REMOVE
   </a>;
 
@@ -100,29 +101,6 @@ const previewControl = (id, preview) =>
 const img = (url, id, preview, uri) =>
   <div className="card-image">
       <img src={url} />
-      {
-        vm.isPlaying ?
-          <div className="pauseSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
-                SongPreview.pauseAudio();
-                vm.isPlaying = false;
-                
-                });
-             }}>
-            <img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
-              <img id="endImg" className="pauseButton" src="./assets/img/pause.svg"/>
-           </div>
-        : 
-
-           <div className="playSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
-                SongPreview.setAudioSource(resp);
-                SongPreview.playAudio();
-                vm.isPlaying = true;
-                });
-             }}>
-            <img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
-              <img id="endImg" className="playButton" src="./assets/img/play.svg"/>
-           </div> 
-      }
   </div>;
 
 const songTitle = (name, album) =>
