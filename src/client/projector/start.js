@@ -145,6 +145,7 @@ const titleClass = () => 'band-name pg1-title';
 
 const eh = () =>
   <div>
+    <Cursor />
     <div id="projector">
       <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
         <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
@@ -172,23 +173,49 @@ const view = () =>
   </html>;
 
 // SOME HACKY BULLSHIT
+// peppers
+// x: 200, y: -200 ---------- x: 1430, y: -200
+// ---------- y: 820
+const calibrations = {
+  peppers: {
+    dx: 1250,
+    dy: 1040,
+    x: 120,
+    y: -230,
+  },
 
-// x: 66, y: -397 ---------- x: 1499, y: -327
-
-// ---------- y: 764
+  elvis: {
+    dx: 1230,
+    dy: 1020,
+    x: 200,
+    y: -200,
+  },
+};
 
 const touchScreen = ({ x, y }) => {
+  const cali = calibrations[m.route.param('case')];
+
   const clickSpot = document.elementFromPoint(
-    window.innerWidth - ((x - 66) / 1433 * window.innerWidth),
-    (y + 300) / 1091 * window.innerHeight);
+    window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth),
+    (y - cali.y) / cali.dy * window.innerHeight);
     console.log(clickSpot);
+    mvCursor({ x, y });
     // console.log('click', `x: ${x}, y: ${y}`);
   return clickSpot && clickSpot.click();
 };
 
+const mvCursor = ({ x, y }) => {
+  // const cali = calibrations[m.route.param('case')];
+  // const mx = window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth);
+  // const my = (y - cali.y) / cali.dy * window.innerHeight;
+  //
+  // document.querySelector('#cursor').style.top = `${my}px`;
+  // document.querySelector('#cursor').style.left = `${mx}px`;
+};
+
 // CONTROLER
 const controller = () => {
-  leap.init(touchScreen, () => false);
+  leap.init(touchScreen, mvCursor);
   vm.init();
 };
 
