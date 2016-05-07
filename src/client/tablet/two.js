@@ -20,11 +20,11 @@ const view = () =>
         const element = document.querySelector(".endKiosk");
         const hammerTimeLeft = new Hammer(element).on("swipeleft", function(e){
            // location.search = "/tablet/three/"+m.route.param("usercode")+"";
-            funimations.fadeOut("three");
+            funimations.slideOut("three");
         });
         const hammerTimeRight = new Hammer(element).on("swiperight", function(e){
             //location.search = "/tablet/one/"+m.route.param("usercode")+"";
-            funimations.fadeOut("one");
+            funimations.slideIn("one");
         });
     }}>
         <Head />

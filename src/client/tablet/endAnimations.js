@@ -61,14 +61,16 @@ export const slideOut = (route) => {
 export const slideIn = (route) => {
 	console.log("slidesin");
     const element = document.querySelector(".endKiosk");
-    element.style.left = "2000px";
     Velocity.animate(
     element,
     {
-      translateX: "-1000px",
+      translateX: "1000px",
     },
     { duration: 500 }
-	);
+	).then(function(){console.log("resolved");
+    	location.search = "/tablet/"+route+"/"+m.route.param("usercode")+"";
+
+	});
     //Velocity(element, {opacity:1});
 };
 

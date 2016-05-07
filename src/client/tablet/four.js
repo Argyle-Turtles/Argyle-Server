@@ -18,7 +18,7 @@ const view = () =>
         const element = document.querySelector(".endKiosk");
         const hammerTimeRight = new Hammer(element).on("swiperight", function(e){
            // location.search = "/tablet/three/"+m.route.param("usercode")+"";
-           funimations.fadeOut("three");
+           funimations.slideIn("three");
         });
     }}>
         <Head />
