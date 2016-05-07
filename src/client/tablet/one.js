@@ -22,7 +22,8 @@ const view = () =>
         funimations.fadeIn();
         const element = document.querySelector(".endKiosk");
         const hammerTime = new Hammer(element).on("swipeleft", function(e){
-            funimations.fadeOut("two");
+           //funimations.fadeOut("two");
+           funimations.slideOut("two");
             //location.search = "/tablet/two/"+m.route.param("usercode")+"";
         });
     }}>
@@ -31,7 +32,7 @@ const view = () =>
 			<div className="swipes">
 				<div className="banner">
                     <div className="bannerText">
-                        <div className="backButton" onclick={function(){location.search = "/tablet/mix/"+m.route.param("usercode")+""}}>
+                        <div className="backButton" onclick={function(){funimations.fadeOut("mix");}}>
                             <img className="backArrow" src="../../src/client/tablet/assets/back_arrow_white.png" height="35" width="35"/>
                             Back 
                         </div>
