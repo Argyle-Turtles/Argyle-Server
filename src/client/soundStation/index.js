@@ -321,7 +321,6 @@ export const pageTwo = {
     config={
       RFID.init((idNum) =>
         addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))
-          .then(moveOver)   
         )
     }>
     Scan Casette</h2>
@@ -346,6 +345,7 @@ export const pageThree = {
 };
 
 function moveOver(){
+  console.log('hello from move over');
   location.search="/soundStation/three";
 }
 
