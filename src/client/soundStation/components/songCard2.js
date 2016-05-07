@@ -2,7 +2,7 @@ import m from 'mithril';
 import R from 'ramda';
 import Velocity from 'velocity-animate';
 
-import { Spotify } from '../../components';
+import { Spotify,SongPreview } from '../../components';
 
 const vm = {
   init: () => {
@@ -70,22 +70,30 @@ const foot = (uri, id, addSong, removeSong) =>
     {vm.added()[id] ? removeButton(uri, id, removeSong) : addButton(uri, id, addSong)}
   </footer>;
 
-const playPreview = (id, preview) => {
-  preview.playAudio();
-  console.log('hello');
+
+const playPreview = (id, preview, uri) => {
+  pickACard(id)
   const playingArray = vm.playing();
   playingArray[id] = true;
   vm.playing(playingArray);
+  window.setTimeOut(preview.playAudio(),2000);
 };
 
 const pausePreview = (id, preview) => {
+  
   preview.pauseAudio();
   const playingArray = vm.playing();
   playingArray[id] = false;
   vm.playing(playingArray);
+
 };
 
-const previewControl = (id, preview) =>
+const pickACard = (uri) => {
+    SongPreview.setAudioSource(uri);
+  
+};
+
+const previewControl = (id, preview,uri) =>
   <div
     id={`preview-control-${id}`}
     className="preview-control2">
@@ -97,16 +105,16 @@ const previewControl = (id, preview) =>
         className="preview-control-pause"
         src="assets/img/pause.svg"
          /> :
-      <img onclick={() => playPreview(id, preview)}
+      <img onclick={() => playPreview(id, preview,uri)}
         className="preview-control-play"
         src="assets/img/play.svg" />
     }
   </div>;
 
-const img = (url, id, preview) =>
+const img = (url, id, preview, uri) =>
   <div className="card-image">
 
-    {previewControl(id, preview)}
+    {previewControl(id, preview,uri)}
     <figure className="image is-square">
       <img src={url} />
     </figure>
@@ -121,11 +129,11 @@ const songTitle = (name, album, artist) =>
   </div>;
 
 const front = (song, id, addSong, removeSong, preview) =>
-  <div id={`front-${id}`} className="card card-width">
+  <div id={`front-${id}`} className="card card-width2">
     <div className="flip-button" onclick={triggerFlip(id)}>
       <img className="flip-button-arrow" src="assets/img/flip_arrow.svg" />
     </div>
-    {img(song.img, id, preview)}
+    {img(song.img, id, preview, song.songID)}
     <div className="card-content song-card-name">
       {songTitle(song.name, song.album, song.artist)}
     </div>
@@ -137,7 +145,7 @@ const back = (song, id, addSong, removeSong) =>
     <div className="flip-button" onclick={triggerFlip(id)}>
       <img className="flip-button-arrow" src="assets/img/flip_arrow.svg" />
     </div>
-    <div className="card-content song-card-name">
+    <div className="card-content song-card-name2">
       {songTitle(song.name, song.album)}
     </div>
     <div id={`info-${id}`} className="card-content song-card-info">
@@ -148,14 +156,12 @@ const back = (song, id, addSong, removeSong) =>
   </div>;
 
 const view = (_, { song, addSong, removeSong, cardId, preview }) =>
-  <div className="flip-container">
+  <div className="flip-container" width="350px">
     <div id={`flip-box-${cardId}`}
       className="flipper card-width"
       config={handleFlip(cardId)}>
       <div className="face2 front">
-        <div width="300px">
         {front(song, cardId, addSong, removeSong, preview)}
-      </div>
       </div>
        <div className="face back">
         {back(song, cardId, addSong)}
