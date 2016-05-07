@@ -42,28 +42,48 @@ const animateIn = () =>
     );
   });
 
-const artistData = [
-  {
-    name: 'Elvis Presley',
-    genre: 'Rock',
-    img: 'http://placehold.it/433x433',
-  },
-  {
-    name: 'Elvis Presley',
-    genre: 'Rock',
-    img: 'http://placehold.it/433x433',
-  },
-  {
-    name: 'Elvis Presley',
-    genre: 'Rock',
-    img: 'http://placehold.it/433x433',
-  },
-];
+const artistData = {
+  peppers: [
+    {
+      name: 'Elvis Presley',
+      genre: 'Rock',
+      img: 'http://placehold.it/433x433',
+    },
+    {
+      name: 'Nirvana',
+      genre: 'Alternative',
+      img: 'http://placehold.it/433x433',
+    },
+    {
+      name: 'Iron Maiden',
+      genre: 'Metal',
+      img: 'http://placehold.it/433x433',
+    },
+  ],
+
+  elvis: [
+    {
+      name: 'Red Hot Chili Peppers',
+      genre: 'Rock',
+      img: 'http://placehold.it/433x433',
+    },
+    {
+      name: 'Muddy Waters',
+      genre: 'Blues',
+      img: 'http://placehold.it/433x433',
+    },
+    {
+      name: 'Ray Charles',
+      genre: 'R&B/Soul',
+      img: 'http://placehold.it/433x433',
+    },
+  ],
+};
 
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.artistCards = m.prop(artistData);
+    vm.artistCards = m.prop(artistData[m.route.param('case')]);
   },
 };
 
