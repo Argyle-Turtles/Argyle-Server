@@ -21,10 +21,10 @@ const songs = [
     artist:'Death Cab for Cutie',
     year:'2005',
     length:'3:49',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:'Soul Meets Body has "tender, lovelorn lyrics that anyone over the age of ten can relate to coupled with the kind of shimmering indie-pop that a thousand imitators have failed to fully master.',
     uri:'spotify:track:5yc59J3MR3tVDPTOgwgRI5',
     img:'https://i.scdn.co/image/3e5e3d76c8f50393a6494a1c8bea1a01178a8753',
-     selected: false,
+    selected: false,
     genre:'Alternative'
   },
   {
@@ -33,7 +33,7 @@ const songs = [
     artist:'U2',
     year:'2004',
     length:'3:15',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:'"Vertigo" is the opening track and first single from their 2004 album, How to Dismantle an Atomic Bomb. The single was released for airplay on 24 September 2004; upon release the song received extensive airplay and was an international hit, being featured in a popular iPod television advertisement.',
     uri:'spotify:track:57ZXcBtCZXSg9TVV5xRdnR',
     img:'https://i.scdn.co/image/1ba80e91c966d08ba4340b4e9f21c55b064a1e21',
      selected: false,
@@ -45,7 +45,7 @@ const songs = [
     artist:'Rolling Stones',
     year:'1966',
     length:'3:22',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:"Musically inspired by the sitar playing of George Harrison and Harihar Rao, 'Paint It Black', along with the Jagger and Richards-penned 'Mother's Little Helper', was influential in developing the musical styles of psychedelic rock and raga rock.",
     uri:'spotify:track:63T7DJ1AFDD6Bn8VzG6JE8',
     img:'https://i.scdn.co/image/c09585dd1713b35f8e47393d05ced6b9bcd03607',
      selected: false,
@@ -69,7 +69,7 @@ const songs = [
     artist:'Pink Floyd',
     year:'1979',
     length:'3:59',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:"'Another Brick in the Wall' is the title of three songs set to variations of the same basic theme, on Pink Floyd's 1979 rock opera, The Wall.All parts were written by Pink Floyd's bassist, Roger Waters. Part II is a protest song against rigid schooling in general and boarding schools in the UK in particular.",
     uri:'spotify:track:4gMgiXfqyzZLMhsksGmbQV',
     img:'https://i.scdn.co/image/464f49ec36104a5939ea76cf1597a5311d91f602',
      selected: false,
@@ -81,7 +81,7 @@ const songs = [
     artist:'Black Sabbath',
     year:'2005',
     length:'5:55',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:'Upon hearing the main guitar riff for the first time, vocalist Ozzy Osbourne remarked that it sounded "like a big iron bloke walking about". The title became "Iron Man", with Geezer Butler writing the lyrics around the title.',
     uri:'spotify:track:3IOQZRcEkplCXg6LofKqE9',
     img:'https://i.scdn.co/image/851538088475961344e79ae1022d1a0bd0bf53f5',
      selected: false,
@@ -93,7 +93,7 @@ const songs = [
     artist:'Metallica',
     year:'2005',
     length:'3:49',
-    description:'zoopa zoopa pizza peroggi pasta penne',
+    description:"'Enter Sandman' is a song by American heavy metal band Metallica. It was released as the first single from their eponymous fifth album, Metallica in 1991. The music was written by Kirk Hammett, James Hetfield and Lars Ulrich. Vocalist and rhythm guitarist Hetfield wrote the lyrics, which deal with the concept of a child's nightmares.",
     uri:'spotify:track:1hKdDCpiI9mqz1jVHRKG0E',
     img:'https://i.scdn.co/image/400dee6165a81c49b665d18637e3954213679ee8 ',
      selected: false,
@@ -106,7 +106,7 @@ const songs = [
     year:'1982',
     length:'3:49',
     description:'zoopa zoopa pizza peroggi pasta penne',
-    uri:'spotify:track:44AxeBXrK9LQlGjXyT2oZQ',
+    uri:'"Run to the Hills" is a song by the English heavy metal band Iron Maiden. It was released as their sixth single and the first from their third studio album, The Number of the Beast (1982). Credited solely to the bassist, Steve Harris, although significant contributions were made by lead vocalist Bruce Dickinson, it remains one of their most popular songs.',
     img:'https://i.scdn.co/image/84747e43820bec289c0d75a3ae2af776f1897900',
      selected: false,
     genre: 'Metal'
@@ -287,13 +287,13 @@ export const pageOne = {
   view: () =>
     <html style = "background-color:#222;">
     <Head />
-      <body style = "background-color:black;">
-      <h1 className='band-name'>Mixta Soundstation</h1>
-      <a id = "check"    
-      href ="/soundStation/two" config={m.route}>
-           Continue
+      <body>
+      <h1 style="float:left; font-size:100px;margin-left:200px; margin-top:-50px; color:white;font-family:edoregular">Mixta Soundstation</h1>
+      <a   
+      href ="/soundStation/two" config={m.route} style="font-size:50px;margin-right:200px;margin-top:-10px;float:right;color:white;letter-spacing:2px">
+           CONTINUE <img src="../../assets/img/skip_arrow.svg" style="width:100px" />
           </a>
-      <div style="margin-top:100px;margin-right:150px;margin-left:150px; background-color:black;">
+      <div style="margin-top:100px;margin-right:100px;margin-left:100px; background-color:black;">
         <SongPreview />
       <div className="card-holder" style = "float:right">
         {
@@ -325,6 +325,7 @@ export const pageTwo = {
         )
     }>
     Scan Casette</h2>
+    <img src="../../assets/img/tape.png" />
 
         </body>
   </html>,
