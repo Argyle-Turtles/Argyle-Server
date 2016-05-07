@@ -33,7 +33,7 @@ const mid = (year, length) =>
 const removeButton = (songToRemove,id) =>
   <a class="card-footer-item song-card-button-link remove-button"
     onclick={function(){ removeSong(m.route.param("usercode"),[songToRemove]);
-    location.reload();
+    local.reload();
     // funimations.removeCard("#front-"+id);
     }}>
     <img className="card-remove-icon" src="assets/img/remove_icon.svg" /> REMOVE
