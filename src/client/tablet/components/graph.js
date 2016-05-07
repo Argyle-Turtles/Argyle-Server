@@ -12,7 +12,6 @@ let i = -1;
   //no dupicating graphs!
   d3.select("svg").remove();
 
-console.log(graphImg);
 
   //scale from 1 to 8
   const yScale = d3.scale.linear()
@@ -24,7 +23,7 @@ console.log(graphImg);
   //should be length of graph/total songs on playlist
   const xScale = d3.scale.linear()
                           .domain([0, 8])
-                          .range([0, 500]);
+                          .range([0, 700]);
 
   // tick labels
   const ticks = ["10s","00s","90s","80s","70s","60s","50s","40s","30s"];
@@ -35,7 +34,7 @@ console.log(graphImg);
   
 
   //creates axis with y scale
-  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-520).orient("left");
+  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-720).orient("left");
 
   //function to extract data points from the data set
   const lineGen = d3.svg.line()
@@ -64,7 +63,7 @@ console.log(graphImg);
 
 //The SVG Container
 const svgContainer = d3.select(append).append("svg")
-                                    .attr("width", 500)
+                                    .attr("width", 700)
                                     .attr("height", 255);
 
 // add y axis to the graph

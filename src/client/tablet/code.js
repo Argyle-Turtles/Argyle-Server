@@ -3,11 +3,12 @@ import m, { prop } from 'mithril';
 
 import {Head} from '../components';
 
+import funimations from './endAnimations';
+
 let fourDigetCode = "";
 
 const view = () =>
 	<html className="endKiosk" config={function(){
-        document.getElementById(userCode).focus();
 
     }}>
 		<Head />
@@ -28,6 +29,8 @@ const view = () =>
                     		type="text"
                             placeholder="Code"
                             maxlength="4"
+                            onkeydown = "if (event.keyCode == 13)
+                            document.getElementById('endButton').click()" 
                          />
                     	<br/>
                     </div>
@@ -50,13 +53,12 @@ const view = () =>
                             className = "firstButton"
                     		type="button"
                     		onclick={function(){
-                                fourDigetCode = document.getElementById("userCode").value;
+                                const str = document.getElementById("userCode").value;
+                                fourDigetCode = str.toUpperCase();
                                 if(fourDigetCode.length == 4){
-                                    location.search = "/tablet/mix/"+fourDigetCode+"";
+                                    funimations.fadeOutNewRoute("/tablet/mix/"+fourDigetCode+"");
                                 }
-                                else{
-                                    alert('put in a code ya twat');
-                                }
+                            
                             }}
                     	>
                         <div>Rock On!</div>
