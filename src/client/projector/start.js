@@ -80,8 +80,18 @@ const trans = {
   FOUR: () =>
     transition4()
     .then(() => {
-      window.setTimeout(() => window.location.reload(), 2000);
+      window.setTimeout(() => {
+        vm.page('FIVE');
+        m.redraw();
+      }, 1000);
     }),
+  FIVE: () =>
+    window.setTimeout(() => {
+      vm.page('ONE');
+      // m.redraw.strategy('none');
+      m.redraw();
+      console.log('k');
+    }, 1000),
 };
 
 const backTrans = {
@@ -133,6 +143,20 @@ const currentPage = () => {
 
 const titleClass = () => 'band-name pg1-title';
 
+const eh = () =>
+  <div>
+    <div id="projector">
+      <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
+        <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
+      </div>
+      <h1 className={titleClass()}>{vm.bandName()}</h1>
+      {currentPage(vm.page())}
+    </div>
+    <a className="bottom-button" onclick={trans[vm.page()]}>
+      <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+    </a>
+  </div>;
+
 // VIEW
 const view = () =>
   <html>
@@ -143,16 +167,7 @@ const view = () =>
             <source src={artists[m.route.param('case')].video} type="video/mp4" />
         </video>
       </div>
-      <div id="projector">
-        <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
-          <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
-        </div>
-        <h1 className={titleClass()}>{vm.bandName()}</h1>
-        {currentPage(vm.page())}
-      </div>
-      <a className="bottom-button" onclick={trans[vm.page()]}>
-        <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
-      </a>
+        {(vm.page() !== 'FIVE') ? eh() : <div config={trans.FIVE}></div>}
     </body>
   </html>;
 

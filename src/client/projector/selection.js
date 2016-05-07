@@ -6,12 +6,18 @@ import { Spotify, SongPreview } from '../components';
 import SongCard from './components/SongCard';
 import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
-const addedSongs = [null, null, null];
+const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), vm.addedSongs());
 
-const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
-
-const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
-const removeFromPlaylist = (id) => addedSongs[id] = null;
+const addSongToPlaylist = (id, uri) => {
+  const added = vm.addedSongs();
+  added[id] = uri;
+  vm.addedSongs(added);
+};
+const removeFromPlaylist = (id) => {
+  const added = vm.addedSongs();
+  added[id] = null;
+  vm.addedSongs(added);
+};
 
 const artistSongs = {
   elvis: [
@@ -79,6 +85,7 @@ const artistSongs = {
 const vm = {
   init: () => {
     vm.songCards = m.prop(artistSongs[m.route.param('case')]);
+    vm.addedSongs = m.prop([null, null, null]);
     vm.firstRender = m.prop(true);
     vm.scanMode = false;
   },
@@ -119,7 +126,7 @@ const animateCardAdd = () => {
 
   vm.scanMode = true;
 
-  addedSongs.map((song, index) => {
+  vm.addedSongs().map((song, index) => {
     deselectCard(index)();
     return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
   });
@@ -131,7 +138,7 @@ const reverseAnimateCardAdd = () => {
 
   vm.scanMode = false;
 
-  addedSongs.map((song, index) => {
+  vm.addedSongs().map((song, index) => {
     deselectCard(index)();
     document.querySelector(`#card-${index}`).style.display = 'inline-block';
     Velocity(
