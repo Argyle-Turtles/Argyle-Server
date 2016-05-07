@@ -275,7 +275,7 @@ const songs = [
      selected: false,
     genre:'R&B/Soul'
   },
-  
+
 ];
 
 const addSongToPlaylist = (id) =>
@@ -285,7 +285,7 @@ const addSongToPlaylist = (id) =>
 const pickACard = id => () => {
     Spotify.getSongPreview(songs[id].uri.split(':')[2])
     .then(track => SongPreview.setAudioSource(track));
-  
+
 };
 
 
@@ -309,7 +309,7 @@ export const pageOne = {
     <Head />
       <body>
       <h1 style="float:left; font-size:100px;margin-left:200px; margin-top:-50px; color:white;font-family:edoregular">Mixta Soundstation</h1>
-      <a   
+      <a
       href ="/soundStation/two" config={m.route} style="font-size:50px;margin-right:200px;margin-top:-10px;float:right;color:white;letter-spacing:px">
            CONTINUE <img src="../../assets/img/skip_arrow.svg" style="width:100px" />
           </a>
@@ -341,8 +341,8 @@ export const pageTwo = {
     config={
       RFID.init((idNum) =>
         addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))
-           
-        )
+        .then(() => window.setTimeout(() => window.location = "http://129.21.72.239:3000/app/?/soundStation/"), 2000)
+      )
     }>
     Scan Casette</h2>
     <img src="../../assets/img/tape.png" />

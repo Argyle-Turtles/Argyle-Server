@@ -14,6 +14,8 @@ import SongCard from '../projector/components/SongCard';
 import PreviewCard from './components/PreviewCard';
 import { selectCard, deselectCard} from '../projector/animations';
 
+import funimations from './endAnimations';
+
 
 import d3 from 'd3';
 
@@ -35,26 +37,30 @@ const select = i => {
   vm.songCards(R.zip(vm.songDataArray, arr));
 };
 
-const selectedCard = data =>
+const selectedCard = (data,i) =>
   <div className="column is-4">
     <EndCard
       song={data}
+      ID = {i}
     />
   </div>;
 
-const unselectedCard = i =>
+const unselectedCard = (i,data) =>
   <div className="column is-3" onclick={() => {
     select(i);
-    const circles = R.repeat(5,vm.songDataArray.length);
+    const circles = R.repeat(7,vm.songDataArray.length);
     vm.circleRadius(circles);
-    vm.circleRadius()[i] = 10;
+    vm.circleRadius()[i] = 13;
   }}>
-    <PreviewCard />
+    <PreviewCard
+      song={data}
+     />
   </div>;
 
 const getLuv = () =>
   vm.needsSongs() && getUserSongsByUsercode(m.route.param('usercode'))
   .then(resp => {
+    console.log(resp);
     vm.songDataArray = getDataFromURIS(resp);
 
     const dataPoints = vm.songDataArray.map(function(data,i){
@@ -64,7 +70,6 @@ const getLuv = () =>
     vm.graphData(dataPoints);
 
     const bandPic = vm.songDataArray.map(function(data,i){
-      console.log(data.img);
       return data.img;
     });
     const imgArray = R.concat(["url("+bandPic+""], R.repeat("#ef2222", vm.songDataArray.length - 1));
@@ -73,7 +78,7 @@ const getLuv = () =>
     const zipArray = R.concat([true], R.repeat(false, vm.songDataArray.length - 1));
     vm.songCards(R.zip(vm.songDataArray, zipArray));
 
-    const circles = R.concat([10], R.repeat(5,vm.songDataArray.length - 1));
+    const circles = R.concat([13], R.repeat(7,vm.songDataArray.length - 1));
     vm.circleRadius(circles);
 
     vm.needsSongs(false);
@@ -85,7 +90,7 @@ const view = () =>
 		<body>
 			<div className="banner" config={getLuv}>
         <div className="bannerText">
-            <div className="backButton" onclick={function(){location.search = "/tablet/"}}>
+            <div className="backButton" onclick={function(){funimations.fadeOutNewRoute("/tablet/")}}>
               <img className="backArrow" src="../../src/client/tablet/assets/back_arrow_white.png" height="35" width="35"/>
               Back
             </div>
@@ -95,14 +100,13 @@ const view = () =>
 			<div className = "content">
 				<div className='graphSpace'
           config={function () {
-            console.log(vm.songDataArray);
             Graph.init(".graphSpace",vm.circleRadius(),vm.graphData(),vm.graphImg());
   						d3.selectAll("circle").on("click",function(){
   							//reset the values to the original size
-                const circles = R.repeat(5,vm.songDataArray.length);
+                const circles = R.repeat(7,vm.songDataArray.length);
   							vm.circleRadius(circles);
   							//increase the clicked circles radius by setting the size in the vm
-  							vm.circleRadius()[d3.select(this).attr("class")] = 10;
+  							vm.circleRadius()[d3.select(this).attr("class")] = 13;
   							//select the card that matches with the clicked circle
    							select(d3.select(this).attr("class"));
    							//draw the view again
@@ -115,13 +119,13 @@ const view = () =>
             <div className="columns container">
                   {
                       vm.songCards().map(
-                      ([card, visible], i) => visible ? selectedCard(card) : unselectedCard(i))
+                      ([card, visible], i) => visible ? selectedCard(card,i) : unselectedCard(i,card))
                   }
               </div>
             </div>
         </div>
         <SongPreview />
-  				<div id="endButton" onclick={function(){location.search = "/tablet/one/"+m.route.param("usercode")+""}} type="button">
+  				<div id="endButton" onclick={function(){funimations.fadeOut("one");}} type="button">
             Finalize!!
           </div>
     </div>

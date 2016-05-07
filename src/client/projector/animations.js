@@ -192,12 +192,12 @@ export const transition2 = () =>
     Selection.animateCardAdd(),
     hideNextButton(),
     fadeToText('.bottom-button', 'FINISH'),
-    // fadeOutElement('#back-button'),
   ]);
 
 export const transition3 = () =>
   Promise.all([
     animateSlideOut(),
+    fadeOutElement('#back-button'),
   ]);
 
 export const transition4 = () =>

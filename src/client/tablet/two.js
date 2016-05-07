@@ -20,11 +20,11 @@ const view = () =>
         const element = document.querySelector(".endKiosk");
         const hammerTimeLeft = new Hammer(element).on("swipeleft", function(e){
            // location.search = "/tablet/three/"+m.route.param("usercode")+"";
-            funimations.fadeOut("three");
+            funimations.slideOut("three");
         });
         const hammerTimeRight = new Hammer(element).on("swiperight", function(e){
             //location.search = "/tablet/one/"+m.route.param("usercode")+"";
-            funimations.fadeOut("one");
+            funimations.slideIn("one");
         });
     }}>
         <Head />
@@ -32,11 +32,11 @@ const view = () =>
             <div className="swipes">
                 <div className="banner">
                     <div className="bannerText">
-                        <div className="backButton" onclick={function(){location.search = "/tablet/mix/"+m.route.param("usercode")+""}}>
+                        <div className="backButton" onclick={function(){funimations.fadeOut("mix");}}>
                             <img className="backArrow" src="../../src/client/tablet/assets/back_arrow_white.png" height="35" width="35"/>
                             Back 
                         </div>
-                        <div className="bannerTitle"> Mita-{m.route.param("usercode")}</div>
+                        <div className="bannerTitle"> Mixta-{m.route.param("usercode")}</div>
                     </div>
                      <img className="imgAsset" src="../../../assets/img/2.png" width="325" height="275"></img>
                 </div>
@@ -53,9 +53,6 @@ const view = () =>
                                     <div
                                         id="endButton"
                                         type="button"
-                                        onclick={function(){
-                                            location.search = "/tablet/three/"+m.route.param("usercode")+"";
-                                        }}
                                     >
                                         <div>Finish Tour</div>
                                     </div>

@@ -22,7 +22,7 @@ const artists = {
     origin: 'Los Angeles, California',
     heyday: '1967-1987',
     inducted: '1987',
-    video: 'assets/video/concert_crowd.mp4',
+    video: 'assets/video/crowd_1.mp4',
   },
   elvis: {
     name: 'ELVIS PRESLEY',
@@ -178,17 +178,17 @@ const view = () =>
 // ---------- y: 820
 const calibrations = {
   peppers: {
-    dx: 1250,
-    dy: 1040,
+    dx: 1280,
+    dy: 1060,
     x: 120,
-    y: -230,
+    y: -250,
   },
 
   elvis: {
     dx: 1230,
     dy: 1020,
-    x: 70,
-    y: -280,
+    x: 140,
+    y: -310,
   },
 };
 
