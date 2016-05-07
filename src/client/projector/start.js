@@ -14,18 +14,41 @@ import BandInfo from './components/BandInfo';
 import Selection from './selection';
 import Suggestion from './suggestions';
 
-// VIEW MODEL
-const vm = {
-  init: () => {
-    vm.bandName = prop('RED HOT CHILI PEPPERS');
-    vm.primaryGenre = prop('Rock');
-    vm.subGenres = prop(['Funk Rock', 'Alt Rock', 'Funk Metal']);
-    vm.page = prop('ONE');
+const artists = {
+  peppers: {
+    name: 'RED HOT CHILI PEPPERS',
+    genre: 'Rock',
+    subGenres: ['Funk Rock', 'Alt Rock', 'Funk Metal'],
+    origin: 'Los Angeles, California',
+    heyday: '1967-1987',
+    inducted: '1987',
+    video: 'assets/video/concert_crowd.mp4',
+  },
+  elvis: {
+    name: 'ELVIS PRESLEY',
+    genre: 'Rock',
+    subGenres: ['Funk Rock', 'Alt Rock', 'Funk Metal'],
+    origin: 'Nashville, California',
+    heyday: '1967-1987',
+    inducted: '1987',
+    video: 'assets/video/elvis.mp4',
   },
 };
 
-const flipMain = () =>
-  Velocity(document.querySelector('.flip-180'), { rotateY: 180 }, 0);
+// VIEW MODEL
+const vm = {
+  init: () => {
+    const pageArtist = artists[m.route.param('case')];
+
+    vm.bandName = prop(pageArtist.name);
+    vm.primaryGenre = prop(pageArtist.genre);
+    vm.subGenres = prop(pageArtist.subGenres);
+    vm.origin = prop(pageArtist.origin);
+    vm.inducted = prop(pageArtist.inducted);
+    vm.heyday = prop(pageArtist.heyday);
+    vm.page = prop('ONE');
+  },
+};
 
 const isPage = page => vm.page() === page;
 
@@ -42,7 +65,6 @@ const trans = {
     .then(() => {
       vm.page('THREE');
       m.redraw();
-      console.log(Selection.selectedSongs())
       if (Selection.selectedSongs().length <= 0) {
         trans.THREE();
       }
@@ -58,12 +80,22 @@ const trans = {
   FOUR: () =>
     transition4()
     .then(() => {
-      window.setTimeout(() => window.location.reload(), 2000);
+      window.setTimeout(() => {
+        vm.page('FIVE');
+        m.redraw();
+      }, 1000);
     }),
+  FIVE: () =>
+    window.setTimeout(() => {
+      vm.page('ONE');
+      // m.redraw.strategy('none');
+      m.redraw();
+      console.log('k');
+    }, 1000),
 };
 
 const backTrans = {
-  ONE: () => console.log(':P'), // not this one
+  ONE: () => null, // not this one
   TWO: () =>
     reversePageTwo()
     .then(() => {
@@ -77,7 +109,7 @@ const backTrans = {
       vm.page('TWO');
       m.redraw();
     }),
-  FOUR: () => console.log(':P'), // not this one
+  FOUR: () => null, // not this one
 };
 
 const readRfid = () =>
@@ -93,7 +125,10 @@ const currentPage = () => {
     return <BandInfo
             bandName={vm.bandName()}
             primaryGenre={vm.primaryGenre()}
-            subGenres={vm.subGenres()}/>;
+            subGenres={vm.subGenres()}
+            origin={vm.origin()}
+            inducted={vm.inducted()}
+            heyday={vm.heyday()}/>;
   }
 
   else if (isPage('TWO') || isPage('THREE')) {
@@ -108,6 +143,21 @@ const currentPage = () => {
 
 const titleClass = () => 'band-name pg1-title';
 
+const eh = () =>
+  <div>
+    <Cursor />
+    <div id="projector">
+      <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
+        <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
+      </div>
+      <h1 className={titleClass()}>{vm.bandName()}</h1>
+      {currentPage(vm.page())}
+    </div>
+    <a className="bottom-button" onclick={trans[vm.page()]}>
+      <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
+    </a>
+  </div>;
+
 // VIEW
 const view = () =>
   <html>
@@ -115,36 +165,57 @@ const view = () =>
     <body>
       <div className="fullscreen-bg">
         <video loop muted autoplay className="fullscreen-bg__video">
-            <source src="assets/video/concert_crowd.mp4" type="video/mp4" />
+            <source src={artists[m.route.param('case')].video} type="video/mp4" />
         </video>
       </div>
-      <div id="projector">
-        <div id="back-button" className="invis" onclick={backTrans[vm.page()]}>
-          <img className="back-button-arrow" src="assets/img/back_arrow.svg" /> BACK
-        </div>
-        <h1 className={titleClass()}>{vm.bandName()}</h1>
-        {currentPage(vm.page())}
-      </div>
-      <a className="bottom-button" onclick={trans[vm.page()]}>
-        <span id="next-button-text">ROCK OUT</span> <img className="bottom-button-arrow" src="assets/img/skip_arrow.svg" />
-      </a>
+        {(vm.page() !== 'FIVE') ? eh() : <div config={trans.FIVE}></div>}
     </body>
   </html>;
 
 // SOME HACKY BULLSHIT
-// top left coords 1320 100
-// bot right 240 876
+// peppers
+// x: 200, y: -200 ---------- x: 1430, y: -200
+// ---------- y: 820
+const calibrations = {
+  peppers: {
+    dx: 1250,
+    dy: 1040,
+    x: 120,
+    y: -230,
+  },
+
+  elvis: {
+    dx: 1230,
+    dy: 1020,
+    x: 200,
+    y: -200,
+  },
+};
 
 const touchScreen = ({ x, y }) => {
+  const cali = calibrations[m.route.param('case')];
+
   const clickSpot = document.elementFromPoint(
-    window.innerWidth - ((x - 240) / 1080 * window.innerWidth),
-    (y - 100) / 776 * window.innerHeight);
+    window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth),
+    (y - cali.y) / cali.dy * window.innerHeight);
+    console.log(clickSpot);
+    mvCursor({ x, y });
+    // console.log('click', `x: ${x}, y: ${y}`);
   return clickSpot && clickSpot.click();
+};
+
+const mvCursor = ({ x, y }) => {
+  // const cali = calibrations[m.route.param('case')];
+  // const mx = window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth);
+  // const my = (y - cali.y) / cali.dy * window.innerHeight;
+  //
+  // document.querySelector('#cursor').style.top = `${my}px`;
+  // document.querySelector('#cursor').style.left = `${mx}px`;
 };
 
 // CONTROLER
 const controller = () => {
-  leap.init(touchScreen, () => false);
+  leap.init(touchScreen, mvCursor);
   vm.init();
 };
 

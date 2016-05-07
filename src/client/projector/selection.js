@@ -6,47 +6,86 @@ import { Spotify, SongPreview } from '../components';
 import SongCard from './components/SongCard';
 import { selectCard, deselectCard, fadeCardOut, moveAddedCard } from './animations';
 
-const addedSongs = [null, null, null];
+const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), vm.addedSongs());
 
-const selectedSongs = () => R.filter(e => R.not(R.isNil(e)), addedSongs);
+const addSongToPlaylist = (id, uri) => {
+  const added = vm.addedSongs();
+  added[id] = uri;
+  vm.addedSongs(added);
+};
+const removeFromPlaylist = (id) => {
+  const added = vm.addedSongs();
+  added[id] = null;
+  vm.addedSongs(added);
+};
 
-const addSongToPlaylist = (id, uri) => addedSongs[id] = uri;
-const removeFromPlaylist = (id) => addedSongs[id] = null;
+const artistSongs = {
+  elvis: [
+    {
+      album: 'Can’t Help Falling in Love',
+      name: 'Blue Hawaii',
+      year: '1961',
+      length: '3:00',
+      description: `‘Can't Help Falling in Love’ is a pop ballad sung to the melody of the 1784 French love song, ‘Plaisir d'amour’. The song was featured in Elvis Presley's 1961 film, Blue Hawaii.`,
+      uri: 'spotify:track:44AyOl4qVkzS48vBsbNXaC',
+      img: 'https://i.scdn.co/image/479ec1fcd836348926b576260b5be92503f8b0a4',
+    },
+    {
+      album: 'Jailhouse Rock',
+      name: 'Jailhouse Rock',
+      year: '1958',
+      length: '2:26',
+      description: `In ‘Jailhouse Rock’ Elvis sings of prisoners at a jailhouse getting their groove on to some rock and roll. His energized vocals paired with catchy guitar riff are emblematic of the early rock and roll tunes of the time.`,
+      uri: 'spotify:track:4gphxUgq0JSFv2BCLhNDiE',
+      img: 'https://i.scdn.co/image/97f150dc58d9900133e895f8e61e2087621dccdc',
+    },
+    {
+      album: 'Suspicious Minds',
+      name: 'Back in Memphis',
+      year: '1969',
+      length: '4:24',
+      description: `‘Suspicious Minds’ is one of Presley’s later hits. The song is about a mistrusting and dysfunctional relationship, and the need of the characters to overcome their issues in order to maintain it.`,
+      uri: 'spotify:track:1OtWwtGFPXVhdAVKZHwrNF',
+      img: 'https://i.scdn.co/image/5f52605ad70e4ee4d79fce461d94b6f6142e24ef',
+    },
+  ],
 
-const songData = [
-  {
-    album: 'One Hot Minute',
-    name: 'Aeroplane',
-    year: '1995',
-    length: '4:45',
-    description: "Despite its dark lyrical themes, Aeroplane is one of the more accessible and upbeat songs on One Hot Minute, with a funk slap bass line and child choral vocals from Flea's (bassist) daughter and her classmates.",
-    uri: 'spotify:track:0VLdJcQUsqHBBwqPp4CIKJ',
-    img: 'https://i.scdn.co/image/010e335a53b768865080a6ea39b0a979d2e54b24',
-  },
-  {
-    album: 'Stadium Arcadium',
-    name: 'Snow (Hey Oh)',
-    year: '2006',
-    length: '5:35',
-    description: 'Trey loves this funkadelic stuff, he tells his grandma about it every sunday',
-    uri: 'spotify:track:2aibwv5hGXSgw7Yru8IYTO',
-    img: 'https://i.scdn.co/image/60257f94086dfdcaa9730d3959aab66e1ce89f7d',
-  },
-  {
-    album: 'Californication',
-    name: 'Californication',
-    year: '1999',
-    length: '5:30',
-    description: 'Bring it home with some fucktastic sounds',
-    uri: 'spotify:track:34KTEhpPjq6IAgQg2yzJAL',
-    img: 'https://i.scdn.co/image/260c7a6da14bb13a4cc9e75bf5b549fb87fa22a9',
-  },
-];
+  peppers: [
+    {
+      album: 'One Hot Minute',
+      name: 'Aeroplane',
+      year: '1995',
+      length: '4:45',
+      description: "Despite its dark lyrical themes, Aeroplane is one of the more accessible and upbeat songs on One Hot Minute, with a funk slap bass line and child choral vocals from Flea's (bassist) daughter and her classmates.",
+      uri: 'spotify:track:0VLdJcQUsqHBBwqPp4CIKJ',
+      img: 'https://i.scdn.co/image/010e335a53b768865080a6ea39b0a979d2e54b24',
+    },
+    {
+      album: 'Stadium Arcadium',
+      name: 'Snow (Hey Oh)',
+      year: '2006',
+      length: '5:35',
+      description: `‘Snow (Hey Oh)’ is a characteristically soft, melodic song, driven by a rapid guitar riff by John Frusciante. Vocalist Anthony Kiedis states that the track is "about surviving, starting fresh. I've made a mess of everything, but I have a blank slate—a canvas of snow—and I get to start over." `,
+      uri: 'spotify:track:2aibwv5hGXSgw7Yru8IYTO',
+      img: 'https://i.scdn.co/image/60257f94086dfdcaa9730d3959aab66e1ce89f7d',
+    },
+    {
+      album: 'Californication',
+      name: 'Californication',
+      year: '1999',
+      length: '5:30',
+      description: `‘Californication’ has remained one of the Red Hot Chili Peppers’ most popular and most performed songs, appearing in almost every setlist since its release. The song is mainly about the dark side of Hollywood and the export of culture through the movie industry.`,
+      uri: 'spotify:track:34KTEhpPjq6IAgQg2yzJAL',
+      img: 'https://i.scdn.co/image/260c7a6da14bb13a4cc9e75bf5b549fb87fa22a9',
+    },
+  ],
+};
 
 // VIEW MODEL
 const vm = {
   init: () => {
-    vm.songCards = m.prop(songData);
+    vm.songCards = m.prop(artistSongs[m.route.param('case')]);
+    vm.addedSongs = m.prop([null, null, null]);
     vm.firstRender = m.prop(true);
     vm.scanMode = false;
   },
@@ -87,7 +126,7 @@ const animateCardAdd = () => {
 
   vm.scanMode = true;
 
-  addedSongs.map((song, index) => {
+  vm.addedSongs().map((song, index) => {
     deselectCard(index)();
     return R.isNil(song) ? fadeCardOut(index) : moveAddedCard(index);
   });
@@ -99,7 +138,7 @@ const reverseAnimateCardAdd = () => {
 
   vm.scanMode = false;
 
-  addedSongs.map((song, index) => {
+  vm.addedSongs().map((song, index) => {
     deselectCard(index)();
     document.querySelector(`#card-${index}`).style.display = 'inline-block';
     Velocity(
@@ -113,7 +152,7 @@ const pickACard = id => () => {
   if (!vm.scanMode) {
     [0, 1, 2].map(index => id === index ? selectCard(index)() : deselectCard(index)());
 
-    Spotify.getSongPreview(songData[id].uri.split(':')[2])
+    Spotify.getSongPreview(artistSongs[m.route.param('case')][id].uri.split(':')[2])
     .then(track => SongPreview.setAudioSource(track));
   }
 };
