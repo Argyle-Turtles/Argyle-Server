@@ -341,7 +341,7 @@ export const pageTwo = {
     config={
       RFID.init((idNum) =>
         addSongToUser(idNum, R.map(R.prop('uri'), R.filter(R.propEq('selected', true), songs)))
-        .then(() => window.timeout(() => window.location.href = "129.21.72.239:3000/app/?/soundStation"), 1000)
+        .then(() => window.setTimeout(() => window.location = "http://129.21.72.239:3000/app/?/soundStation/"), 2000)
       )
     }>
     Scan Casette</h2>

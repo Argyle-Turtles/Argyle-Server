@@ -32,8 +32,8 @@ const mid = (year, length) =>
 
 const removeButton = (songToRemove,id) =>
   <a class="card-footer-item song-card-button-link remove-button"
-    onclick={function(){ //removeSong(m.route.param("usercode"),[songToRemove])
-    funimations.removeCard("#front-"+id);
+    onclick={function(){ removeSong(m.route.param("usercode"),[songToRemove])
+    // funimations.removeCard("#front-"+id);
     }}>
     <img className="card-remove-icon" src="assets/img/remove_icon.svg" /> REMOVE
   </a>;
@@ -51,13 +51,13 @@ const img = (url, id, preview, uri) =>
           <div className="pauseSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
                 SongPreview.pauseAudio();
                 vm.isPlaying = false;
-                
+
                 });
              }}>
             <img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
               <img id="endImg" className="pauseButton" src="./assets/img/pause.svg"/>
            </div>
-        : 
+        :
 
            <div className="playSomeMusic" onclick={function(){Spotify.getSongPreview(uri.split(':')[2]).then(function(resp){
                 SongPreview.setAudioSource(resp);
@@ -67,7 +67,7 @@ const img = (url, id, preview, uri) =>
              }}>
             <img id="endImg" className="ppbg" src="./assets/img/play_pause_bg.svg"/>
               <img id="endImg" className="playButton" src="./assets/img/play.svg"/>
-           </div> 
+           </div>
       }
   </div>;
 
