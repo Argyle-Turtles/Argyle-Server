@@ -22,7 +22,7 @@ const artists = {
     origin: 'Los Angeles, California',
     heyday: '1967-1987',
     inducted: '1987',
-    video: 'assets/video/concert_crowd.mp4',
+    video: 'assets/video/crowd_1.mp4',
   },
   elvis: {
     name: 'ELVIS PRESLEY',

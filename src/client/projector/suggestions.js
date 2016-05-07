@@ -47,17 +47,17 @@ const artistData = {
     {
       name: 'Elvis Presley',
       genre: 'Rock',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/Elvis-Presley.jpg',
     },
     {
       name: 'Nirvana',
       genre: 'Alternative',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/Nirvana2.jpg',
     },
     {
       name: 'Iron Maiden',
       genre: 'Metal',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/iron_maiden.jpg',
     },
   ],
 
@@ -65,17 +65,17 @@ const artistData = {
     {
       name: 'Red Hot Chili Peppers',
       genre: 'Rock',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/chili-peppers.jpg',
     },
     {
       name: 'Muddy Waters',
       genre: 'Blues',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/Muddy-Waters_05.jpg',
     },
     {
       name: 'Ray Charles',
       genre: 'R&B/Soul',
-      img: 'http://placehold.it/433x433',
+      img: '/assets/img/Ray-Charles.jpg',
     },
   ],
 };
