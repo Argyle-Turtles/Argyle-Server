@@ -34,7 +34,8 @@
     "url-loader": "^0.5.7",
     "velocity-animate": "^1.2.3",
     "webpack": "^1.12.14",
-    "winston": "^2.2.0"
+    "winston": "^2.2.0",
+    "hammerjs": "^2.0.6"
   },
   "devDependencies": {},
   "scripts": {

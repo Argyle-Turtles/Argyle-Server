@@ -18,7 +18,7 @@ const view = () =>
                         </div>
                         <div className="bannerTitle">Peace Out Mother fuckers!</div>
                     </div>
-                     <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
+                     <img className="imgAsset" src="../../../assets/img/5.png" width="325" height="275"></img>
             	</div>
             </div>
         </body>

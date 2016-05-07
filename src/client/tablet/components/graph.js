@@ -8,9 +8,11 @@ let i = -1;
 //creates and appends graph
 //append => element to append the graph to
 //radius => array of radiussesese for circles
- export const init = (append,radius,graphData) => {
+ export const init = (append,radius,graphData,graphImg) => {
   //no dupicating graphs!
   d3.select("svg").remove();
+
+console.log(graphImg);
 
   //scale from 1 to 8
   const yScale = d3.scale.linear()
@@ -22,7 +24,7 @@ let i = -1;
   //should be length of graph/total songs on playlist
   const xScale = d3.scale.linear()
                           .domain([0, 8])
-                          .range([0, 250]);
+                          .range([0, 500]);
 
   // tick labels
   const ticks = ["10s","00s","90s","80s","70s","60s","50s","40s","30s"];
@@ -33,7 +35,7 @@ let i = -1;
   
 
   //creates axis with y scale
-  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-260).orient("left");
+  const yAxis = d3.svg.axis().scale(yScale).tickFormat(formatTicks).innerTickSize(-520).orient("left");
 
   //function to extract data points from the data set
   const lineGen = d3.svg.line()
@@ -62,7 +64,7 @@ let i = -1;
 
 //The SVG Container
 const svgContainer = d3.select(append).append("svg")
-                                    .attr("width", 250)
+                                    .attr("width", 500)
                                     .attr("height", 255);
 
 // add y axis to the graph
@@ -90,7 +92,14 @@ const lineGraph = svgContainer.append("path")
   const getRadius = function(){
     i++;
     return radius[i];
-  }                          
+  }   
+
+  const getImg = function(){
+    i++;
+    return graphImg[i];
+  }
+
+
 // add data point circles
 svgContainer.selectAll("dot")
       .data(graphData)
@@ -100,8 +109,8 @@ svgContainer.selectAll("dot")
         .attr("cx", function(d) { return xScale(d.x); })
         .attr("cy", function(d) { return yScale(d.y); })
         .attr("transform", "translate(15,0)")
-        .style("stroke","black")
-        .style("fill","lightgray");
+        .style("stroke","#ef2222")
+        .style("fill","#ef2222");
 
                             
     i = -1;                        

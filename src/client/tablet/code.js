@@ -6,14 +6,17 @@ import {Head} from '../components';
 let fourDigetCode = "";
 
 const view = () =>
-	<html className="endKiosk">
+	<html className="endKiosk" config={function(){
+        document.getElementById(userCode).focus();
+
+    }}>
 		<Head />
 		<body>
 			<div className='banner'>
                 <div className="bannerText">
             	   <div className="bannerTitle">Enter your code</div>
                 </div>
-                <img className="imgAsset" src="https://placeholdit.imgix.net/~text?txtsize=41&txt=450%C3%97350&w=225&h=175"></img>
+                <img className="imgAsset" src="../../../assets/img/0.png" width="325" height="275"></img>
             </div>
             <div class="conent">
                 <div className="contentText">
