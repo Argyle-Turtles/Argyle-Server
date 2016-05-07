@@ -192,7 +192,7 @@ export const transition2 = () =>
     Selection.animateCardAdd(),
     hideNextButton(),
     fadeToText('.bottom-button', 'FINISH'),
-    fadeOutElement('#back-button'),
+    // fadeOutElement('#back-button'),
   ]);
 
 export const transition3 = () =>

@@ -187,8 +187,8 @@ const calibrations = {
   elvis: {
     dx: 1230,
     dy: 1020,
-    x: 200,
-    y: -200,
+    x: 70,
+    y: -280,
   },
 };
 
@@ -205,12 +205,12 @@ const touchScreen = ({ x, y }) => {
 };
 
 const mvCursor = ({ x, y }) => {
-  // const cali = calibrations[m.route.param('case')];
-  // const mx = window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth);
-  // const my = (y - cali.y) / cali.dy * window.innerHeight;
-  //
-  // document.querySelector('#cursor').style.top = `${my}px`;
-  // document.querySelector('#cursor').style.left = `${mx}px`;
+  const cali = calibrations[m.route.param('case')];
+  const mx = window.innerWidth - ((x - cali.x) / cali.dx * window.innerWidth);
+  const my = (y - cali.y) / cali.dy * window.innerHeight;
+
+  document.querySelector('#cursor').style.top = `${my}px`;
+  document.querySelector('#cursor').style.left = `${mx}px`;
 };
 
 // CONTROLER

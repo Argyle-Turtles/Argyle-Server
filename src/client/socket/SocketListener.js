@@ -45,7 +45,7 @@ const view = () =>
 
 // CONTROLLER
 const controller = () => {
-  const socket = io.connect('http://localhost:3001');
+  const socket = io.connect('http://129.21.72.239:3001');
   socket.on('connect', () => console.log('Hooked on sockets worked for me!'));
   hookUpThemSweetSockets(socket);
 };
