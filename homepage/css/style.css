@@ -129,13 +129,6 @@ td {
 	max-width: 1474px;
 }
 
-iframe { 
-    width: 50vw;
-    height: 28vw;
-    max-width: 800px;
-    max-height: 450px;
-}
-
 /* Pop-out Navigation -------------------------------------------------------------------- */
 /* Pop-out navigation CSS: https://codyhouse.co/gem/full-screen-pop-out-navigation/ */
 
